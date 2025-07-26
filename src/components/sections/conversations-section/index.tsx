@@ -36,15 +36,15 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
       animate={isInView ? 'animate' : 'initial'}
       variants={variants}
       transition={{ duration: 0.5 }}
-      className="pt-12 pb-40 w-[90vw] lg-w-[80vw] relative"
+      className="pt-12 pb-40 px-5 md:px-10 w-full md:w-[90vw] lg:w-[80vw] relative"
     >
       <motion.div
-        className="mt-12 flex w-full justify-evenly gap-8 items-stretch"
+        className="mt-12 flex w-full justify-evenly gap-8 items-stretch flex-col lg:flex-row"
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
       >
-        <motion.div className="relative w-[55%] aspect-[4/3]">
+        <motion.div className="relative md:w-[55%] aspect-[4/3]">
           <Image
             src="/assets/images/conversation.png"
             alt="Conversation"
@@ -53,7 +53,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
           />
         </motion.div>
         {isInView && (
-          <motion.div className="w-[40%] flex flex-col justify-center font-work-sans text-sm max-w-[560px]">
+          <motion.div className="md:w-[40%] flex flex-col justify-center font-work-sans text-sm max-w-[560px]">
             <motion.h2
               className="text-[40px] font-bold mb-4 font-montserrat tracking-[0.2px]"
               initial={{ y: 20, opacity: 0 }}
@@ -63,7 +63,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
               Bastaaaaaa!
             </motion.h2>
             <motion.p
-              className="mb-6"
+              className="mb-6 font-bold text-md md:text-lg"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.7 }}
@@ -72,7 +72,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
               que quiero.
             </motion.p>
             <motion.p
-              className="mb-6"
+              className="mb-6 font-bold text-md md:text-lg"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.9, duration: 0.7 }}
@@ -140,7 +140,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
               entienden el valor real de tu trabajo.
             </motion.b>
             <motion.b
-              className="text-lg mb-6 text-md"
+              className="text-lg mb-6"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1.6, duration: 0.7 }}
@@ -156,7 +156,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
         alt="Curl"
         width={390}
         height={180}
-        className="absolute bottom-0 left-0 transform translate-x-[-30%] translate-y-[35%]"
+        className="absolute bottom-0 left-0 transform translate-x-[-30%] translate-y-[35%] hidden md:block"
       />
     </motion.section>
   );

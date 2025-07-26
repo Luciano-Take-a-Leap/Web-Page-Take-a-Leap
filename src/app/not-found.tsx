@@ -4,13 +4,11 @@ import { motion } from 'motion/react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
-// import { useParams } from 'next/navigation';
 import { cn } from '@/utils/twMerge';
 import { buttonVariants } from '@/components/ui/button';
 
 export default function NotFound() {
-  // const params = useParams();
-  // const { locale } = params as { locale: 'en' | 'es' };
+
 
   return (
     <html>

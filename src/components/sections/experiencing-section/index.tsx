@@ -72,10 +72,10 @@ const ExperiencingSection: React.FC = () => {
       transition={{
         duration: 0.5,
       }}
-      className="w-full relative bg-orange flex flex-col items-center justify-center"
+      className="w-full relative bg-orange flex flex-col items-center justify-center px-5 md:py-20"
     >
       <motion.h2
-        className="text-center text-5xl font-bold text-white mt-10 mb-6 font-montserrat"
+        className="text-center text-[30px] md:text-[40px] text-white mt-10 mb-6 font-archivo-black-400 px-6 md:max-w-[80%]"
         initial={{
           y: 30,
           opacity: 0,
@@ -88,12 +88,14 @@ const ExperiencingSection: React.FC = () => {
           duration: 0.3,
         }}
       >
-        ¿Experimentas esto?
+        Puedes tardar 2 años y meter la pata cientos de veces... <br /> <br />
+        ... O puedes hacerlo con mi acompañamiento y cerrar tus primeras ventas en 6
+        semanas.{' '}
       </motion.h2>
       <Image
         src="/assets/images/UI-elements/arrow-1.png"
         alt="UI-element: arrow"
-        className="absolute top-48 left-0 transform translate-x-6 scale-200"
+        className="absolute top-48 left-0 transform translate-x-6 scale-200 hidden md:block"
         width={52}
         height={150}
       />
@@ -102,12 +104,12 @@ const ExperiencingSection: React.FC = () => {
           ? CARDS.map((card, index) => (
               <motion.div
                 key={index}
-                className="bg-white p-6 rounded-lg shadow-lg w-[330px] h-[390px] flex flex-col justify-start items-start gap-4 font-montserrat"
+                className="bg-white text-black px-10 py-9 rounded-lg shadow-lg w-[330px] h-[390px] flex flex-col justify-start items-start gap-4 font-montserrat"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: index * 0.2, duration: 0.3 }}
               >
-                <h3 className="font-bold mb-2">{card.title}</h3>
+                <h3 className="font-bold mb-2 tracking-[0.1px]">{card.title}</h3>
                 <motion.figure
                   className="h-1 bg-orange"
                   initial={{
@@ -116,29 +118,15 @@ const ExperiencingSection: React.FC = () => {
                   animate={{ width: '25%' }}
                   transition={{ delay: index * 0.2 + 0.3, duration: 0.5 }}
                 />
-                <div className="text-text-secondary text-sm">{card.description}</div>
+                <div className="text-text-secondary text-sm tracking-[0.1px]">
+                  {card.description}
+                </div>
               </motion.div>
             ))
           : null}
       </motion.div>
-      <motion.div
-        className="absolute bottom-0 right-0 w-[200px] h-[200px] bg-orange rounded-full"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 0.5, duration: 0.5 }}
-      />
       <motion.h4
-        className="text-center text-white mb-6 font-archivo-black-400"
-        initial={{ y: 30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.3 }}
-      >
-        Puedes tardar 2 años y meter la pata cientos de veces... <br /> <br />
-        ... O puedes hacerlo con mi acompañamiento y cerrar tus primeras ventas en 6
-        semanas.
-      </motion.h4>
-      <motion.h4
-        className="text-center text-black mb-10 font-montserrat text-lg max-w-[60vw]"
+        className="text-center text-black mb-10 font-montserrat text-lg md:max-w-[60vw] tracking-[0.2px]"
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.7, duration: 0.3 }}
@@ -151,19 +139,19 @@ const ExperiencingSection: React.FC = () => {
         con el feedback de tus conocidos, y otra muy diferente es empezar a hacer dinerito
         en cuenta.
       </motion.h4>
-      <Button className="bg-yellow text-black font-bold px-8 py-4 rounded-full mb-10">
+      <Button className="bg-dark-blue text-white font-montserrat font-bold px-8 py-4 rounded-[20px] h-13 mb-10 w-full md:w-auto">
         <a
           href="https://calendly.com/take-a-leap/30min"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Reserva una llamada gratuita
+          ME UNO A TAKE A LEAP PROGRAM
         </a>
       </Button>
       <Image
         src="/assets/images/UI-elements/arrow-2.png"
         alt="UI-element: arrow"
-        className="absolute bottom-0 right-40 transform translate-y-16"
+        className="absolute bottom-0 right-40 transform translate-y-16 hidden md:block"
         width={280}
         height={230}
       />

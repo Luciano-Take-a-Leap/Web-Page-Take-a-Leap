@@ -1,22 +1,16 @@
 'use client';
 
 import Hero from '@/components/sections/hero';
-import ContactMeSection from '@/components/layout/contact-section';
 import ConversationSection from '@/components/sections/conversations-section';
-import KpisSection from '@/components/layout/kpis-section';
 import ScrollHint from '@/components/layout/scroll-hint';
 import ExperiencingSection from '@/components/sections/experiencing-section';
-import { Project } from '@/types';
-import { useParams } from 'next/navigation';
 import { motion } from 'motion/react';
 import React from 'react';
+import WhatsappButton from '@/components/whatsapp-button';
+import CurrentEditionPeopleSection from '@/components/sections/current-edition-people-section';
 
 export default function HomePageComponent() {
-  const params = useParams();
   const [showScrollHint, setShowScrollHint] = React.useState(true);
-
-  const { locale: language } = params as { locale: string };
-
 
   return (
     <div className="flex flex-col min-h-screen w-full justify-center">
@@ -36,8 +30,8 @@ export default function HomePageComponent() {
         )}
         <ConversationSection onViewChange={() => setShowScrollHint(false)} />
         <ExperiencingSection />
-        {/* <KpisSection />
-        <ContactMeSection /> */}
+        <CurrentEditionPeopleSection />
+        <WhatsappButton />
       </main>
     </div>
   );

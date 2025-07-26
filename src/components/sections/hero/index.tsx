@@ -12,11 +12,21 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
     <motion.div
       layout
       ref={ref}
-      className={`w-full h-[calc(100vh-80px)] flex items-center justify-center relative ${className}`}
+      className={`w-full md:h-[calc(100vh-80px)] flex items-center justify-center relative ${className} px-5 md:px-0 py-26 md:py-0`}
     >
-      <motion.div className="w-full h-full absolute top-0 left-0">
+      <motion.div className="w-full h-full absolute top-0 left-0 hidden md:block">
         <motion.img
           src="/assets/images/hero-bg.png"
+          alt="hero"
+          className="w-full h-full object-cover"
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        />
+      </motion.div>
+      <motion.div className="w-full h-full absolute top-0 left-0 md:hidden">
+        <motion.img
+          src="/assets/images/hero-bg-mobile.png"
           alt="hero"
           className="w-full h-full object-cover"
           initial={{ opacity: 0, y: -40 }}
@@ -27,20 +37,20 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
 
       <motion.div className="flex flex-col items-center z-10 gap-12 max-w-[940px] 2xl:max-w-[70vw]">
         <motion.div
-          className="w-full"
+          className="w-56 md:w-full"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <motion.h2
-            className="text-[80px] font-archivo-black-400 text-center text-white"
+            className="text-[30px] md:text-[80px] font-archivo-black-400 text-center text-white "
             transition={{ duration: 1 }}
           >
             Take a Leap Program
           </motion.h2>
         </motion.div>
         <motion.h4
-          className="font-bold text-center font-montserrat text-2xl text-white"
+          className="font-bold text-center font-montserrat text-lg md:text-2xl text-white tracking-[0.2px]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
@@ -65,7 +75,7 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
           ni quemar todos tus ahorros. 
         </motion.p>
         <motion.div
-          className="flex items-center justify-center bg-[#F65A1799] max-w-[815px] rounded-full px-12 py-4"
+          className="flex items-center justify-center bg-[#F65A1799] w-full md:w-[55vw] rounded-[40px] px-12 py-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}

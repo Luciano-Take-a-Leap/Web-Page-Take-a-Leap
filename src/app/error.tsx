@@ -5,8 +5,7 @@ import { useEffect } from 'react';
 
 import { Button } from '@/components/ui/button';
 
-import { Link } from '@/i18n/navigation';
-import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 export default function Error({
   error,
@@ -14,7 +13,6 @@ export default function Error({
   params: Promise<{ locale: string }>;
   error: Error & { digest?: string };
 }) {
-  const t = useTranslations();
   useEffect(() => {
     console.error(error);
   }, [error]);
@@ -25,11 +23,11 @@ export default function Error({
         <ServerCrash className="w-10 h-10 text-red-600" />
       </div>
       <h1 className="mb-2 text-3xl font-bold tracking-tight sm:text-4xl">
-        {t('ErrorPage.title')}
+        Ocurrió un error inesperado
       </h1>
       <div className="flex flex-col gap-4 sm:flex-row mt-8">
         <Button variant="outline" asChild>
-          <Link href="/">{t('ErrorPage.cta-button')}</Link>
+          <Link href="/">Volver al inicio</Link>
         </Button>
       </div>
     </div>

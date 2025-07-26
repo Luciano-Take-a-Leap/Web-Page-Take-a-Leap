@@ -2,44 +2,42 @@
 
 import { motion } from 'motion/react';
 
-import LanguageSwitcher from '../language-switcher';
 import Link from 'next/link';
 import { cn } from '@/utils/twMerge';
-import MobileNav from '../mobile-nav';
 import Navbar from '../navbar';
 import { ThemeToggle } from '../theme-toggle';
 import Image from 'next/image';
+import MobileNav from '../mobile-nav';
 
 export const HEADER_LINKS = [
   {
     key: 'quien-soy',
     href: '/#quien-soy',
-    "label": 'Quien soy',
+    label: 'Quien soy',
   },
   {
     key: 'programa',
     href: '/#programa',
-    "label": 'Programa',
+    label: 'Programa',
   },
   {
     key: 'reserva',
     href: '/#reserva',
-    "label": 'Reserva',
+    label: 'Reserva',
   },
   {
     key: 'casos-de-exito',
     href: '/#casos-de-exito',
-    "label": 'Casos de éxito',
+    label: 'Casos de éxito',
   },
-  { key: 'agenda-un-llamado', href: '/#agenda-un-llamado', "label": 'Agenda un llamado' },
+  { key: 'agenda-un-llamado', href: '/#agenda-un-llamado', label: 'Agenda un llamado' },
 ];
 
 const Header = () => {
-
   return (
     <motion.header
       className={cn(
-        'bg-white dark:bg-[darkgray]/50 fixed inset-x-0 z-40 mx-auto flex h-20 gap-[54px] w-screen items-center justify-center px-8 transition-colors'
+        'md:bg-white/75 dark:md:bg-[black]/75 fixed inset-x-0 z-40 mx-auto  h-20 gap-[54px] w-screen items-center justify-between md:justify-center px-4 md:px-8 flex md-backdrop-blur-[10px] transition-colors'
       )}
       initial={{
         y: -100,
@@ -51,9 +49,10 @@ const Header = () => {
         duration: 0.3,
       }}
     >
+      <MobileNav />
       <Link
         href="/"
-        className="flex items-center justify-center gap-1"
+        className="items-center justify-center gap-1 hidden md:flex"
         aria-label={'Home'}
       >
         <Image
@@ -66,8 +65,6 @@ const Header = () => {
       <div className="flex items-center gap-2">
         <Navbar />
         <ThemeToggle />
-        <LanguageSwitcher />
-        <MobileNav />
       </div>
     </motion.header>
   );
