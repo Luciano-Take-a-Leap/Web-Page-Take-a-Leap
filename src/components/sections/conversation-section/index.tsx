@@ -4,7 +4,6 @@ import { motion, useInView } from 'motion/react';
 import { useEffect, useRef } from 'react';
 
 import Image from 'next/image';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 interface ConversationSectionProps {
   onViewChange?: () => void;
