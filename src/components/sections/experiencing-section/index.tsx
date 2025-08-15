@@ -10,7 +10,7 @@ const ExperiencingSection: React.FC = () => {
   const firstCardRef = useRef<HTMLDivElement>(null);
 
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
-  const areCardsInView = useInView(firstCardRef, { once: true, margin: '-50px' });
+  const areCardsInView = useInView(firstCardRef, { once: true, margin: '-75px' });
   const CARDS = [
     {
       title: (
@@ -43,7 +43,8 @@ const ExperiencingSection: React.FC = () => {
     {
       title: (
         <p>
-          No me como el cuento de que para tener éxito, hay que fracasar varias veces{' '}
+          No me como el cuento de que para tener éxito, hay que fracasar varias veces con
+          tu idea
         </p>
       ),
       description: (
@@ -93,7 +94,7 @@ const ExperiencingSection: React.FC = () => {
       transition={{
         duration: 0.5,
       }}
-      className="w-full relative bg-orange flex flex-col items-center justify-center px-5 md:py-20"
+      className="w-full relative bg-gradient-to-b from-orange to-orange-gradient flex flex-col items-center justify-center px-5 md:py-20"
     >
       <motion.h2
         className="text-center text-[30px] md:text-[40px] text-white mt-10 mb-6 font-archivo-black-400 px-6 md:max-w-[80%]"
@@ -124,7 +125,7 @@ const ExperiencingSection: React.FC = () => {
         {CARDS.map((card, index) => (
           <motion.div
             key={index}
-            className="bg-white text-black px-10 py-9 rounded-lg shadow-lg w-[330px] h-[390px] flex flex-col justify-start items-start gap-4 font-montserrat"
+            className="bg-white text-black px-10 py-9 rounded-[20px] md:rounded-[40px] shadow-lg w-[330px] h-[390px] flex flex-col justify-start items-start gap-4 font-montserrat"
             ref={index === 0 ? firstCardRef : null}
             initial={cardsAnimations[index].initial}
             animate={
@@ -134,16 +135,18 @@ const ExperiencingSection: React.FC = () => {
             }
             transition={cardsAnimations[index].transition}
           >
-            <h3 className="font-bold mb-2 tracking-[0.1px]">{card.title}</h3>
+            <h3 className="font-bold text-lg text-center mb-2 tracking-[0.1px] min-h-[45%] flex items-center">
+              {card.title}
+            </h3>
             <motion.figure
-              className="h-1 bg-orange"
+              className="h-1 bg-orange self-center"
               initial={{
                 width: 0,
               }}
               animate={areCardsInView ? { width: '25%' } : { width: 0 }}
               transition={{ delay: index * 0.2 + 0.3, duration: 0.5 }}
             />
-            <div className="text-black text-sm tracking-[0.1px]">
+            <div className="text-text text-md tracking-[0.1px] text-center">
               {card.description}
             </div>
           </motion.div>

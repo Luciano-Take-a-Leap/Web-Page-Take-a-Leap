@@ -64,7 +64,7 @@ const WarrantySection: React.FC = () => {
       transition={{
         duration: 0.5,
       }}
-      className="w-full relative flex flex-col items-center justify-center py-10 bg-orange text-black px-6"
+      className="w-full relative flex flex-col items-center justify-center py-10 bg-gradient-to-b from-orange to-orange-gradient text-black px-6"
     >
       <motion.h2
         className="text-center text-[30px] md:text-[40px] mt-10 mb-6 font-montserrat font-bold px-6 md:max-w-[80%]"
@@ -132,9 +132,29 @@ const WarrantySection: React.FC = () => {
         />
       </Carousel>
 
-      <Button className="bg-white text-orange h-13 md:px-10 py-4 rounded-[20px] tracking-[0.2px] font-bold text-sm font-montserrat">
-        BASTA DE EXPERIMENTOS. VOY CON LUCIANO
+      <Button className="bg-white hover:bg-white text-orange h-13 md:px-10 py-4 rounded-[20px] tracking-[0.2px] font-bold text-sm font-montserrat">
+        {'Basta de Experimentos. Voy con Luciano'.toUpperCase()}
       </Button>
+      <motion.figure
+        className="w-18 h-18 rounded-2xl bg-yellow absolute top-0 right-0 hidden md:block transform -translate-x-20 translate-y-12"
+        initial={{
+          y: 0,
+          rotate: -66,
+          opacity: 1,
+        }}
+        animate={{
+          y: 0,
+          rotate: -426,
+          opacity: 1,
+        }}
+        transition={{
+          bounce: 1,
+          duration: 15,
+          repeat: Infinity,
+          repeatType: 'loop',
+          ease: 'linear',
+        }}
+      />
     </motion.section>
   );
 };

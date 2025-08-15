@@ -12,11 +12,12 @@ import HowReserveWorksSection from '@/components/sections/how-reserve-works-sect
 import AboutMeSection from '@/components/sections/about-me-section';
 import WarrantySection from '@/components/sections/warranty-section';
 import ExampleCaseSection from '@/components/sections/success-case-section';
+import PricingSection from '@/components/sections/pricing-section';
 export default function HomePageComponent() {
   const [showScrollHint, setShowScrollHint] = React.useState(true);
 
   return (
-    <div className="flex flex-col min-h-screen w-full justify-center">
+    <div className="flex flex-col w-screen justify-center items">
       <main className="flex-1 w-full flex flex-col items-center justify-center">
         <section className="w-full md:mt-20">
           <Hero />
@@ -38,6 +39,7 @@ export default function HomePageComponent() {
         <AboutMeSection />
         <WarrantySection />
         <ExampleCaseSection />
+        <PricingSection />
         <WhatsappButton />
       </main>
     </div>

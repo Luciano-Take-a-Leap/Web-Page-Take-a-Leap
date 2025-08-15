@@ -1,8 +1,7 @@
 'use client';
 
-import RoundedSquare from '@/components/layout/rounded-square';
 import { Button } from '@/components/ui/button';
-import { motion, useInView } from 'motion/react';
+import { motion, useInView, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 
 const HowReserveWorksSection: React.FC = () => {
@@ -31,6 +30,16 @@ const HowReserveWorksSection: React.FC = () => {
       opacity: 1,
     },
   };
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const desktopFallAnimation1 = useTransform(scrollYProgress, [0.5, 1], [0, 1600]);
+  const desktopFallAnimation2 = useTransform(scrollYProgress, [0.5, 1], [0, 1600]);
+  const rotateAnimation1 = useTransform(scrollYProgress, [0.5, 1], [-66, -20]);
+  const rotateAnimation2 = useTransform(scrollYProgress, [0.5, 1], [-66, -120]);
+  const scaleAnimation1 = useTransform(scrollYProgress, [0.5, 1], [1, 0.6]);
 
   return (
     <motion.section
@@ -97,11 +106,24 @@ const HowReserveWorksSection: React.FC = () => {
         Solo quiero dentro a emprendedores a los que ayudar de verdad y que me devuelvan
         más testimonios.
       </motion.h4>
-      <Button className="bg-white text-black h-13 px-10 py-4 rounded-[20px] tracking-[0.2px] font-bold text-sm font-montserrat">
-        RESERVA TU PLAZA
+      <Button className="bg-white hover:bg-white text-black h-13 px-10 py-4 rounded-[20px] tracking-[0.2px] font-bold text-sm font-montserrat">
+        {'Reserva tu plaza'.toUpperCase()}
       </Button>
-      <RoundedSquare className="absolute top-25 left-20 z-20 hidden md:block -rotate-[66deg] bg-yellow" />
-      <RoundedSquare className="absolute top-[50%] right-20 z-20 hidden md:block -rotate-[66deg] bg-orange" />
+      <motion.figure
+        className="w-26 h-26 rounded-2xl bg-orange absolute bottom-0 right-0 hidden md:block transform -translate-x-20 -translate-y-80"
+        style={{
+          y: desktopFallAnimation1,
+          rotate: rotateAnimation1,
+          scale: scaleAnimation1,
+        }}
+      />
+      <motion.figure
+        className="w-32 h-32 rounded-2xl bg-yellow absolute top-0 left-0 hidden md:block transform translate-x-20 translate-y-4"
+        style={{
+          y: desktopFallAnimation2,
+          rotate: rotateAnimation2,
+        }}
+      />
     </motion.section>
   );
 };

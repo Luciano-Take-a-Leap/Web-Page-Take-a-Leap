@@ -1,10 +1,10 @@
 'use client';
 
-import RoundedSquare from '@/components/layout/rounded-square';
-import { ArrowRight } from 'lucide-react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { motion, useInView } from 'motion/react';
 import Image from 'next/image';
 import { useRef } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 const CurrentEditionPeopleSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -14,10 +14,10 @@ const CurrentEditionPeopleSection: React.FC = () => {
     {
       title: 'Fase 01',
       description: [
-        <p key={'1-1'}>
+        <b key={'1-1'}>
           Encuentra tu nueva oportunidad con un target que esté dipuesto a pagar por tu
           producto
-        </p>,
+        </b>,
         <p key={'1-2'}>
           Piensa: Qué NO está ofreciendo tu competencia y hay un grupo de personas, con
           mucha urgencia, que lo necesita?
@@ -28,10 +28,10 @@ const CurrentEditionPeopleSection: React.FC = () => {
     {
       title: 'Fase 02',
       description: [
-        <p key={'2-1'}>
+        <b key={'2-1'}>
           Diseña una propuesta con un gancho tan deseable que tu precio pase a un segundo
           plano
-        </p>,
+        </b>,
         <p key={'2-2'}>
           Vamos a perfilar tu nueva oferta y lograr que tu potenciales clientes prueben tu
           solución (no te preocupes! no necesitas un mega producto para esto)
@@ -45,7 +45,7 @@ const CurrentEditionPeopleSection: React.FC = () => {
     {
       title: 'Fase 03',
       description: [
-        <p key={'3-1'}>Monetiza tu solución y adquiere tus primeros clientes pagos.</p>,
+        <b key={'3-1'}>Monetiza tu solución y adquiere tus primeros clientes pagos.</b>,
         <p key={'3-2'}>
           Quiere que te ahorres meses de errores y empieces a ver lo que realmente
           funciona.
@@ -59,15 +59,26 @@ const CurrentEditionPeopleSection: React.FC = () => {
     },
   ];
 
+  //
+
   const ACTIONS = [
-    '8 Community sessions',
-    'Secuencias y estrategias',
-    'Plan de acción semanal',
-    'Servicios en bandeja',
-    'Xxxxxxxxxxxxxxx',
-    'Xxxxxxxxxxxxxxx',
-    'Xxxxxxxxxxxxxxx',
-    'Xxxxxxxxxxxxxxx',
+    {
+      text: '8 Community sessions',
+      animationSrc: '/assets/community_animation.json',
+      invertInDarkMode: true,
+    },
+    {
+      text: 'Secuencias y estrategias',
+      animationSrc: '/assets/discovery_animation.json',
+    },
+    {
+      text: 'Plan de acción semanal',
+      animationSrc: '/assets/asurance_animation.json',
+    },
+    {
+      text: 'Servicios en bandeja',
+      animationSrc: '/assets/marketing_animation.json',
+    },
   ];
 
   const variants = {
@@ -90,7 +101,7 @@ const CurrentEditionPeopleSection: React.FC = () => {
       transition={{
         duration: 0.5,
       }}
-      className="w-full relative flex flex-col items-center justify-center md:pt-20 md:pb-12"
+      className="w-full relative flex flex-col items-center justify-center md:pt-20 pb-10 md:pb-12"
     >
       <motion.h2
         className="text-center text-[30px] md:text-[40px] mt-10 mb-6 font-montserrat font-bold px-6 md:max-w-[80%]"
@@ -116,12 +127,13 @@ const CurrentEditionPeopleSection: React.FC = () => {
         transition={{ delay: 0.5, duration: 0.3 }}
       >
         <p className="font-semibold">
-          40 días para conseguir tus primeros clientes gracias a la Evidencia Progresiva
+          90 días para conseguir tus primeros clientes gracias a la Evidencia Progresiva
           del Market Fit
         </p>
-        Piénsalo 😉😉 Éstas 3 fases son las que te llevarán a lanzar tu startup con
-        ventas, mientras otros emprendedores siguen escondiéndose detras de ideas que
-        nunca llegan a buen puerto
+        Piénsalo 😉😉
+        <br /> Éstas 3 fases son las que te llevarán a lanzar tu startup con ventas,
+        mientras otros emprendedores siguen escondiéndose detras de ideas que nunca llegan
+        a buen puerto
       </motion.span>
       <div className="w-[315px] h-[300px] absolute top-48 left-0 transform translate-x-6 hidden md:block scale-175">
         <Image
@@ -136,7 +148,7 @@ const CurrentEditionPeopleSection: React.FC = () => {
           ? CARDS.map((card, index) => (
               <motion.div
                 key={index}
-                className="bg-yellow text-black px-10 py-6 rounded-3xl w-full max-w-[1200px] md:h-[260px] flex flex-col md:flex-row justify-start items-center gap-8 md:gap-14 font-montserrat"
+                className="bg-yellow text-black px-10 py-6 rounded-3xl w-[95%] max-w-[1200px] md:h-[260px] flex flex-col md:flex-row justify-start items-center gap-8 md:gap-14 font-montserrat"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: index * 0.2, duration: 0.3 }}
@@ -146,9 +158,9 @@ const CurrentEditionPeopleSection: React.FC = () => {
                 </h3>
                 <div className="text-xl text-black flex flex-col justify-between h-full gap-8 md:gap-0 w-full md:w-[70%]">
                   {card.description.map((desc, descIndex) => (
-                    <p key={descIndex} className="mb-2">
+                    <span key={descIndex} className="mb-2">
                       {desc}
-                    </p>
+                    </span>
                   ))}
                 </div>
               </motion.div>
@@ -156,7 +168,7 @@ const CurrentEditionPeopleSection: React.FC = () => {
           : null}
       </motion.div>
       <motion.h4
-        className="text-center font-bold mb-10 font-montserrat text-lg md:max-w-[60vw] tracking-[0.2px]"
+        className="text-center font-bold mb-10 px-4 md:px-0 font-montserrat text-xl md:text-3xl md:max-w-[60vw] tracking-[0.2px]"
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.7, duration: 0.3 }}
@@ -164,38 +176,40 @@ const CurrentEditionPeopleSection: React.FC = () => {
         Emprendedor, así es como voy a acompañarte y comprometerme con tu transformación
       </motion.h4>
       <motion.div className="flex justify-center items-center mb-10 md:max-w-[60vw] md:w-full gap-6">
-        <motion.div
-          className="relative md:w-[30%] aspect-[4/3]"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1 }}
-        >
-          <Image
-            src="/assets/images/marketing-items.png"
-            alt="Conversation"
-            fill
-            className="object-contain"
-          />
-        </motion.div>
-        <motion.ul className="w-full md:w-[50%] md:max-h-39 font-work-sans text-sm grid grid-cols-1 md:grid-cols-2">
+        <motion.ul className="w-full font-work-sans text-sm flex flex-col md:flex-row justify-start items-start md:items-center gap-4 md:gap-2">
           {ACTIONS.map((action, index) => (
             <motion.li
               key={index}
-              className="mb-6 font-bold text-md flex items-start gap-8 md:gap-2 w-full md:w-auto"
+              className="mb-6 font-bold text-md flex items-center gap-8 md:gap-2 w-full flex-col"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.8 + index * 0.2, duration: 0.5 }}
             >
-              <div className="flex items-start h-full">
-                <ArrowRight className="inline" />
-              </div>
-              <p>{action.toUpperCase()}</p>
+              <motion.div
+                initial={{ scale: index % 2 === 0 ? 1.3 : 1 }}
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 2, ease: 'easeInOut' }}
+                className="w-50 h-40 relative flex"
+              >
+                <DotLottieReact
+                  className={twMerge(
+                    'w-full h-full relative',
+                    action.invertInDarkMode ? 'dark:invert-100' : ''
+                  )}
+                  src={action.animationSrc}
+                  loop
+                  autoplay
+                  speed={0.9}
+                />
+              </motion.div>
+
+              <p className="text-center">{action.text.toUpperCase()}</p>
             </motion.li>
           ))}
         </motion.ul>
       </motion.div>
       <motion.div
-        className="relative bg-orange text-white px-10 py-10 md:py-6 rounded-t-3xl md:rounded-b-3xl w-full max-w-[1200px] md:h-[260px] flex flex-col md:flex-row justify-start items-center gap-14 font-montserrat"
+        className="relative bg-orange text-white px-10 py-10 md:py-6 rounded-3xl w-full max-w-[1200px] md:h-[260px] flex flex-col md:flex-row justify-start items-center gap-14 font-montserrat"
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.3 }}
@@ -206,7 +220,7 @@ const CurrentEditionPeopleSection: React.FC = () => {
           </h3>
           <div className="text-sm tracking-[0.1px] w-full flex flex-col justify-between gap-8 mt-2">
             <b className="text-xl">
-              Solo trabajaré manos a mano con 12 emprendedores en esta edición de Take a
+              Solo trabajaré mano a mano con 12 emprendedores en esta edición de Take a
               Leap Program
             </b>
             <p className="text-lg h-full">
@@ -216,7 +230,6 @@ const CurrentEditionPeopleSection: React.FC = () => {
             </p>
           </div>
         </div>
-        <RoundedSquare className="absolute bottom-0 left-0 transform translate-y-20 -translate-x-20 z-20 hidden md:block w-[170px] h-[170px] -rotate-[66deg] bg-orange/20" />
       </motion.div>
     </motion.section>
   );

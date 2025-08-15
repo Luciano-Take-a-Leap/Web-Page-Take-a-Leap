@@ -4,6 +4,7 @@ import { motion, useInView } from 'motion/react';
 import { useEffect, useRef } from 'react';
 
 import Image from 'next/image';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 interface ConversationSectionProps {
   onViewChange?: () => void;
@@ -36,15 +37,23 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
       animate={isInView ? 'animate' : 'initial'}
       variants={variants}
       transition={{ duration: 0.5 }}
-      className="pt-12 pb-40 px-5 md:px-10 w-full relative"
+      className="pt-12 pb-40 px-5 md:px-10 w-full relative z-30 bg-background"
     >
       <motion.div
-        className="mt-12 flex w-full justify-center items-center lg:justify-evenly gap-8 lg:items-stretch flex-col lg:flex-row"
+        className="mt-12 flex w-full justify-center items-center gap-8 flex-col"
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
       >
-        <motion.div className="relative w-full lg:w-[55%] aspect-[4/3]">
+        <motion.h2
+          className="text-3xl md:text-[40px] font-bold mb-4 font-montserrat tracking-[0.2px] text-center"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.7, duration: 0.7 }}
+        >
+          ¿Escuchaste alguna de estas frases?
+        </motion.h2>
+        <motion.div className="relative w-full lg:max-w-[45%] aspect-[4/3]">
           <Image
             src="/assets/images/conversation.png"
             alt="Conversation"
@@ -52,8 +61,9 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
             className="object-contain"
           />
         </motion.div>
+
         {isInView && (
-          <motion.div className="w-full lg:w-[40%] flex flex-col justify-center font-work-sans text-sm md:max-w-[560px]">
+          <motion.div className="w-full flex flex-col justify-center font-work-sans text-sm md:max-w-[70vw] text-center">
             <motion.h2
               className="text-[40px] font-bold mb-4 font-montserrat tracking-[0.2px]"
               initial={{ y: 20, opacity: 0 }}
@@ -63,7 +73,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
               Bastaaaaaa!
             </motion.h2>
             <motion.p
-              className="mb-6 font-bold text-md md:text-lg"
+              className="mb-6 font-bold text-md md:text-xl"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.7 }}
@@ -72,7 +82,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
               que quiero.
             </motion.p>
             <motion.p
-              className="mb-6 font-bold text-md md:text-lg"
+              className="mb-6 font-bold text-md md:text-xl"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.9, duration: 0.7 }}
@@ -80,7 +90,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
               “Luciano, qué exagerado”.
             </motion.p>
             <motion.p
-              className="mb-6"
+              className="mb-6 md:text-lg"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1, duration: 0.7 }}
@@ -88,7 +98,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
               Puede ser… o quizás no tanto
             </motion.p>
             <motion.p
-              className="mb-6"
+              className="mb-6 md:text-lg"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1.1, duration: 0.7 }}
@@ -98,7 +108,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
               abrumados por la cantidad de “expertos” presumiendo formulas “mágicas”.
             </motion.p>
             <motion.p
-              className="mb-6"
+              className="mb-6 md:text-lg"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1.2, duration: 0.7 }}
@@ -107,7 +117,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
               [Spoiler, no es oro todo lo que reluce]
             </motion.p>
             <motion.p
-              className="mb-6"
+              className="mb-6 md:text-lg"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1.3, duration: 0.7 }}
@@ -116,7 +126,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
               fantásticos, levantar capital y volverte millonario en Silicon Valley?
             </motion.p>
             <motion.p
-              className="mb-6"
+              className="mb-6 md:text-lg"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1.4, duration: 0.7 }}
@@ -130,7 +140,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
               </b>
             </motion.p>
             <motion.b
-              className="mb-6"
+              className="mb-6 md:text-lg"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1.5, duration: 0.7 }}
@@ -140,7 +150,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
               entienden el valor real de tu trabajo.
             </motion.b>
             <motion.b
-              className="text-lg mb-6"
+              className="text-lg mb-6 md:text-lg"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1.6, duration: 0.7 }}

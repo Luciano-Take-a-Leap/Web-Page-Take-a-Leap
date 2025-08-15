@@ -10,8 +10,10 @@
   --color-text: var(--text);
   --color-text-secondary: var(--text-secondary);
   --color-orange: var(--orange);
+  --color-orange-gradient: var(--orange-gradient);
   --color-yellow: var(--yellow);
   --color-dark-blue: var(--dark-blue);
+  --color-blue: var(--blue);
   --font-montserrat: var(--font-montserrat);
   --font-work-sans: var(--font-work-sans);
   --font-archivo-black-400: var(--font-archivo-black-400);
@@ -51,13 +53,15 @@
 :root {
   --radius: 0.625rem;
   --background: #ffffff;
-  --foreground: #000000;
+  --foreground: #121212;
   --text: #303030;
   --text-secondary: #737373;
   --destructive: oklch(0.577 0.245 27.325);
   --positive: oklch(0.6 0.185 147.325);
   --orange: #f55a17;
+  --orange-gradient: #f85a43;
   --yellow: #fbb52f;
+  --blue: #596eed;
   --dark-blue: #020a31;
   --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
@@ -83,7 +87,7 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: #121212;
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);

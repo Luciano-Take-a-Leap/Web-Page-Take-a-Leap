@@ -26,7 +26,7 @@ const SuccessCaseSection: React.FC = () => {
       animate={isInView ? 'animate' : 'initial'}
       variants={variants}
       transition={{ duration: 0.5 }}
-      className="pt-12 pb-40 px-5 md:px-10 w-full lg:w-[80vw] relative"
+      className="py-12 px-5 md:px-10 w-full lg:w-[80vw] relative"
     >
       <motion.div
         className="mt-12 flex w-full justify-center items-center lg:justify-evenly gap-8 lg:items-stretch flex-col lg:flex-row"
