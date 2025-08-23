@@ -1,6 +1,13 @@
 import { Metadata } from 'next';
 import { ThemeProvider } from '@/components/theme-provider';
-import { Montserrat, Work_Sans, Archivo_Black } from 'next/font/google';
+import {
+  Montserrat,
+  Work_Sans,
+  Archivo,
+  Archivo_Black,
+  Montagu_Slab,
+  Lora,
+} from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
@@ -17,8 +24,24 @@ const workSans = Work_Sans({
   subsets: ['latin'],
 });
 
+const archivo = Archivo({
+  variable: '--font-archivo',
+  subsets: ['latin'],
+});
+
 const archivoBlack = Archivo_Black({
   variable: '--font-archivo-black-400',
+  subsets: ['latin'],
+  weight: '400',
+});
+
+const montaguSlab = Montagu_Slab({
+  variable: '--font-montagu-slab',
+  subsets: ['latin'],
+});
+
+const LoraFont = Lora({
+  variable: '--font-lora',
   subsets: ['latin'],
   weight: '400',
 });
@@ -70,7 +93,7 @@ export default async function Layout({
         /> */}
       </head>
       <body
-        className={`${montserrat.variable} antialiased ${workSans.variable} ${archivoBlack.variable} 
+        className={`${montserrat.variable} antialiased ${workSans.variable} ${archivoBlack.variable} ${montaguSlab.variable} ${LoraFont.variable} ${archivo.variable}
        suppressHydrationWarning 
         }`}
       >
@@ -80,9 +103,9 @@ export default async function Layout({
           enableSystem
           disableTransitionOnChange
         >
-            <Header />
-            {children}
-            {/* <Footer /> */}
+          <Header />
+          {children}
+          {/* <Footer /> */}
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

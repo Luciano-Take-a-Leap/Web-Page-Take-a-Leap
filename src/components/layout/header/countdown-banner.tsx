@@ -23,7 +23,7 @@ const CountdownBanner: React.FC<CountdownBannerProps> = ({
       )}
       initial={{ y: -380, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.5, delay: 0.5 }}
       exit={{ y: -380, opacity: 0 }}
     >
       <div className="w-screen flex flex-col md:flex-row items-center justify-center md:justify-evenly text-white gap-2 md:gap-8">
@@ -40,7 +40,7 @@ const CountdownBanner: React.FC<CountdownBannerProps> = ({
             window.location.href = '/#agenda-un-llamado';
           }}
         >
-          Agenda un llamado
+          Me uno a Take a Leap{' '}
         </Button>
       </div>
       <div

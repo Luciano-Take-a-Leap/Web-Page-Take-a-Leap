@@ -138,7 +138,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
                 del Market Fit
               </b>
             </motion.p>
-            <motion.b
+            <motion.p
               className="mb-6 md:text-lg"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -147,7 +147,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
               Si no le puedes vender tu idea a casi nadie, no es porque sea mala, porque
               le falte más features o porque no tengas contactos. El problema es que no
               entienden el valor real de tu trabajo.
-            </motion.b>
+            </motion.p>
             <motion.b
               className="text-lg mb-6 md:text-lg"
               initial={{ y: 20, opacity: 0 }}

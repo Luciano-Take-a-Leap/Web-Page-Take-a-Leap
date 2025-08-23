@@ -40,7 +40,7 @@ export const HEADER_LINKS = [
   },
 ];
 
-export const LIMIT_TIME = new Date('2025-08-18T00:00:00');
+export const LIMIT_TIME = new Date('2025-08-25T00:00:00');
 
 const Header = () => {
   const [timeLeft, setTimeLeft] = useState<string | null>(null);

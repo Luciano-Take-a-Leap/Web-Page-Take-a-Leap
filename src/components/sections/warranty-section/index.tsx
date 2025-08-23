@@ -132,8 +132,8 @@ const WarrantySection: React.FC = () => {
         />
       </Carousel>
 
-      <Button className="bg-white hover:bg-white text-orange h-13 md:px-10 py-4 rounded-[20px] tracking-[0.2px] font-bold text-sm font-montserrat">
-        {'Basta de Experimentos. Voy con Luciano'.toUpperCase()}
+      <Button className="bg-white hover:bg-white text-orange h-auto md:h-13 w-full md:w-auto md:px-10 py-4 rounded-[20px] tracking-[0.2px] font-bold text-xs md:text-sm font-montserrat uppercase">
+        Basta de Experimentos. <br className="sm:hidden" /> Voy con Luciano
       </Button>
       <motion.figure
         className="w-18 h-18 rounded-2xl bg-yellow absolute top-0 right-0 hidden md:block transform -translate-x-20 translate-y-12"

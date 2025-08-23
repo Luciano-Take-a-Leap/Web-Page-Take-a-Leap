@@ -77,7 +77,7 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
       className={`w-full md:h-[calc(100vh-80px)] flex items-center justify-center relative ${className} px-5 md:px-0 py-26 md:py-0 bg-dark-blue overflow-hidden`}
     >
       <motion.figure
-        className="w-36 h-36 rounded-2xl bg-yellow absolute top-0 left-0 hidden md:block transform translate-x-16 translate-y-14"
+        className="w-26 h-26 rounded-2xl bg-yellow absolute top-0 left-0 hidden md:block transform translate-x-16 translate-y-14"
         style={{
           y: desktopFallAnimation1,
           rotate: rotateAnimation1,
@@ -85,7 +85,7 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
         }}
       />
       <motion.figure
-        className="w-36 h-36 rounded-2xl bg-orange absolute top-0 right-0 hidden md:block transform -translate-x-16 translate-y-14 z-20"
+        className="w-26 h-26 rounded-2xl bg-orange absolute top-0 right-0 hidden md:block transform -translate-x-16 translate-y-14 z-20"
         style={{
           y: desktopFallAnimation2,
           rotate: rotateAnimation2,
@@ -147,47 +147,60 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
       />
       <motion.div
         className={twMerge(
-          'flex flex-col items-center gap-12 max-w-[940px] 2xl:max-w-[70vw] z-30',
-          timeLeft && timeLeft !== '00:00:00:00' ? 'mt-26 md:mt-0' : 'mt-0'
+          'flex flex-col items-center gap-8 max-w-[940px] 2xl:max-w-[70vw] z-30',
+          timeLeft === null || (timeLeft && timeLeft !== '00:00:00:00')
+            ? 'mt-26 md:mt-0'
+            : 'mt-0'
         )}
       >
         <motion.div
-          className="w-56 md:w-full"
+          className="w-full"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <motion.h2
-            className="text-[30px] md:text-[80px] font-archivo-black-400 text-center text-white "
+            className="text-[26px] md:text-[32px] font-archivo text-center text-white font-bold"
             transition={{ duration: 1 }}
           >
-            Take a Leap Program
+            ⚡ Take a Leap Program ⚡
           </motion.h2>
         </motion.div>
         <motion.h4
-          className="font-bold text-center font-montserrat text-lg md:text-2xl text-white tracking-[0.2px]"
+          className="text-center text-[34px] md:text-[42px] text-white tracking-[0.2px] font-lora leading-[40px] font-[900] relative"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
           <span className="text-white">
-            Si sueñas con cambiar el mundo e invertir esfuerzo en productos que nadie
-            quiere, este no es tu programa.
+            Si sueñas con invertir esfuerzo en productos que nadie quiere,{' '}
+            <span className="relative">
+              {' '}
+              <Image
+                src="/assets/images/UI-elements/cross.svg"
+                alt="cross"
+                width={210}
+                height={110}
+                className="absolute top-1 left-0 transform text-orange"
+              />
+              este no
+            </span>{' '}
+            es tu programa.
           </span>
         </motion.h4>
         <motion.p
-          className="text-sm font-montserrat text-center text-white px-4 tracking-[0.2px]"
+          className="text-xl text-center text-white px-4 tracking-[0.2px] font-montserrat"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
           Te dijeron que para montar una startup exitosa hay que construir un producto
-          espectacular… Y aquí estás, mirando historias de éxito y pensado: “¿Cómo rayos
-          empiezo si no tengo ni 10K para invertir y aún no le vendí ni a mi abuelita?”
+          espectacular… Y aquí estás, pensado: “¿Cómo rayos empiezo si no tengo ni 10K
+          para invertir?”
           <br />
           <br />
-          Calma. No necesitas seguir pensando y codeando ideas, dejar tu trabajo actual,
-          ni quemar todos tus ahorros. 
+          Calma. No necesitas seguir pensando y codeando ideas, ni quemar todos tus
+          ahorros.
         </motion.p>
         <motion.div
           className="flex items-center justify-center bg-[#F65A1799] w-full md:w-[55vw] rounded-[40px] px-12 py-4"
@@ -195,10 +208,9 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
-          <p className="text-white font-montserrat font-bold text-center">
+          <p className="text-white font-montserrat font-bold text-center text-lg">
             Solo observa cómo puedes lanzar tu startup y conseguir tus primeras ventas,
-            ahorrando esfuerzos, gracias a la Evidencia Progresiva del Market Fit -
-            incluso sin tener un producto aún en el mercado -
+            ahorrando esfuerzos, gracias a la Evidencia Progresiva del Market Fit
           </p>
         </motion.div>
       </motion.div>
@@ -222,6 +234,13 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
         width={450}
         height={450}
         className="absolute top-0 left-0 transform -translate-x-[35%] translate-y-[250%] hidden md:block"
+      />
+      <Image
+        src="/assets/images/UI-elements/arrow-3.png"
+        alt="Arrow"
+        width={180}
+        height={180}
+        className="absolute top-0 left-0 transform -translate-x-[35%] translate-y-[200%] block md:hidden"
       />
     </motion.div>
   );

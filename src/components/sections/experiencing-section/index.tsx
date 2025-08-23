@@ -97,7 +97,7 @@ const ExperiencingSection: React.FC = () => {
       className="w-full relative bg-gradient-to-b from-orange to-orange-gradient flex flex-col items-center justify-center px-5 md:py-20"
     >
       <motion.h2
-        className="text-center text-[30px] md:text-[40px] text-white mt-10 mb-6 font-archivo-black-400 px-6 md:max-w-[80%]"
+        className="text-center text-2xl md:text-3xl text-white mt-10 mb-6 font-archivo-black-400 px-6 md:max-w-[80%]"
         initial={{
           y: 30,
           opacity: 0,
@@ -121,7 +121,7 @@ const ExperiencingSection: React.FC = () => {
         width={52}
         height={150}
       />
-      <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 py-10 w-[70vw] justify-items-center">
+      <motion.div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-4 py-10 w-[70vw] md:w-full justify-items-center">
         {CARDS.map((card, index) => (
           <motion.div
             key={index}
