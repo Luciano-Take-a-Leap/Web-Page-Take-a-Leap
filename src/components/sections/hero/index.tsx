@@ -166,7 +166,7 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
             ⚡ Take a Leap Program ⚡
           </motion.h2>
         </motion.div>
-        <motion.h4
+<motion.h4
           className="text-center text-[34px] md:text-[42px] text-white tracking-[0.2px] font-lora leading-[40px] font-[900] relative"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -174,18 +174,16 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
         >
           <span className="text-white">
             Si sueñas con invertir esfuerzo en productos que nadie quiere,{' '}
-            <span className="relative">
-              {' '}
+            <span className="relative inline-block">
               <Image
                 src="/assets/images/UI-elements/cross.svg"
                 alt="cross"
-                width={210}
-                height={110}
-                className="absolute top-1 left-0 transform text-orange"
+                fill
+                className="object-contain mt-2 z-20 transform scale-125"
               />
-              este no
-            </span>{' '}
-            es tu programa.
+              <span className="relative z-10">este no</span>{' '}
+            </span>
+            {` es tu programa.`}
           </span>
         </motion.h4>
         <motion.p
