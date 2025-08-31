@@ -14,7 +14,7 @@ const ScrollHint: React.FC = () => {
         repeatType: 'mirror',
       }}
     >
-      <ArrowDown className="text-gray-500 dark:text-gray-400" size={48} />
+      <ArrowDown className="text-gray-500" size={48} />
     </motion.div>
   );
 };

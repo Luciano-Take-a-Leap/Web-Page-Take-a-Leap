@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { motion, useInView } from 'motion/react';
 import Image from 'next/image';
 import { useRef } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 const ExperiencingSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -15,42 +16,42 @@ const ExperiencingSection: React.FC = () => {
     {
       title: (
         <p>
-          En lugar de re pensar decenas de veces mi idea o gastarme 6 meses construyendo
-          un producto
+          No pierdo 6 meses de mi tiempo construyendo y re pensando miles de veces mi
+          producto.
         </p>
       ),
       description: (
         <p>
           Me enfoco en encontrar un target al que le pueda vender desde el día 1. Nada de
-          escondernos detrás de un producto durante meses.
+          escondernos detrás de una gran idea.
         </p>
       ),
     },
     {
       title: (
         <p>
-          Al contrario de otros expertos, no invierto mi tiempo en estrategias carísimas
-          que son para cuando estés escalando
+          Al contrario de otros expertos, no copio los playbooks de los grandes players
+          que no sirven para early stage.
         </p>
       ),
       description: (
         <p>
-          Me centro en secuencias ridículamente efectivas para lanzar y conseguir primeros
-          clientes.
+          Me centro en secuencias ridículamente efectivas para lanzar y encontrar el
+          primer canal rentable de adquisición en menos de 2 meses.
         </p>
       ),
     },
     {
       title: (
         <p>
-          No me como el cuento de que para tener éxito, hay que fracasar varias veces con
-          tu idea
+          No me como el cuento de “fracasar varias veces para tener éxito”, ni que el
+          Market Fit esté relacionado sólo al producto.
         </p>
       ),
       description: (
         <p>
-          En cambio, construyo Evidencia Progresiva de Market Fit en todas las capas para
-          saber si mi idea vale la pena en cuestión de días.{' '}
+          Por eso construyo Evidencia sobre todas las capas, para asegurarme de que voy a
+          ganar y no perder mi tiempo 💪.
         </p>
       ),
     },
@@ -66,24 +67,6 @@ const ExperiencingSection: React.FC = () => {
       opacity: 1,
     },
   };
-
-  const cardsAnimations = [
-    {
-      initial: { x: -120, opacity: 0 },
-      animate: { x: 0, opacity: 1 },
-      transition: { delay: 0.2, duration: 0.3 },
-    },
-    {
-      initial: { x: -120, opacity: 0 },
-      animate: { x: 0, opacity: 1 },
-      transition: { delay: 0.4, duration: 0.3 },
-    },
-    {
-      initial: { x: -120, opacity: 0 },
-      animate: { x: 0, opacity: 1 },
-      transition: { delay: 0.6, duration: 0.3 },
-    },
-  ];
 
   return (
     <motion.section
@@ -111,8 +94,7 @@ const ExperiencingSection: React.FC = () => {
         }}
       >
         Puedes tardar 2 años y meter la pata cientos de veces... <br /> <br />
-        ... O puedes hacerlo con mi acompañamiento y cerrar tus primeras ventas en 6
-        semanas.{' '}
+        ... O puedes lanzar con mi acompañamiento y cerrar tus primeras ventas en 60 días.
       </motion.h2>
       <Image
         src="/assets/images/UI-elements/arrow-1.png"
@@ -121,34 +103,36 @@ const ExperiencingSection: React.FC = () => {
         width={52}
         height={150}
       />
-      <motion.div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-4 py-10 w-[70vw] md:w-full justify-items-center">
+      <motion.div className="grid grid-cols-1 lg:grid-cols-8 gap-12 md:gap-2 px-4 py-10 w-[70vw] md:w-full justify-items-center justify-center">
         {CARDS.map((card, index) => (
           <motion.div
             key={index}
-            className="bg-white text-black px-10 py-9 rounded-[20px] md:rounded-[40px] shadow-lg w-[330px] h-[390px] flex flex-col justify-start items-start gap-4 font-montserrat"
+            className={twMerge(
+              'bg-white text-text px-10 py-9 rounded-[20px] md:rounded-[40px] shadow-lg w-[330px] h-[390px] flex flex-col justify-start items-start gap-4 font-montserrat col-span-2',
+              index === 0 ? 'lg:col-start-2' : '', // ← primera card arranca en la columna 2
+              index === 2 ? 'bg-dark-blue text-white' : ''
+            )}
             ref={index === 0 ? firstCardRef : null}
-            initial={cardsAnimations[index].initial}
+            initial={index === 2 ? { scale: 0, rotate: -80 } : { scale: 1 }}
             animate={
-              areCardsInView
-                ? cardsAnimations[index].animate
-                : cardsAnimations[index].initial
+              index === 2
+                ? areCardsInView
+                  ? { scale: 1, rotate: -8 }
+                  : { scale: 0 }
+                : { scale: 1 }
             }
-            transition={cardsAnimations[index].transition}
+            transition={{ delay: 0.3, duration: 0.5 }}
           >
             <h3 className="font-bold text-lg text-center mb-2 tracking-[0.1px] min-h-[45%] flex items-center">
               {card.title}
             </h3>
             <motion.figure
               className="h-1 bg-orange self-center"
-              initial={{
-                width: 0,
-              }}
+              initial={{ width: 0 }}
               animate={areCardsInView ? { width: '25%' } : { width: 0 }}
               transition={{ delay: index * 0.2 + 0.3, duration: 0.5 }}
             />
-            <div className="text-text text-md tracking-[0.1px] text-center">
-              {card.description}
-            </div>
+            <div className="text-md tracking-[0.1px] text-center">{card.description}</div>
           </motion.div>
         ))}
       </motion.div>

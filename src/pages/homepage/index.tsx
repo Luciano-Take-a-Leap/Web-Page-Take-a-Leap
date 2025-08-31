@@ -13,6 +13,7 @@ import AboutMeSection from '@/components/sections/about-me-section';
 import WarrantySection from '@/components/sections/warranty-section';
 import ExampleCaseSection from '@/components/sections/success-case-section';
 import PricingSection from '@/components/sections/pricing-section';
+import FAQSection from '@/components/sections/faq-section';
 export default function HomePageComponent() {
   const [showScrollHint, setShowScrollHint] = React.useState(true);
 
@@ -35,10 +36,11 @@ export default function HomePageComponent() {
         <ConversationSection onViewChange={() => setShowScrollHint(false)} />
         <ExperiencingSection />
         <CurrentEditionPeopleSection />
-        <HowReserveWorksSection />
-        <AboutMeSection />
-        <WarrantySection />
         <ExampleCaseSection />
+        <AboutMeSection />
+        <HowReserveWorksSection />
+        <WarrantySection />
+        <FAQSection />
         <PricingSection />
         <WhatsappButton />
       </main>

@@ -103,8 +103,8 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
               transition={{ delay: 1.1, duration: 0.7 }}
             >
               Me pongo en la piel de esos emprendedores que tienen la chispa para lanzar
-              su propia startup y conseguir la libertad que se merecen, pero se sienten
-              abrumados por la cantidad de “expertos” presumiendo formulas “mágicas”.
+              su propia startup y vivir mejor, pero se sienten abrumados por la cantidad
+              de “expertos” presumiendo fórmulas “mágicas”.
             </motion.p>
             <motion.p
               className="mb-6 md:text-lg"
@@ -112,7 +112,6 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1.2, duration: 0.7 }}
             >
-              {' '}
               [Spoiler, no es oro todo lo que reluce]
             </motion.p>
             <motion.p
@@ -121,8 +120,11 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1.3, duration: 0.7 }}
             >
-              Y es normal. ¿Cómo no le vas a pegar una miradita si te hablan de productos
+              Y es normal. ¿Cómo no le vas a pegar una mirada si te hablan de productos
               fantásticos, levantar capital y volverte millonario en Silicon Valley?
+              <br />
+              <br />
+              No estás solo.
             </motion.p>
             <motion.p
               className="mb-6 md:text-lg"
@@ -134,8 +136,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
               20K usd y meses en ideas que no tuvieron ni 2 ventas.{' '}
               <b>
                 Pero, después de 7 años, te puedo asegurar que tu startup no va a ganar
-                por tener un producto lindísimo... sino por construir Evidencia Progresiva
-                del Market Fit
+                por tener un producto lindísimo, ni copiar una receta &quot;exitosa&quot;…
               </b>
             </motion.p>
             <motion.p
@@ -144,8 +145,8 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1.5, duration: 0.7 }}
             >
-              Si no le puedes vender tu idea a casi nadie, no es porque sea mala, porque
-              le falte más features o porque no tengas contactos. El problema es que no
+              Si no le puedes vender a casi nadie, no es porque tu idea sea mala, te falte
+              inversión o no tengas chapa como emprendedor. El problema es que no
               entienden el valor real de tu trabajo.
             </motion.p>
             <motion.b

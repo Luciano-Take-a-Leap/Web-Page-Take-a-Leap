@@ -17,15 +17,14 @@ const PricingSection: React.FC = () => {
     },
   };
 
-  return (
-    <motion.section
+return (
+  <section className="w-screen bg-white flex justify-center items-center z-20">
+    <motion.div
       initial="initial"
       animate={isInView ? 'animate' : 'initial'}
       variants={variants}
       ref={sectionRef}
-      transition={{
-        duration: 0.5,
-      }}
+      transition={{ duration: 0.5 }}
       className="bg-dark-blue text-white w-screen md:w-[80vw] rounded-3xl md:rounded-[80px] py-10 my-10 px-8 md:px-24 flex flex-col items-center md:items-start justify-center"
     >
       <Image src={'/assets/images/logo-header.png'} alt="logo" width={120} height={40} />
@@ -81,8 +80,10 @@ const PricingSection: React.FC = () => {
       >
         {'Reserva tu plaza'.toUpperCase()}
       </Button>
-    </motion.section>
-  );
+    </motion.div>
+  </section>
+);
+
 };
 
 export default PricingSection;

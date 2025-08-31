@@ -1,15 +1,36 @@
 'use client';
 
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import {
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 import { motion, useInView } from 'motion/react';
 import Image from 'next/image';
-import { useEffect, useMemo, useRef } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 const CurrentEditionPeopleSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
   const cardsRef = useRef<HTMLDivElement[]>([]);
+
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
 
   const CARDS = useMemo(
     () => [
@@ -160,21 +181,30 @@ const CurrentEditionPeopleSection: React.FC = () => {
 
   const ACTIONS = [
     {
-      text: '8 Community sessions',
-      animationSrc: '/assets/community_animation.json',
-      invertInDarkMode: true,
-    },
-    {
-      text: 'Secuencias y estrategias',
-      animationSrc: '/assets/discovery_animation.json',
+      text: (
+        <>
+          12 Community sessions <br /> + 6 sesiones 1-1
+        </>
+      ),
+      description:
+        'Quiero que nos exprimas a dudas, te sientas acompañado y juntos aceleremos este proceso de lanzar tu startup.',
+      icon: '/assets/images/ES_Emoji_Mono-Boca.png',
     },
     {
       text: 'Plan de acción semanal',
-      animationSrc: '/assets/asurance_animation.json',
+      description:
+        'Tendrás una hoja de ruta clara para que cada semana sepas qué pasos dar y qué objetivos cumplir.',
+      icon: '/assets/images/ES_Emoji_Manos.png',
     },
     {
-      text: 'Servicios en bandeja',
-      animationSrc: '/assets/marketing_animation.json',
+      text: 'Secuencias y estrategias servidas en bandeja',
+      description: (
+        <>
+          Tendrás todo mi arsenal de herramientas para ponerte muy fácil la implementación
+          en cada fase.
+        </>
+      ),
+      icon: '/assets/images/ES_Emoji_Diana.png',
     },
   ];
 
@@ -189,29 +219,50 @@ const CurrentEditionPeopleSection: React.FC = () => {
     },
   };
 
-  useEffect(() => {
-    if (!isInView) return; // sólo recalcula cuando aparecen
-
-    let maxHeight = 0;
-
-    // 1. Resetear alturas (por si cambia el contenido)
-    cardsRef.current.forEach((card) => {
-      if (card) card.style.height = 'auto';
-    });
-
-    // 2. Calcular la mayor altura
-    cardsRef.current.forEach((card) => {
-      if (card && card.offsetHeight > maxHeight) {
-        maxHeight = card.offsetHeight;
-      }
-    });
-
-    // 3. Aplicar esa altura a todos
-    cardsRef.current.forEach((card) => {
-      if (card) card.style.height = `${maxHeight}px`;
-    });
-  }, [isInView, CARDS]); // recalcula si cambian los datos o la visibilidad
-
+  const BONUS_ITEMS = [
+    {
+      title: 'BuildUp Your Sales Game',
+      value: 'VALORADO EN: 2.000 USD',
+      description: (
+        <>
+          Necesitas superar las creencias que te están limitando con la venta. <br />{' '}
+          <br />
+          La mayoría de los emprendedores se esconden detrás de productos e ideas porque
+          le tienen miedo a vender ( incluso si tienen un negocio B2C ). <br /> <br />
+          Este bonus.. es una bomba. <br /> <br />
+          Porque te voy a enseñar mi método infalible para gestionar reuniones de venta en
+          la etapa en la que estás ahora ( con personas o empresas ) y que no te puedan
+          decir que “no”.
+          <br /> <br />
+          Son solo 5 pasos para crear un proceso tan ágil y sencillo que le perderás el
+          miedo a vender y te sentirás capaz. <br /> <br />
+          Aparte, te regalaré los guiones que tanto yo como mis clientes utilizamos
+          dependiendo el modelo de tu negocio. <br /> <br />
+          Solo por esto ya vas a rentabilizar todo el programa.
+        </>
+      ),
+    },
+    {
+      title: 'GameUp Your Web Page & Content',
+      value: 'VALORADO EN: 1.997 USD',
+      description: (
+        <>
+          Te vamos a ayudar a crear una web page muy top en menos de 2 semanas. <br />{' '}
+          <br />
+          Una que convierta de verdad [ no como la mayoría que la tienen sólo para dar
+          confianza ] <br /> <br />
+          No vas a necesitar meter una sola línea de código porque nos vamos a encargar
+          nosotros. <br /> <br />
+          Y además vamos a darle un buen empujón de potencia, calidad y sobre todo
+          estrategia a tu contenido y a tu marca. <br /> <br />
+          Aquí te hablaré de temáticas, formatos, copy, edición, apoyos visuales… y sobre
+          todo GANCHOS muy potentes. <br /> <br />
+          Me vas a dar la razón y vamos a callarle la boca a los que dicen que debes
+          publicar a diario para que los algoritmos te favorezcan.
+        </>
+      ),
+    },
+  ];
   return (
     <motion.section
       initial="initial"
@@ -221,150 +272,264 @@ const CurrentEditionPeopleSection: React.FC = () => {
       transition={{
         duration: 0.5,
       }}
-      className="w-full relative flex flex-col items-center justify-center md:pt-20 pb-10 md:pb-12"
+      className="w-full relative flex flex-col items-center justify-center"
     >
-      <motion.h2
-        className="text-center text-[30px] md:text-[40px] mt-10 mb-6 font-montserrat font-bold px-6 md:max-w-[80%]"
-        initial={{
-          y: 30,
-          opacity: 0,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        transition={{
-          duration: 0.3,
-        }}
-      >
-        Tú, yo y los emprendedores de esta edición
-      </motion.h2>
+      <div className="bg-[#222] w-screen flex flex-col items-center justify-center text-white mb-16">
+        <motion.h2
+          className="text-center text-[30px] md:text-[40px] mt-10 mb-6 font-montserrat font-bold px-6 md:max-w-[80%]"
+          initial={{
+            y: 30,
+            opacity: 0,
+          }}
+          animate={{
+            y: 0,
+            opacity: 1,
+          }}
+          transition={{
+            duration: 0.3,
+          }}
+        >
+          Tú, yo y los emprendedores de esta edición
+        </motion.h2>
 
-      <motion.span
-        className="text-center mb-10 font-montserrat text-lg md:max-w-[60vw] tracking-[0.2px] px-5"
-        initial={{ y: 30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.3 }}
-      >
-        <p className="font-semibold">
-          90 días para conseguir tus primeros clientes gracias a la Evidencia Progresiva
-          del Market Fit
-        </p>
-        Piénsalo 😉😉
-        <br /> Éstas 3 fases son las que te llevarán a lanzar tu startup con ventas,
-        mientras otros emprendedores siguen escondiéndose detras de ideas que nunca llegan
-        a buen puerto
-      </motion.span>
-      <div className="w-[315px] h-[300px] absolute top-48 left-0 transform translate-x-6 hidden md:block scale-175 z-10">
-        <Image
-          src="/assets/images/UI-elements/circle.png"
-          alt="UI-element: arrow"
-          className=""
-          fill
-        />
-      </div>
-      <motion.div className="flex flex-col gap-6 px-4 py-10 md:w-[70vw]">
-        {isInView
-          ? CARDS.map((card, index) => (
-              <motion.div
-                key={index}
-                ref={(el) => {
-                  if (el) cardsRef.current[index] = el;
-                }}
-                className="bg-yellow rounded-3xl text-black font-montserrat flex flex-col items-center justify-center text-center py-8 px-8 md:py-12 md:px-16 relative z-0"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: index * 0.2, duration: 0.3 }}
-              >
-                <p className="absolute font-bold text-sm md:text-md top-2">
-                  • {card.stepName} •
-                </p>
-                <h3 className="font-[900] italic text-[40px] w-full text-center md:self-start">
-                  {card.title}
-                </h3>
-                <div className="text-lg text-black flex flex-col gap-4 w-full">
-                  {card.description.map((desc, descIndex) => (
-                    <span key={descIndex}>{desc}</span>
-                  ))}
-                </div>
-              </motion.div>
-            ))
-          : null}
-        <motion.h5
-          className="w-full text-center font-bold mb-10 md:px-0 font-montserrat text-md md:text-xl tracking-[0.2px]"
+        <motion.span
+          className="text-center mb-10 font-montserrat text-lg md:max-w-[60vw] tracking-[0.2px] px-5"
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.7, duration: 0.3 }}
+          transition={{ delay: 0.5, duration: 0.3 }}
         >
-          PD: Recuerda que el Market Fit NO es binario ( lo tengo o no lo tengo ) y está
-          en constante movimiento, con lo cual incluso cuando estés ganando, vas a tener
-          que seguir iterando sobre cada una de éstas fases para ser aún más competitivo y
-          que no te coman los vecinos.
-        </motion.h5>
-      </motion.div>
+          <p className="font-semibold">
+            60 días para conseguir tus primeros clientes pagos
+          </p>
+          Piénsalo 😉😉
+          <br /> Éstas 5 fases son las que te llevarán a lanzar tu startup con ventas, más
+          rápido y sin fundirte, mientras otros emprendedores siguen escondiéndose detrás
+          de ideas que nunca llegan a buen puerto.
+        </motion.span>
+        <motion.div className="flex flex-col gap-6 px-4 py-10 md:w-[70vw]">
+          {isInView
+            ? CARDS.map((card, index) => (
+                <motion.div
+                  key={index}
+                  ref={(el) => {
+                    if (el) cardsRef.current[index] = el;
+                  }}
+                  className="bg-yellow rounded-3xl text-black font-montserrat flex flex-col items-center justify-center text-center py-8 px-8 md:py-12 md:px-16 relative z-0"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: index * 0.2, duration: 0.3 }}
+                >
+                  <p className="absolute font-bold text-sm md:text-md top-2">
+                    • {card.stepName} •
+                  </p>
+                  <h3 className="font-[900] italic text-[40px] w-full text-center md:self-start mb-4">
+                    {card.title}
+                  </h3>
+                  <div className="text-lg text-black flex flex-col gap-4 w-full tracking-[0.001px] leading-6">
+                    {card.description.map((desc, descIndex) => (
+                      <span key={descIndex}>{desc}</span>
+                    ))}
+                  </div>
+                </motion.div>
+              ))
+            : null}
+          <motion.h5
+            className="w-full text-center font-bold mb-10 md:px-0 font-montserrat text-md md:text-xl tracking-[0.2px]"
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.7, duration: 0.3 }}
+          >
+            PD: Recuerda que el Market Fit está en constante movimiento, así que cuando
+            estés ganando, vas a tener que seguir iterando sobre cada una de éstas fases
+            para ser aún más competitivo.
+          </motion.h5>
+        </motion.div>
+      </div>
       <motion.h4
-        className="text-center font-bold mb-10 px-4 md:px-0 font-montserrat text-xl md:text-3xl md:max-w-[60vw] tracking-[0.2px]"
+        className="text-center font-bold mb-10 px-4 md:px-0 font-montserrat text-xl md:text-5xl md:max-w-[70vw] tracking-[0.2px]"
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.7, duration: 0.3 }}
       >
         Emprendedor, así es como voy a acompañarte y comprometerme con tu transformación
       </motion.h4>
-      <motion.div className="flex justify-center items-center mb-10 w-full gap-6">
-        <motion.ul className="w-full font-work-sans text-sm flex flex-col md:flex-row justify-start items-start md:items-center gap-4 md:gap-2">
-          {ACTIONS.map((action, index) => (
-            <motion.li
-              key={index}
-              className="mb-6 font-bold text-md flex items-center gap-8 md:gap-2 w-full flex-col"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.8 + index * 0.2, duration: 0.5 }}
-            >
-              <motion.div
-                initial={{ scale: index % 2 === 0 ? 1.3 : 1 }}
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 2, ease: 'easeInOut' }}
-                className="w-50 md:w-46 lg:w-56 h-40 md:h-36 lg:h-44 relative flex"
-              >
-                <DotLottieReact
-                  className={twMerge(
-                    'w-full h-full relative',
-                    action.invertInDarkMode ? 'dark:invert-100' : ''
-                  )}
-                  src={action.animationSrc}
-                  loop
-                  autoplay
-                  speed={0.9}
-                />
-              </motion.div>
+      <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center items-start my-10 w-[80%] max-w-[1200px] mx-auto">
+        {ACTIONS.map((action, index) => (
+          <motion.div
+            key={index}
+            className="basis-1/3 max-w-[300px] w-full font-work-sans text-sm flex flex-col justify-start items-center gap-4 shadow-2xl rounded-4xl p-6"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.8 + index * 0.2, duration: 0.5 }}
+          >
+            <motion.div className="relative mx-auto flex justify-center items-center">
+              <Image
+                src={action.icon}
+                alt={`Icon for ${action.text}`}
+                width={80}
+                height={80}
+                className="object-contain"
+              />
+            </motion.div>
 
-              <p className="text-center uppercase md:text-sm lg:text-xl">{action.text}</p>
-            </motion.li>
-          ))}
-        </motion.ul>
+            <p className="text-center uppercase md:text-sm lg:text-lg w-[90%] font-montserrat font-extrabold">
+              {action.text}
+            </p>
+            <p className="text-center md:text-xs lg:text-md w-[80%] text-gray-500">
+              {action.description}
+            </p>
+          </motion.div>
+        ))}
+      </motion.div>
+      <motion.div className="flex flex-col gap-6 px-4 py-10 md:w-[70vw]">
+        <motion.h4
+          className="text-center font-bold mb-4 px-4 md:px-0 font-montserrat text-xl md:text-5xl md:max-w-[70vw] tracking-[0.2px]"
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.7, duration: 0.3 }}
+        >
+          Tendrás acceso a este bonus de regalo
+        </motion.h4>
+        <motion.h5
+          className="text-center font-bold px-4 md:px-0 font-montserrat text-md md:text-2xl tracking-[0.2px]"
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.7, duration: 0.3 }}
+        >
+          [Se me va la mano entregando demasiado. Ya lo sé]
+        </motion.h5>
+        <motion.div className="my-10 w-full max-w-[1200px] flex flex-col items-center justify-center mx-auto shadow-2xl rounded-4xl py-4 px-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center items-start ">
+            <div className="flex flex-col justify-start items-start p-6">
+              <h6 className="font-extrabold font-lora text-4xl mb-6">
+                {BONUS_ITEMS?.[0].title}
+              </h6>
+              <p className="font-montserrat font-[500] text-md">
+                {BONUS_ITEMS?.[0].description}
+              </p>
+            </div>
+            <div className="flex flex-col justify-start items-center p-6 w-full relative h-64 md:h-full">
+              <Image
+                src="/assets/images/conversation.png"
+                alt={BONUS_ITEMS?.[0].title}
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
+          <figure className="h-[2px] w-[85%] bg-orange block" />
+          <p className="font-archivo-black-400 text-2xl">{BONUS_ITEMS?.[0].value}</p>
+        </motion.div>
+        <motion.h4
+          className="text-center font-bold mb-4 px-4 md:px-0 font-montserrat text-xl md:text-5xl md:max-w-[70vw] tracking-[0.2px]"
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.7, duration: 0.3 }}
+        >
+          Además, habrá un regalo extra para los más rápidos
+        </motion.h4>
+        <motion.h5
+          className="text-center font-bold px-4 md:px-0 font-montserrat text-md md:text-2xl tracking-[0.2px]"
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.7, duration: 0.3 }}
+        >
+          Bonus especial hasta el 18 de Octubre
+        </motion.h5>
+        {BONUS_ITEMS.filter((_, i) => i !== 0).map((bonus, index) => (
+          <motion.div
+            key={index}
+            className="my-10 w-full max-w-[1200px] flex flex-col items-center justify-center mx-auto shadow-2xl rounded-4xl py-4 px-2 gap-6"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center items-start ">
+              <div className="flex flex-col justify-start items-start p-6">
+                <h6 className="font-extrabold font-lora text-4xl mb-6">{bonus.title}</h6>
+                <p className="font-montserrat font-[500] text-md">{bonus.description}</p>
+              </div>
+              <div className="flex flex-col justify-start items-center p-6 w-full relative h-64 md:h-full">
+                <Image
+                  src="/assets/images/conversation.png"
+                  alt={bonus.title}
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </div>
+            <figure className="h-[2px] w-[85%] bg-orange block" />
+            <p className="font-archivo-black-400 text-2xl">{bonus.value}</p>
+          </motion.div>
+        ))}
       </motion.div>
       <motion.div
-        className="relative bg-orange text-white px-10 py-10 md:py-6 rounded-3xl w-full max-w-[1200px] md:h-[260px] flex flex-col md:flex-row justify-start items-center gap-14 font-montserrat"
+        className="relative bg-blue text-white px-10 py-10 md:py-6 w-full  flex flex-col justify-start items-center gap-14 font-montserrat"
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.3 }}
       >
-        <div className="flex flex-col md:flex-row gap-4 w-full h-max items-start">
-          <h3 className="font-[900] italic text-[40px] w-full md:w-[30%] text-center md:self-start tracking-[0.1px]">
-            Atención!
-          </h3>
-          <div className="text-sm tracking-[0.1px] w-full flex flex-col justify-between gap-8 mt-2">
-            <b className="text-xl">
-              Solo trabajaré mano a mano con 12 emprendedores en esta edición de Take a
-              Leap Program
+        <div className="flex flex-col gap-4 w-full h-max text-center items-center">
+          <div className="flex justify-center items-center gap-2">
+            <span className="text-3xl md:text-4xl">👇</span>
+            <h3 className="font-[900] italic text-3xl md:text-[40px] text-center tracking-[0.1px]">
+              Atención a esto, emprendedor!
+            </h3>
+            <span className="text-3xl md:text-4xl">👇</span>
+          </div>
+          <div className="text-sm tracking-[0.1px] flex flex-col justify-between gap-8 mt-2 md:w-[40%]">
+            <b className="text-2xl md:text-3xl">
+              Solo trabajaré mano a mano con 12 startups en esta edición de Take a Leap
+              Program
             </b>
-            <p className="text-lg h-full">
+            <p className="text-xl md:text-2xl h-full">
               [Y ya hay dentro 6 emprendedores que quedaron fuera de la edición anterior]
               Entrar ahora no solo te asegura tu plaza sino que además también te llevas
               condiciones especiales.
             </p>
           </div>
         </div>
+        <Carousel
+          setApi={setApi}
+          className="w-auto max-w-[1200px] md:py-2 relative min-h-108"
+          opts={{
+            loop: true,
+          }}
+        >
+          <CarouselContent>
+            {Array.from({ length: 8 }).map((_, index) => (
+              <CarouselItem
+                key={index}
+                className="flex flex-col items-center justify-start md:p-1 basis-full md:basis-1/3 text-white font-montserrat"
+              >
+                <div className="min-h-60 border-8 border-amber-50 bg-amber-50 rounded-3xl flex items-center">
+                  <Image
+                    src={`/assets/images/testimonials/testimonial_${index + 1}.jpeg`}
+                    alt={`Testimonial ${index + 1}`}
+                    width={350}
+                    height={80}
+                    className="object-contain p-2 "
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious
+            variant="link"
+            className="absolute left-4 md:-left-12 hidden md:block md:top-1/2 transform -translate-y-1/2 scale-150 cursor-pointer text-white z-10"
+          />
+          <CarouselNext
+            variant="link"
+            className="absolute right-4 md:-right-12 hidden md:block md:top-1/2 transform -translate-y-1/2 scale-150 cursor-pointer text-white z-10"
+          />
+          <div className="flex justify-center items-center gap-2 mt-6">
+            {Array.from({ length: count }).map((_, idx) => (
+              <span
+                key={idx}
+                className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                  current === idx + 1 ? 'bg-white scale-125' : 'bg-white/40'
+                }`}
+              />
+            ))}
+          </div>
+        </Carousel>
       </motion.div>
     </motion.section>
   );

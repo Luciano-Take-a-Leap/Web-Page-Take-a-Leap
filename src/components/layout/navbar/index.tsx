@@ -17,7 +17,7 @@ const Navbar = () => {
             >
               <Button
                 className={cn(
-                  'rounded-xl p-4 text-xl transition-colors font-work-sans dark:bg-white dark:hover:bg-white dark:text-black'
+                  'rounded-xl p-4 text-xl transition-colors font-work-sans'
                 )}
                 onClick={() => {
                   window.scrollTo({

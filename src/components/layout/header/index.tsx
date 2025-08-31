@@ -5,7 +5,6 @@ import { motion } from 'motion/react';
 import Link from 'next/link';
 import { cn } from '@/utils/twMerge';
 import Navbar from '../navbar';
-import { ThemeToggle } from '../theme-toggle';
 import Image from 'next/image';
 import MobileNav from '../mobile-nav';
 import { useEffect, useState } from 'react';
@@ -40,7 +39,7 @@ export const HEADER_LINKS = [
   },
 ];
 
-export const LIMIT_TIME = new Date('2025-08-25T00:00:00');
+export const LIMIT_TIME = new Date('2025-09-10T00:00:00');
 
 const Header = () => {
   const [timeLeft, setTimeLeft] = useState<string | null>(null);
@@ -80,7 +79,7 @@ const Header = () => {
   return (
     <motion.header
       className={cn(
-        'bg-white dark:bg-background fixed inset-x-0 z-40 h-14 md:h-20 gap-[54px] w-screen items-center justify-between md:justify-center md:px-8 flex md-backdrop-blur-[10px] transition-all'
+        'bg-white fixed inset-x-0 z-40 h-14 md:h-20 gap-[54px] w-screen items-center justify-between md:justify-center md:px-8 flex md-backdrop-blur-[10px] transition-all'
       )}
       initial={{
         y: -100,
@@ -107,7 +106,6 @@ const Header = () => {
       </Link>
 
       <Navbar />
-      <ThemeToggle />
       {timeLeft && timeLeft !== '00:00:00:00' ? (
         <CountdownBanner
           timeLeft={timeLeft}

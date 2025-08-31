@@ -1,7 +1,6 @@
-import { LIMIT_TIME } from '@/components/layout/header';
 import { motion, useScroll, useTransform } from 'motion/react';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 interface HeroProps {
@@ -10,7 +9,6 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ className }) => {
   const ref = useRef(null);
-  const [timeLeft, setTimeLeft] = useState<string | null>(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -38,46 +36,20 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
   const scaleAnimation2 = useTransform(scrollYProgress, [0.5, 1], [1, 2.6]);
   const scaleAnimation3 = useTransform(scrollYProgress, [0.5, 1], [1, 0.7]);
 
-  //calculate time left for the countdown to add margin top in mobile
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date();
-      const difference = LIMIT_TIME.getTime() - now.getTime();
-
-      if (difference <= 0) {
-        setTimeLeft('00:00:00:00');
-        clearInterval(interval);
-        return;
-      }
-
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((difference / (1000 * 60)) % 60);
-      const seconds = Math.floor((difference / 1000) % 60);
-
-      const formatted = [
-        days.toString().padStart(2, '0'),
-        hours.toString().padStart(2, '0'),
-        minutes.toString().padStart(2, '0'),
-        seconds.toString().padStart(2, '0'),
-      ]
-        .filter(Boolean)
-        .join(':');
-
-      setTimeLeft(formatted);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <motion.div
+    <motion.section
       layout
       ref={ref}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
       className={`w-full md:h-[calc(100vh-80px)] flex items-center justify-center relative ${className} px-5 md:px-0 py-26 md:py-0 bg-dark-blue overflow-hidden`}
     >
       <motion.figure
         className="w-26 h-26 rounded-2xl bg-yellow absolute top-0 left-0 hidden md:block transform translate-x-16 translate-y-14"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
         style={{
           y: desktopFallAnimation1,
           rotate: rotateAnimation1,
@@ -86,6 +58,9 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
       />
       <motion.figure
         className="w-26 h-26 rounded-2xl bg-orange absolute top-0 right-0 hidden md:block transform -translate-x-16 translate-y-14 z-20"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
         style={{
           y: desktopFallAnimation2,
           rotate: rotateAnimation2,
@@ -94,6 +69,9 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
       />
       <motion.figure
         className="w-16 h-16 rounded-xl bg-yellow absolute top-0 right-0 hidden md:block transform -translate-x-16 translate-y-72"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
         style={{
           y: desktopFallAnimation3,
           rotate: rotateAnimation1,
@@ -102,6 +80,9 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
       />
       <motion.figure
         className="w-40 h-40 rounded-2xl bg-orange absolute bottom-0 left-0 hidden md:block transform -translate-x-8 translate-y-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
         style={{
           y: desktopFallAnimation4,
           rotate: rotateAnimation3,
@@ -110,6 +91,9 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
       />
       <motion.figure
         className="w-16 h-16 rounded-2xl bg-yellow absolute bottom-0 right-0 hidden md:block transform -translate-x-48 -translate-y-80"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
         style={{
           y: desktopFallAnimation5,
           rotate: rotateAnimation4,
@@ -118,6 +102,9 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
       />
       <motion.figure
         className="w-20 h-20 rounded-2xl bg-orange absolute bottom-0 left-0 md:hidden transform -translate-x-4 -translate-y-100"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
         style={{
           y: mobileFallAnimation1,
           rotate: rotateAnimation1,
@@ -126,6 +113,9 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
       />
       <motion.figure
         className="w-24 h-24 rounded-3xl bg-orange absolute top-0 right-0 md:hidden transform translate-x-2 translate-y-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
         style={{
           y: mobileFallAnimation3,
           rotate: rotateAnimation6,
@@ -133,6 +123,9 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
       />
       <motion.figure
         className="w-24 h-24 rounded-2xl bg-yellow absolute bottom-0 right-0 md:hidden transform translate-x-22 -translate-y-40"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
         style={{
           y: mobileFallAnimation2,
           rotate: rotateAnimation3,
@@ -147,10 +140,7 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
       />
       <motion.div
         className={twMerge(
-          'flex flex-col items-center gap-8 max-w-[940px] 2xl:max-w-[70vw] z-30',
-          timeLeft === null || (timeLeft && timeLeft !== '00:00:00:00')
-            ? 'mt-26 md:mt-0'
-            : 'mt-0'
+          'flex flex-col items-center gap-8 w-full max-w-[940px] 2xl:max-w-[70vw] z-30 mt-26 md:mt-0'
         )}
       >
         <motion.div
@@ -166,24 +156,14 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
             ⚡ Take a Leap Program ⚡
           </motion.h2>
         </motion.div>
-<motion.h4
+        <motion.h4
           className="text-center text-[34px] md:text-[42px] text-white tracking-[0.2px] font-lora leading-[40px] font-[900] relative"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
           <span className="text-white">
-            Si sueñas con invertir esfuerzo en productos que nadie quiere,{' '}
-            <span className="relative inline-block">
-              <Image
-                src="/assets/images/UI-elements/cross.svg"
-                alt="cross"
-                fill
-                className="object-contain mt-2 z-20 transform scale-125"
-              />
-              <span className="relative z-10">este no</span>{' '}
-            </span>
-            {` es tu programa.`}
+            La mayoría de los emprendedores se funden antes de cumplir un año.
           </span>
         </motion.h4>
         <motion.p
@@ -192,23 +172,24 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
-          Te dijeron que para montar una startup exitosa hay que construir un producto
-          espectacular… Y aquí estás, pensado: “¿Cómo rayos empiezo si no tengo ni 10K
-          para invertir?”
+          Te dijeron que para tener éxito, hay que construir un producto espectacular. Y
+          aquí estás, pensando; ¿Cómo rayos empiezo si no tengo ni 10K usd y aún no le
+          vendí ni a mi primo?
           <br />
           <br />
-          Calma. No necesitas seguir pensando y codeando ideas, ni quemar todos tus
-          ahorros.
+          Calma. No necesitas seguir pensando y codeando ideas, levantar inversión, ni
+          quemar tus ahorros.
         </motion.p>
         <motion.div
-          className="flex items-center justify-center bg-[#F65A1799] w-full md:w-[55vw] rounded-[40px] px-12 py-4"
+          className="flex items-center justify-center bg-[#F65A1799] w-full md:w-max md:max-w-[60vw] rounded-[40px] px-6 py-3"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
-          <p className="text-white font-montserrat font-bold text-center text-lg">
-            Solo observa cómo puedes lanzar tu startup y conseguir tus primeras ventas,
-            ahorrando esfuerzos, gracias a la Evidencia Progresiva del Market Fit
+          <p className="text-white font-montserrat font-bold text-center text-xl leading-6">
+            Solo observa cómo puedes lanzar tu startup y conseguir tus primeras ventas en
+            60 días, ahorrando esfuerzos, gracias a la Evidencia Progresiva del Market
+            Fit.
           </p>
         </motion.div>
       </motion.div>
@@ -240,7 +221,7 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
         height={180}
         className="absolute top-0 left-0 transform -translate-x-[35%] translate-y-[200%] block md:hidden"
       />
-    </motion.div>
+    </motion.section>
   );
 };
 
