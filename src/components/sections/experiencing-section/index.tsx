@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import useMediaquery from '@/utils/use-get-mediaquery';
 import { motion, useInView } from 'motion/react';
 import Image from 'next/image';
 import { useRef } from 'react';
@@ -9,6 +10,7 @@ import { twMerge } from 'tailwind-merge';
 const ExperiencingSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const firstCardRef = useRef<HTMLDivElement>(null);
+  const { isMobile } = useMediaquery();
 
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
   const areCardsInView = useInView(firstCardRef, { once: true, margin: '-75px' });
@@ -50,8 +52,8 @@ const ExperiencingSection: React.FC = () => {
       ),
       description: (
         <p>
-          Por eso construyo Evidencia sobre todas las capas, para asegurarme de que voy a
-          ganar y no perder mi tiempo 💪.
+          Por eso construyo Evidencia sobre todas las capas, para asegurarme de que no voy
+          a tirar meses a la basura 💪.
         </p>
       ),
     },
@@ -109,7 +111,7 @@ const ExperiencingSection: React.FC = () => {
             key={index}
             className={twMerge(
               'bg-white text-text px-10 py-9 rounded-[20px] md:rounded-[40px] shadow-lg w-[330px] h-[390px] flex flex-col justify-start items-start gap-4 font-montserrat col-span-2',
-              index === 0 ? 'lg:col-start-2' : '', // ← primera card arranca en la columna 2
+              index === 0 ? 'lg:col-start-2' : '',
               index === 2 ? 'bg-dark-blue text-white' : ''
             )}
             ref={index === 0 ? firstCardRef : null}
@@ -117,7 +119,7 @@ const ExperiencingSection: React.FC = () => {
             animate={
               index === 2
                 ? areCardsInView
-                  ? { scale: 1, rotate: -8 }
+                  ? { scale: 1, rotate: isMobile ? 0 : -8 }
                   : { scale: 0 }
                 : { scale: 1 }
             }

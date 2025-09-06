@@ -169,7 +169,7 @@ export default function FAQSection() {
                   transition: 'height 0.3s ease',
                 }}
               >
-                <div className="mt-2 mb-4 px-2 p-1 border">{item.response}</div>
+                <div className="mt-2 mb-4 px-2 p-1 border text-lg">{item.response}</div>
               </div>
             </motion.div>
           );

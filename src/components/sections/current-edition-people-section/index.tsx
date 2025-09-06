@@ -8,9 +8,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { motion, useInView } from 'motion/react';
+import { AnimatePresence, motion, useInView } from 'motion/react';
 import Image from 'next/image';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { ChevronDownIcon } from 'lucide-react';
 
 const CurrentEditionPeopleSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -20,6 +21,7 @@ const CurrentEditionPeopleSection: React.FC = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
+  const [cardExpandedIndex, setCardExpandedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (!api) {
@@ -37,36 +39,41 @@ const CurrentEditionPeopleSection: React.FC = () => {
       {
         stepName: 'Customer - Problem Fit',
         title: 'Fase 01',
-        description: [
-          <p key={'1-1'} className="font-bold font-lora text-2xl md:text-[30px]">
+        subtitle: (
+          <h4
+            key={'1-1'}
+            className="font-bold font-lora text-2xl md:text-[30px] leading-tight"
+          >
             Encuentra tu nueva oportunidad para elevar el potencial rentable de tu idea.
-          </p>,
-          <p key={'1-2'} className="">
+          </h4>
+        ),
+        description: [
+          <p key={'1-2'} className="text-base leading-relaxed">
             Uno de los miedos cuando estás emprendiendo es:
           </p>,
-          <p key={'1-3'} className="">
+          <p key={'1-3'} className="text-base leading-relaxed">
             “No me conoce nadie”
             <br /> “Ya hay mucha competencia”
             <br /> “Me va a costar muchísimo venderlo”
             <br /> “Es un nicho muy complicado”
           </p>,
-          <p key={'1-4'} className="">
+          <p key={'1-4'} className="text-base leading-relaxed">
             Y el problema está en pensar que para generar interés, hay que crear algo mega
             innovador ( nada más alejado de la realidad ).
           </p>,
-          <p key={'1-5'} className="font-bold">
+          <p key={'1-5'} className="font-bold text-base leading-relaxed">
             Piensa: ¿Qué NO está ofreciendo tu competencia y hay un grupo de personas, con
             mucha urgencia, que lo necesita?
           </p>,
-          <p key={'1-6'} className="">
+          <p key={'1-6'} className="text-base leading-relaxed">
             Debes actuar como un francotirador… no como una metralleta apuntando a las
             nubes.
           </p>,
-          <p key={'1-7'} className="">
+          <p key={'1-7'} className="text-base leading-relaxed">
             Vamos a encontrar tu oportunidad sobre un target puntual en los primeras 2
             semanas.
           </p>,
-          <p key={'1-8'} className="">
+          <p key={'1-8'} className="text-base leading-relaxed">
             No importa tu nicho, tu experiencia o que no te conozca nadie.
           </p>,
         ],
@@ -74,29 +81,34 @@ const CurrentEditionPeopleSection: React.FC = () => {
       {
         stepName: 'Problem - Solution Fit',
         title: 'Fase 02',
-        description: [
-          <b key={'2-1'} className="font-bold font-lora text-[30px]">
+        subtitle: (
+          <h4
+            key={'2-1'}
+            className="font-bold font-lora text-2xl md:text-[30px] leading-tight"
+          >
             Diseña una solución tan deseable que NO sea necesario seguir agregándole
             features a tu idea.
-          </b>,
-          <p key={'2-2'} className="">
+          </h4>
+        ),
+        description: [
+          <p key={'2-2'} className="text-base leading-relaxed">
             Llevo más de 60 empresas mentorizadas a mis espaldas.
           </p>,
-          <p key={'2-3'} className="">
+          <p key={'2-3'} className="text-base leading-relaxed">
             TODOS, absolutamente TODOS tenían dudas sobre cómo ofrecer su solución, cómo
             presentarla y perdían demasiado tiempo re pensado el producto.
           </p>,
-          <p key={'2-4'} className="">
+          <p key={'2-4'} className="text-base leading-relaxed">
             Y el resultado es mucha confusión y poco interés del otro lado.
           </p>,
-          <p key={'2-5'} className="">
+          <p key={'2-5'} className="text-base leading-relaxed">
             Así que date 2 semanas más.
           </p>,
-          <p key={'2-6'} className="font-bold">
+          <p key={'2-6'} className="font-bold text-base leading-relaxed">
             Vamos a crear un gancho para diferenciarte y perfilar tu solución para que tus
             potenciales clientes la prueben y nos den feedback.
           </p>,
-          <p key={'2-7'} className="">
+          <p key={'2-7'} className="text-base leading-relaxed">
             Quedará tan brutal, que le vas a perder el miedo a vender tu producto.
           </p>,
         ],
@@ -104,24 +116,29 @@ const CurrentEditionPeopleSection: React.FC = () => {
       {
         stepName: 'Business - Model Fit',
         title: 'Fase 03',
-        description: [
-          <b key={'3-1'} className="font-bold font-lora text-[30px]">
+        subtitle: (
+          <h4
+            key={'3-1'}
+            className="font-bold font-lora text-2xl md:text-[30px] leading-tight"
+          >
             Olvídate del famoso “que buena idea” y empieza a hacer dinero en tu cuenta
-          </b>,
-          <p key={'3-2'} className="">
+          </h4>
+        ),
+        description: [
+          <p key={'3-2'} className="text-base leading-relaxed">
             Existe una realidad, y es que hay un largo trecho entre el feedback que te dan
             tus conocidos y que logres realmente monetizar tu solución.
           </p>,
-          <p key={'3-3'} className="font-bold">
+          <p key={'3-3'} className="font-bold text-base leading-relaxed">
             Quiero que ahorres meses de errores ( incluso años ) en acciones que no
             generan $$ y que empieces a darle en la tecla ahora…
           </p>,
-          <p key={'3-4'} className="">
+          <p key={'3-4'} className="text-base leading-relaxed">
             Así que en esta fase, te enseñaré secuencias de monetización y estrategias de
             pre selling validadas para que logres que tus potenciales clientes saquen la
             billetera ;)
           </p>,
-          <p key={'3-5'} className="">
+          <p key={'3-5'} className="text-base leading-relaxed">
             Además vas a tener un Como Ganar y Dónde Jugar muy claro.
           </p>,
         ],
@@ -129,23 +146,28 @@ const CurrentEditionPeopleSection: React.FC = () => {
       {
         stepName: 'Product - Market Fit',
         title: 'Fase 04',
-        description: [
-          <b key={'4-1'} className="font-bold font-lora text-[30px]">
+        subtitle: (
+          <h4
+            key={'4-1'}
+            className="font-bold font-lora text-2xl md:text-[30px] leading-tight"
+          >
             Consigue tus primeros clientes y logra repetirlo varias veces
-          </b>,
-          <p key={'4-2'} className="">
+          </h4>
+        ),
+        description: [
+          <p key={'4-2'} className="text-base leading-relaxed">
             Muchos emprendedores se dejan llevar por el ruido que hay en redes y tratan de
             copiar a las empresas que ya están escalando.
           </p>,
-          <p key={'4-3'} className="">
+          <p key={'4-3'} className="text-base leading-relaxed">
             Y lo cierto es que cansa ( y mucho ) escuchar tantos playbooks “ganadores”.
           </p>,
-          <p key={'4-4'} className="font-bold">
+          <p key={'4-4'} className="font-bold text-base leading-relaxed">
             Al contrario de la mayoría, vas a tener motions de captación y estrategias de
             go to market que son eficaces, sencillas y creadas para founders en etapa Pre
             Market Fit;
           </p>,
-          <p key={'4-5'} className="">
+          <p key={'4-5'} className="text-base leading-relaxed">
             Para que generes tus primeras ventas y repitas el proceso sin depender de
             agencias caras ni anuncios costosos.
           </p>,
@@ -154,22 +176,27 @@ const CurrentEditionPeopleSection: React.FC = () => {
       {
         stepName: 'Go to Market',
         title: 'Fase 05',
+        subtitle: (
+          <h4
+            key={'5-1'}
+            className="font-bold font-lora text-2xl md:text-[30px] leading-tight"
+          >
+            Construye tu MVP para salir a la cancha
+          </h4>
+        ),
         description: [
-          <b key={'5-1'} className="font-bold font-lora text-[30px]">
-            Construye tu MVP para salir a la cancha{' '}
-          </b>,
-          <p key={'5-2'} className="">
+          <p key={'5-2'} className="text-base leading-relaxed">
             Luego de varios años en esto, te puedo asegurar que tu cliente no te va a
             comprar por lo lindo o sofisticado que sea tu producto, sino por mostrarle
             realmente el valor que fuimos construyendo en las etapas anteriores.
           </p>,
-          <p key={'5-3'} className="font-bold">
+          <p key={'5-3'} className="font-bold text-base leading-relaxed">
             Asi que como parte de la estrategia de Go to Market, en ésta fase, vas a
             construir tu primer release de producto para salir a la cancha y que
             finalmente logres lanzar tu startup con mucha Evidencia Progresiva de Market
             Fit.
           </p>,
-          <p key={'5-4'} className="">
+          <p key={'5-4'} className="text-base leading-relaxed">
             Y validar de que vas por muy buen camino en todas las capas del negocio y
             empieces a jugar en serio, por supuesto :)
           </p>,
@@ -314,21 +341,59 @@ const CurrentEditionPeopleSection: React.FC = () => {
                   ref={(el) => {
                     if (el) cardsRef.current[index] = el;
                   }}
-                  className="bg-yellow rounded-3xl text-black font-montserrat flex flex-col items-center justify-center text-center py-8 px-8 md:py-12 md:px-16 relative z-0"
+                  className="bg-yellow rounded-3xl text-black font-montserrat flex flex-col items-center justify-center text-center py-8 md:py-12 px-8  md:px-16 relative z-0"
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: index * 0.2, duration: 0.3 }}
                 >
+                  <motion.button
+                    className="absolute top-4 right-4 text-black cursor-pointer"
+                    onClick={() => {
+                      if (cardExpandedIndex === index) {
+                        setCardExpandedIndex(null);
+                      } else {
+                        setCardExpandedIndex(index);
+                      }
+                    }}
+                    whileHover={{ scale: 1.15 }}
+                    whileTap={{ scale: 0.95 }}
+                    animate={{ rotate: cardExpandedIndex === index ? 180 : 0 }}
+                  >
+                    <ChevronDownIcon className="mx-auto" size={30} />
+                  </motion.button>
                   <p className="absolute font-bold text-sm md:text-md top-2">
                     • {card.stepName} •
                   </p>
-                  <h3 className="font-[900] italic text-[40px] w-full text-center md:self-start mb-4">
+                  <h3 className="font-[900] italic text-[40px] w-full text-center md:self-start mb-8">
                     {card.title}
                   </h3>
-                  <div className="text-lg text-black flex flex-col gap-4 w-full tracking-[0.001px] leading-6">
-                    {card.description.map((desc, descIndex) => (
-                      <span key={descIndex}>{desc}</span>
-                    ))}
+                  <div className="text-lg text-black flex flex-col w-full tracking-[0.001px] leading-6">
+                    {card.subtitle}
+
+                    <AnimatePresence>
+                      {cardExpandedIndex === index && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.4, ease: 'easeInOut' }}
+                          className="overflow-hidden"
+                        >
+                          <div className="flex flex-col gap-4 pt-4">
+                            {card.description.map((desc, descIndex) => (
+                              <motion.div
+                                key={descIndex}
+                                initial={{ y: -10, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ delay: descIndex * 0.1, duration: 0.3 }}
+                              >
+                                {desc}
+                              </motion.div>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </motion.div>
               ))
@@ -470,7 +535,7 @@ const CurrentEditionPeopleSection: React.FC = () => {
           <div className="flex justify-center items-center gap-2">
             <span className="text-3xl md:text-4xl">👇</span>
             <h3 className="font-[900] italic text-3xl md:text-[40px] text-center tracking-[0.1px]">
-              Atención a esto, emprendedor!
+              Atención a esto!
             </h3>
             <span className="text-3xl md:text-4xl">👇</span>
           </div>

@@ -11,9 +11,11 @@ import CurrentEditionPeopleSection from '@/components/sections/current-edition-p
 import HowReserveWorksSection from '@/components/sections/how-reserve-works-section';
 import AboutMeSection from '@/components/sections/about-me-section';
 import WarrantySection from '@/components/sections/warranty-section';
-import ExampleCaseSection from '@/components/sections/success-case-section';
 import PricingSection from '@/components/sections/pricing-section';
 import FAQSection from '@/components/sections/faq-section';
+import SuccessCaseSection from '@/components/sections/success-case-section';
+import ReasonSection from '@/components/sections/reason-section';
+
 export default function HomePageComponent() {
   const [showScrollHint, setShowScrollHint] = React.useState(true);
 
@@ -35,8 +37,66 @@ export default function HomePageComponent() {
         )}
         <ConversationSection onViewChange={() => setShowScrollHint(false)} />
         <ExperiencingSection />
+        <ReasonSection />
         <CurrentEditionPeopleSection />
-        <ExampleCaseSection />
+        <SuccessCaseSection
+          content={[
+            {
+              title: 'IGNACIO ES EL MEJOR EJEMPLO PARA DEMOSTRARTE QUE SE PUEDE',
+              subtitle: '[La mayoría de los emprendedores se identifican mucho con él]',
+              paragraphs: [
+                'Quería lanzar su startup, y conseguir pirmeros clientes, pero no tenía claridad sobre qué pasos dar, a que target apuntar, que canales priorizar, o cuales son las secuencias para conseguir los pirmeros clientes pagos desde cero.',
+                'Sabía que el fitness era una buena industria a la cual apuntar pero no sabía cómo empezar sin invertir en un mega producto para lanzarse.',
+                'Nos rompimos la cabeza para encontrar su diferenciación y tras eso, creamos una oferta ridículamente atractiva.',
+                'Quería lanzar su startup, y conseguir pirmeros clientes, pero no tenía claridad sobre qué pasos dar, a que target apuntar, que canales priorizar, o cuales son las secuencias para conseguir los pirmeros clientes pagos desde cero.',
+                'Sabía que el fitness era una buena industria a la cual apuntar pero no sabía cómo empezar sin invertir en un mega producto para lanzarse.',
+                'Nos rompimos la cabeza para encontrar su diferenciación y tras eso, creamos una oferta ridículamente atractiva.',
+              ],
+              imageSrc: '/assets/images/success-cases/success_1.png',
+              imageAlt: 'Success case 1',
+            },
+            'https://vimeo.com/200317381',
+            {
+              title: 'IGNACIO ES EL MEJOR EJEMPLO PARA DEMOSTRARTE QUE SE PUEDE',
+              subtitle: '[La mayoría de los emprendedores se identifican mucho con él]',
+              paragraphs: [
+                'Quería lanzar su startup, y conseguir pirmeros clientes, pero no tenía claridad sobre qué pasos dar, a que target apuntar, que canales priorizar, o cuales son las secuencias para conseguir los pirmeros clientes pagos desde cero.',
+                'Sabía que el fitness era una buena industria a la cual apuntar pero no sabía cómo empezar sin invertir en un mega producto para lanzarse.',
+                'Nos rompimos la cabeza para encontrar su diferenciación y tras eso, creamos una oferta ridículamente atractiva.',
+                'Quería lanzar su startup, y conseguir pirmeros clientes, pero no tenía claridad sobre qué pasos dar, a que target apuntar, que canales priorizar, o cuales son las secuencias para conseguir los pirmeros clientes pagos desde cero.',
+                'Sabía que el fitness era una buena industria a la cual apuntar pero no sabía cómo empezar sin invertir en un mega producto para lanzarse.',
+                'Nos rompimos la cabeza para encontrar su diferenciación y tras eso, creamos una oferta ridículamente atractiva.',
+                'Quería lanzar su startup, y conseguir pirmeros clientes, pero no tenía claridad sobre qué pasos dar, a que target apuntar, que canales priorizar, o cuales son las secuencias para conseguir los pirmeros clientes pagos desde cero.',
+                'Sabía que el fitness era una buena industria a la cual apuntar pero no sabía cómo empezar sin invertir en un mega producto para lanzarse.',
+                'Nos rompimos la cabeza para encontrar su diferenciación y tras eso, creamos una oferta ridículamente atractiva.',
+              ],
+              imageSrc: '/assets/images/success-cases/success_2.png',
+              imageAlt: 'Success case 2',
+            },
+            'https://vimeo.com/76979871',
+            {
+              title: 'IGNACIO ES EL MEJOR EJEMPLO PARA DEMOSTRARTE QUE SE PUEDE',
+              subtitle: '[La mayoría de los emprendedores se identifican mucho con él]',
+              paragraphs: [
+                'Quería lanzar su startup, y conseguir pirmeros clientes, pero no tenía claridad sobre qué pasos dar, a que target apuntar, que canales priorizar, o cuales son las secuencias para conseguir los pirmeros clientes pagos desde cero.',
+                'Sabía que el fitness era una buena industria a la cual apuntar pero no sabía cómo empezar sin invertir en un mega producto para lanzarse.',
+                'Nos rompimos la cabeza para encontrar su diferenciación y tras eso, creamos una oferta ridículamente atractiva.',
+                'Quería lanzar su startup, y conseguir pirmeros clientes, pero no tenía claridad sobre qué pasos dar, a que target apuntar, que canales priorizar, o cuales son las secuencias para conseguir los pirmeros clientes pagos desde cero.',
+                'Sabía que el fitness era una buena industria a la cual apuntar pero no sabía cómo empezar sin invertir en un mega producto para lanzarse.',
+                'Nos rompimos la cabeza para encontrar su diferenciación y tras eso, creamos una oferta ridículamente atractiva.',
+                'Quería lanzar su startup, y conseguir pirmeros clientes, pero no tenía claridad sobre qué pasos dar, a que target apuntar, que canales priorizar, o cuales son las secuencias para conseguir los pirmeros clientes pagos desde cero.',
+                'Sabía que el fitness era una buena industria a la cual apuntar pero no sabía cómo empezar sin invertir en un mega producto para lanzarse.',
+                'Nos rompimos la cabeza para encontrar su diferenciación y tras eso, creamos una oferta ridículamente atractiva.',
+                'Quería lanzar su startup, y conseguir pirmeros clientes, pero no tenía claridad sobre qué pasos dar, a que target apuntar, que canales priorizar, o cuales son las secuencias para conseguir los pirmeros clientes pagos desde cero.',
+                'Sabía que el fitness era una buena industria a la cual apuntar pero no sabía cómo empezar sin invertir en un mega producto para lanzarse.',
+                'Nos rompimos la cabeza para encontrar su diferenciación y tras eso, creamos una oferta ridículamente atractiva.',
+              ],
+              imageSrc: '/assets/images/success-cases/success_3.png',
+              imageAlt: 'Success case 3',
+            },
+          ]}
+        />
+
         <AboutMeSection />
         <HowReserveWorksSection />
         <WarrantySection />

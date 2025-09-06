@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import { motion, useScroll, useTransform } from 'motion/react';
 import Image from 'next/image';
 import { useRef } from 'react';
@@ -163,7 +164,7 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
           transition={{ delay: 0.5, duration: 0.5 }}
         >
           <span className="text-white">
-            La mayoría de los emprendedores se funden antes de cumplir un año.
+            La mayoría de emprendedores se funde antes de cumplir un año.
           </span>
         </motion.h4>
         <motion.p
@@ -187,11 +188,16 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
           transition={{ delay: 0.5, duration: 0.5 }}
         >
           <p className="text-white font-montserrat font-bold text-center text-xl leading-6">
-            Solo observa cómo puedes lanzar tu startup y conseguir tus primeras ventas en
-            60 días, ahorrando esfuerzos, gracias a la Evidencia Progresiva del Market
-            Fit.
+            Descubre cómo lanzar tu startup y conseguir tus primeras ventas en 60 días,
+            ahorrando esfuerzos, gracias a la Evidencia Progresiva del Market Fit.
           </p>
         </motion.div>
+        <Button
+          size="lg"
+          className="bg-yellow text-dark-blue font-bold hover:bg-yellow/90"
+        >
+          Me uno a Take a Leap
+        </Button>
       </motion.div>
       <Image
         src="/assets/images/UI-elements/curl-1.png"

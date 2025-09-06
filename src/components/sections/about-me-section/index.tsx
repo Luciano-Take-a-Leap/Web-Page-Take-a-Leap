@@ -5,7 +5,7 @@ import { useRef } from 'react';
 
 import Image from 'next/image';
 
-const AboutMeSection: React.FC = () => {
+const ReasonAboutMeSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
@@ -26,21 +26,21 @@ const AboutMeSection: React.FC = () => {
       animate={isInView ? 'animate' : 'initial'}
       variants={variants}
       transition={{ duration: 0.5 }}
-      className="py-12 w-full lg:w-[80vw] relative"
+      className="py-12 w-full relative bg-gradient-to-b from-orange to-orange-gradient"
     >
       <motion.div
-        className="mt-12 flex w-full justify-evenly gap-8 items-stretch flex-col lg:flex-row"
+        className="mt-12 flex w-full justify-evenly gap-8 items-stretch flex-col lg:flex-row md:w-[80vw] mx-auto"
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
       >
         {isInView && (
-          <motion.div className="lg:w-[60%] px-10 md:px-14 flex flex-col justify-center font-work-sans text-sm">
+          <motion.div className="lg:w-[60%] px-10 md:px-14 flex flex-col justify-center font-work-sans text-sm text-white">
             <motion.h2
-              className="text-xl md:text-[50px] mb-4 font-archivo-black-400 tracking-[0.2px] text-orange"
+              className="text-xl md:text-[50px] mb-4 font-archivo-black-400 tracking-[0.2px]"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.7, duration: 0.7 }}
+              transition={{ delay: 0.2, duration: 0.7 }}
             >
               Mi nombre es Luciano Biancardi
             </motion.h2>
@@ -48,7 +48,7 @@ const AboutMeSection: React.FC = () => {
               className="mb-6 font-bold text-md md:text-lg"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.7 }}
+              transition={{ delay: 0.3, duration: 0.7 }}
             >
               Soy emprendedor y asesor de startups early stage
             </motion.p>
@@ -56,7 +56,7 @@ const AboutMeSection: React.FC = () => {
               className="mb-6 text-md md:text-lg"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.9, duration: 0.7 }}
+              transition={{ delay: 0.4, duration: 0.7 }}
             >
               He trabajado con grandes startups como Ualá, fui COO de Sinapsis y también
               ayudé a más de 30 emprendedores a construir sus productos digitales. Pero
@@ -68,7 +68,7 @@ const AboutMeSection: React.FC = () => {
               className="mb-6"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1, duration: 0.7 }}
+              transition={{ delay: 0.5, duration: 0.7 }}
             >
               ¿Te suena familiar?
             </motion.p>
@@ -76,16 +76,21 @@ const AboutMeSection: React.FC = () => {
               className="mb-6"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1.1, duration: 0.7 }}
+              transition={{ delay: 0.6, duration: 0.7 }}
             >
               Las posibilidades de éxito en Latam con métodos tradicionales de
               construcción, nunca fueron tan bajas.
             </motion.p>
+            <div className="w-full bg-white text-black font-bold p-4 mb-6 rounded-xl">
+              xxxxx xxx xxxxx xxxxx xxxx xxxxx xxxxx xxxx xxxxx xxxxxx xxxxx xxxxxxxx xxxx
+              xx xxxxxx xxx xxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
+              xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
+            </div>
             <motion.p
               className="mb-6"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1.2, duration: 0.7 }}
+              transition={{ delay: 0.7, duration: 0.7 }}
             >
               Me di cuenta que los principales problemas son:
             </motion.p>
@@ -93,7 +98,7 @@ const AboutMeSection: React.FC = () => {
               className="mb-6"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1.3, duration: 0.7 }}
+              transition={{ delay: 0.8, duration: 0.7 }}
             >
               - Apostar 100% al producto desde el inicio como nuestra única carta ganadora
               y seguir estrategias de empresas que están en otra etapa.
@@ -105,7 +110,7 @@ const AboutMeSection: React.FC = () => {
               className="mb-6"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1.4, duration: 0.7 }}
+              transition={{ delay: 0.9, duration: 0.7 }}
             >
               Es por eso que terminamos creando este nuevo enfoque de la Evidencia
               Progresiva del Market Fit para GANAR EN LATAM:
@@ -114,7 +119,7 @@ const AboutMeSection: React.FC = () => {
               className="mb-6"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1.5, duration: 0.7 }}
+              transition={{ delay: 1, duration: 0.7 }}
             >
               Decidé que tenía que priorizar lo que realmente funcionaba: Menos ruido, más
               resultado, más rápido e cuidando tus ahorros.
@@ -124,7 +129,7 @@ const AboutMeSection: React.FC = () => {
         <motion.div className="relative w-[40%] hidden aspect-[4/3] lg:flex">
           <Image
             src="/assets/images/luciano.png"
-            alt="Conversation"
+            alt="Luciano"
             fill
             className="object-contain"
           />
@@ -132,7 +137,7 @@ const AboutMeSection: React.FC = () => {
         <motion.div className="relative w-full aspect-[4/3] lg:hidden">
           <Image
             src="/assets/images/luciano-mobile.png"
-            alt="Conversation"
+            alt="Luciano"
             fill
             className="object-cover rounded-[20px]"
           />
@@ -142,4 +147,4 @@ const AboutMeSection: React.FC = () => {
   );
 };
 
-export default AboutMeSection;
+export default ReasonAboutMeSection;

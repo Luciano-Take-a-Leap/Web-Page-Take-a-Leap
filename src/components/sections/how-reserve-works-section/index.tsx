@@ -18,6 +18,10 @@ const HowReserveWorksSection: React.FC = () => {
       title: '2',
       description: 'Te explico al detalle como vamos a hacerlo',
     },
+    {
+      title: '3',
+      description: 'xxxxxxxxxxxxxxxxxxxxxx xxxxxxx xxxxxxxxxxxxxxxxxxx',
+    },
   ];
 
   const variants = {
@@ -74,7 +78,7 @@ const HowReserveWorksSection: React.FC = () => {
           ? CARDS.map((card, index) => (
               <motion.div
                 key={index}
-                className="bg-white text-black px-10 py-6 rounded-3xl w-full md:max-w-[460px] md:min-w-[380px] h-max flex justify-center items-center gap-8 md:gap-14 font-montserrat"
+                className="bg-white text-black px-10 py-6 rounded-3xl w-full md:max-w-[460px] md:min-w-[380px] h-max flex justify-center items-center gap-8 md:gap-14 font-montserrat z-10"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: index * 0.2, duration: 0.3 }}

@@ -90,11 +90,15 @@ const WarrantySection: React.FC = () => {
         transition={{ delay: 0.7, duration: 0.3 }}
       >
         Ahí va una: Si sigues haciendo lo mismo que hasta ahora, vas a perder un año de tu
-        tiempo. O peor aún: Verás como otros emprendedores empiezan a monetizar mientras
-        tu sigues rompiéndote la cabeza con tu idea Mi garantía es esta: Si aplicas lo que
-        te enseño, te aseguro que te ahorrarás muchos meses y vas a empezar a vender de
-        una vez
+        tiempo. <br />O peor aún: Verás como otros emprendedores empiezan a monetizar
+        mientras tu sigues rompiéndote la cabeza con tu idea. <br /> Mi garantía es esta:
+        Si aplicas lo que te enseño, te aseguro que te ahorrarás muchos meses y vas a
+        empezar a vender de una vez
       </motion.h4>
+
+      <motion.h3 className="text-center text-xl md:text-2xl font-bold my-3 font-montserrat px-6 md:max-w-[80%]">
+        Si dudas, habla con ellos:
+      </motion.h3>
       <Carousel
         className="md:w-[70vw] py-10 w-full relative"
         opts={{
