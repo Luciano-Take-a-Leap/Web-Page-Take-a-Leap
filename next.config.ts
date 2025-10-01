@@ -2,7 +2,7 @@ import { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   images: {
-    domains: [],
+    domains: ['cdn.sanity.io'],
   },
 };
 

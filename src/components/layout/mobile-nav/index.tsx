@@ -10,9 +10,17 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { HEADER_LINKS } from '../header';
 
-const MobileNav = () => {
+interface MobileNavProps {
+  links?: Array<{
+    label?: string;
+    href?: string;
+    isButton?: boolean;
+    _key: string;
+  }>;
+}
+
+const MobileNav = ({ links }: MobileNavProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -25,9 +33,9 @@ const MobileNav = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" sideOffset={20} className="min-w-40">
-        {HEADER_LINKS.map((link) => (
-          <DropdownMenuItem key={link.key} asChild>
-            <Link href={link.href} className="flex items-center gap-4">
+        {links?.map((link, i) => (
+          <DropdownMenuItem key={`${link._key}_${i}`} asChild>
+            <Link href={link.href || '/'} className="flex items-center gap-4">
               {link.label}
             </Link>
           </DropdownMenuItem>

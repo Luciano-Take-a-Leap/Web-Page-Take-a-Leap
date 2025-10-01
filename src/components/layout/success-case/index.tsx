@@ -3,20 +3,20 @@
 import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
 import Image from 'next/image';
+import { RichText as TRichText} from '@studio/sanity.types';
+import RichText from '../rich-text-renderer';
 
 interface SuccessCaseProps {
   imagePosition?: 'left' | 'right';
   imageSrc: string;
   imageAlt: string;
-  content: {
-    title: string;
-    subtitle?: string;
-    paragraphs: string[];
-  };
+  title?: string;
+  content?: TRichText
 }
 
 const SuccessCase: React.FC<SuccessCaseProps> = ({
   imagePosition = 'left',
+  title,
   imageSrc,
   imageAlt,
   content,
@@ -36,7 +36,7 @@ const SuccessCase: React.FC<SuccessCaseProps> = ({
   };
 
   const ImageComponent = () => (
-    <motion.div className="relative md:sticky top:0 md:top-40 w-full lg:w-[40%] aspect-[4/3] flex justify-center items-center">
+    <motion.div className="relative lg:sticky top:0 lg:top-40 w-full lg:w-[40%] aspect-[4/3] flex justify-center items-center">
       <Image
         src={imageSrc}
         alt={imageAlt}
@@ -48,7 +48,7 @@ const SuccessCase: React.FC<SuccessCaseProps> = ({
   );
 
   const ContentComponent = () => (
-    <motion.div className="w-full lg:w-[60%] flex flex-col justify-start font-work-sans text-sm md:max-w-[560px]">
+    <motion.div className="w-full lg:w-[60%] flex flex-col justify-start font-work-sans text-sm lg:max-w-[560px]">
       <motion.h2
         className="mb-6 font-bold text-md md:text-lg"
         initial={{ y: 20, opacity: 0 }}
@@ -58,37 +58,10 @@ const SuccessCase: React.FC<SuccessCaseProps> = ({
           duration: 0.7,
         }}
       >
-        {content.title}
+        {title}
       </motion.h2>
 
-      {content.subtitle && (
-        <motion.p
-          className="mb-6"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{
-            delay: 0.7,
-            duration: 0.7,
-          }}
-        >
-          {content.subtitle}
-        </motion.p>
-      )}
-
-      {content.paragraphs.map((paragraph, index) => (
-        <motion.p
-          key={index}
-          className="mb-6"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{
-            delay: 0.8 + index * 0.1,
-            duration: 0.7,
-          }}
-        >
-          {paragraph}
-        </motion.p>
-      ))}
+      <RichText value={content} />
     </motion.div>
   );
 

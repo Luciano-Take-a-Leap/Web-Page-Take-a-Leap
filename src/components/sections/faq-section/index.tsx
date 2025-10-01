@@ -4,96 +4,14 @@ import { useRef, useState } from 'react';
 import { motion, useInView } from 'motion/react';
 import { ChevronDownIcon } from 'lucide-react';
 import { cn } from '@/utils/twMerge';
+import { FAQSection as TFAQSection } from '@studio/sanity.types';
+import RichText from '@/components/layout/rich-text-renderer';
 
-type FAQItem = {
-  question: string;
-  response: React.ReactNode;
-};
+interface FAQSectionProps {
+  data?: TFAQSection;
+}
 
-const ITEMS: FAQItem[] = [
-  {
-    question: '¿Y si no tengo experiencia o autoridad en mi sector?',
-    response: (
-      <>
-        <p>
-          No te preocupes, todos empezamos desde cero. Lo importante es que estés
-          dispuesto a aprender y aplicar la metodología.
-        </p>
-        <p>
-          Además, tendrás acceso a un grupo de apoyo donde podrás compartir tus
-          inquietudes y recibir feedback.
-        </p>
-      </>
-    ),
-  },
-  {
-    question: '¿Cuánto tiempo necesito dedicarle a este proceso?',
-    response: (
-      <>
-        <p>
-          El tiempo que necesitarás dedicarle a este proceso puede variar según tus
-          objetivos y circunstancias personales. Sin embargo, te recomendamos que reserves
-          al menos 4 horas a la semana para trabajar en las actividades y tareas
-          propuestas.
-        </p>
-        <p>
-          Recuerda que la clave del éxito es la constancia y el compromiso. Si te
-          mantienes enfocado y sigues el plan, verás resultados en poco tiempo.
-        </p>
-      </>
-    ),
-  },
-  {
-    question: '¿Qué pasa si no obtengo resultados?',
-    response: (
-      <>
-        <p>
-          Si no obtienes resultados, estaremos aquí para ayudarte. La metodología se basa
-          en la evidencia y el aprendizaje continuo, por lo que ajustaremos el enfoque
-          según sea necesario.
-        </p>
-        <p>
-          Además, tendrás acceso a sesiones de seguimiento y apoyo para resolver cualquier
-          obstáculo que puedas encontrar.
-        </p>
-      </>
-    ),
-  },
-  {
-    question: '¿Qué pasa si no tengo una idea clara para mi proyecto?',
-    response: (
-      <>
-        <p>
-          No te preocupes, muchas personas comienzan sin una idea clara. A lo largo del
-          proceso, te ayudaremos a explorar tus intereses y habilidades para que puedas
-          encontrar una idea que te apasione.
-        </p>
-        <p>
-          Además, tendrás acceso a herramientas y recursos que te ayudarán a definir y
-          validar tu idea.
-        </p>
-      </>
-    ),
-  },
-  {
-    question: '¿Cuánto cuesta participar en este proceso?',
-    response: (
-      <>
-        <p>
-          El costo de participar en este proceso puede variar según el programa y los
-          recursos que elijas. Sin embargo, nos esforzamos por ofrecer opciones accesibles
-          para que todos puedan beneficiarse.
-        </p>
-        <p>
-          Te invitamos a ponerte en contacto con nuestro equipo para obtener más
-          información sobre precios y opciones de financiamiento.
-        </p>
-      </>
-    ),
-  },
-];
-
-export default function FAQSection() {
+export default function FAQSection({ data }: FAQSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -131,7 +49,7 @@ export default function FAQSection() {
         animate={isInView ? { y: 0, opacity: 1 } : {}}
         transition={{ duration: 0.3 }}
       >
-        Resuelvo dudas cruciales y determinantes
+        {data?.title}
       </motion.h2>
 
       <motion.div
@@ -140,7 +58,7 @@ export default function FAQSection() {
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
       >
-        {ITEMS.map((item, index) => {
+        {data?.faqs?.map((item, index) => {
           const isOpen = openIndex === index;
           return (
             <motion.div key={index} variants={itemVariants}>
@@ -169,7 +87,9 @@ export default function FAQSection() {
                   transition: 'height 0.3s ease',
                 }}
               >
-                <div className="mt-2 mb-4 px-2 p-1 border text-lg">{item.response}</div>
+                <div className="mt-2 mb-4 px-2 p-1 border">
+                  <RichText value={item.answer} />
+                </div>
               </div>
             </motion.div>
           );

@@ -4,12 +4,19 @@ import { motion, useInView } from 'motion/react';
 import { useEffect, useRef } from 'react';
 
 import Image from 'next/image';
+import { ConversationSection as TConversationSection } from '@studio/sanity.types';
+import { generateSanityImageUrl } from '@/utils/generate-sanity-image-url';
+import RichText from '@/components/layout/rich-text-renderer';
 
 interface ConversationSectionProps {
+  data: TConversationSection;
   onViewChange?: () => void;
 }
 
-const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange }) => {
+const ConversationSection: React.FC<ConversationSectionProps> = ({
+  data,
+  onViewChange,
+}) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
@@ -29,6 +36,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
       opacity: 1,
     },
   };
+
   return (
     <motion.section
       ref={sectionRef}
@@ -50,116 +58,35 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({ onViewChange 
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.7 }}
         >
-          ¿Escuchaste alguna de estas frases?
+          {data?.title}
         </motion.h2>
-        <motion.div className="relative w-full lg:max-w-[45%] aspect-[4/3]">
-          <Image
-            src="/assets/images/conversation.png"
-            alt="Conversation"
-            fill
-            className="object-contain"
-          />
-        </motion.div>
-
-        {isInView && (
+        {data?.image ? (
+          <motion.div className="relative w-full lg:max-w-[45%] aspect-[4/3]">
+            <Image
+              src={generateSanityImageUrl(data?.image)}
+              alt={data?.image?.alt || ''}
+              fill
+            />
+          </motion.div>
+        ) : null}
+        {isInView && data?.content ? (
           <motion.div className="w-full flex flex-col justify-center font-work-sans text-sm md:max-w-[70vw] text-center">
             <motion.h2
               className="text-[40px] font-bold mb-4 font-montserrat tracking-[0.2px]"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.7, duration: 0.7 }}
+              transition={{ delay: 0.2, duration: 0.7 }}
             >
-              Bastaaaaaa!
+              {data?.conversationTitle}
             </motion.h2>
-            <motion.p
-              className="mb-6 font-bold text-lg md:text-xl"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.7 }}
-            >
-              Si yo fuera tú, no aguantaría ni 2 segundos y me replantearía si esto es lo
-              que quiero.
-            </motion.p>
-            <motion.p
-              className="mb-6 font-bold text-lg md:text-xl"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.9, duration: 0.7 }}
-            >
-              “Luciano, qué exagerado”.
-            </motion.p>
-            <motion.p
-              className="mb-6 text-lg md:text-xl"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1, duration: 0.7 }}
-            >
-              Puede ser… o quizás no tanto
-            </motion.p>
-            <motion.p
-              className="mb-6 text-lg md:text-xl"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1.1, duration: 0.7 }}
-            >
-              Me pongo en la piel de esos emprendedores que tienen la chispa para lanzar
-              su propia startup y vivir mejor, pero se sienten abrumados por la cantidad
-              de “expertos” presumiendo fórmulas “mágicas”.
-            </motion.p>
-            <motion.p
-              className="mb-6 text-lg md:text-xl"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1.2, duration: 0.7 }}
-            >
-              [Spoiler, no es oro todo lo que reluce]
-            </motion.p>
-            <motion.p
-              className="mb-6 text-lg md:text-xl"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1.3, duration: 0.7 }}
-            >
-              Y es normal. ¿Cómo no le vas a pegar una mirada si te hablan de productos
-              fantásticos, levantar capital y volverte millonario en Silicon Valley?
-              <br />
-              <br />
-              No estás solo.
-            </motion.p>
-            <motion.p
-              className="mb-6 text-lg md:text-xl"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1.4, duration: 0.7 }}
-            >
-              Yo también mordí el anzuelo de “el mejor producto gana” y me gasté más de
-              20K usd y meses en ideas que no tuvieron ni 2 ventas.{' '}
-              <b>
-                Pero, después de 7 años, te puedo asegurar que tu startup no va a ganar
-                por tener un producto lindísimo, ni copiar una receta &quot;exitosa&quot;…
-              </b>
-            </motion.p>
-            <motion.p
-              className="mb-6 text-lg md:text-xl"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1.5, duration: 0.7 }}
-            >
-              Si no le puedes vender a casi nadie, no es porque tu idea sea mala, te falte
-              inversión o no tengas chapa como emprendedor. El problema es que no
-              entienden el valor real de tu trabajo.
-            </motion.p>
-            <motion.b
-              className="mb-6 text-lg md:text-xl"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1.6, duration: 0.7 }}
-            >
-              La piedra angular que debes pulir son tu target, tu oferta y tus motions de
-              captación.
-            </motion.b>
+            <RichText
+              className="text-white px-4 text-center flex flex-col gap-6"
+              value={data.content}
+              animate
+              delayStart={0.2}
+            />
           </motion.div>
-        )}
+        ) : null}
       </motion.div>
       <Image
         src="/assets/images/UI-elements/curl-1.png"

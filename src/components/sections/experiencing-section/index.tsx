@@ -1,63 +1,25 @@
 'use client';
 
+import RichText from '@/components/layout/rich-text-renderer';
 import { Button } from '@/components/ui/button';
 import useMediaquery from '@/utils/use-get-mediaquery';
+import { ExperiencingSection as TExperiencingSection } from '@studio/sanity.types';
 import { motion, useInView } from 'motion/react';
 import Image from 'next/image';
 import { useRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-const ExperiencingSection: React.FC = () => {
+interface ExperiencingSectionProps {
+  data?: TExperiencingSection;
+}
+
+const ExperiencingSection: React.FC<ExperiencingSectionProps> = ({ data }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const firstCardRef = useRef<HTMLDivElement>(null);
-  const { isMobile } = useMediaquery();
+  const { isMobile, isTablet } = useMediaquery();
 
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
   const areCardsInView = useInView(firstCardRef, { once: true, margin: '-75px' });
-  const CARDS = [
-    {
-      title: (
-        <p>
-          No pierdo 6 meses de mi tiempo construyendo y re pensando miles de veces mi
-          producto.
-        </p>
-      ),
-      description: (
-        <p>
-          Me enfoco en encontrar un target al que le pueda vender desde el día 1. Nada de
-          escondernos detrás de una gran idea.
-        </p>
-      ),
-    },
-    {
-      title: (
-        <p>
-          Al contrario de otros expertos, no copio los playbooks de los grandes players
-          que no sirven para early stage.
-        </p>
-      ),
-      description: (
-        <p>
-          Me centro en secuencias ridículamente efectivas para lanzar y encontrar el
-          primer canal rentable de adquisición en menos de 2 meses.
-        </p>
-      ),
-    },
-    {
-      title: (
-        <p>
-          No me como el cuento de “fracasar varias veces para tener éxito”, ni que el
-          Market Fit esté relacionado sólo al producto.
-        </p>
-      ),
-      description: (
-        <p>
-          Por eso construyo Evidencia sobre todas las capas, para asegurarme de que no voy
-          a tirar meses a la basura 💪.
-        </p>
-      ),
-    },
-  ];
 
   const variants = {
     initial: {
@@ -81,8 +43,8 @@ const ExperiencingSection: React.FC = () => {
       }}
       className="w-full relative bg-gradient-to-b from-orange to-orange-gradient flex flex-col items-center justify-center px-5 md:py-20"
     >
-      <motion.h2
-        className="text-center text-2xl md:text-3xl text-white mt-10 mb-6 font-archivo-black-400 px-6 md:max-w-[80%]"
+      <motion.div
+        className="px-6 md:max-w-[80%] mt-10 mb-6"
         initial={{
           y: 30,
           opacity: 0,
@@ -95,9 +57,11 @@ const ExperiencingSection: React.FC = () => {
           duration: 0.3,
         }}
       >
-        Puedes tardar 2 años y meter la pata cientos de veces... <br /> <br />
-        ... O puedes lanzar con mi acompañamiento y cerrar tus primeras ventas en 60 días.
-      </motion.h2>
+        <RichText
+          className="text-center text-2xl md:text-3xl font-archivo-black-400"
+          value={data?.title}
+        />
+      </motion.div>
       <Image
         src="/assets/images/UI-elements/arrow-1.png"
         alt="UI-element: arrow"
@@ -105,12 +69,12 @@ const ExperiencingSection: React.FC = () => {
         width={52}
         height={150}
       />
-      <motion.div className="grid grid-cols-1 lg:grid-cols-8 gap-12 md:gap-2 px-4 py-10 w-[70vw] md:w-full justify-items-center justify-center">
-        {CARDS.map((card, index) => (
+      <motion.div className="flex flex-col md:flex-row flex-wrap gap-12 md:gap-12 px-4 py-10 max-w-[1200px] w-full items-center justify-items-center justify-center md:justify-center">
+        {data?.cards?.map((card, index) => (
           <motion.div
             key={index}
             className={twMerge(
-              'bg-white text-text px-10 py-9 rounded-[20px] md:rounded-[40px] shadow-lg w-[330px] h-[390px] flex flex-col justify-start items-start gap-4 font-montserrat col-span-2',
+              'bg-white text-text mx-2 px-10 py-9 rounded-[20px] md:rounded-[40px] shadow-lg w-[330px] h-[390px] flex flex-col justify-start items-start gap-4 font-montserrat col-span-2',
               index === 0 ? 'lg:col-start-2' : '',
               index === 2 ? 'bg-dark-blue text-white' : ''
             )}
@@ -119,14 +83,14 @@ const ExperiencingSection: React.FC = () => {
             animate={
               index === 2
                 ? areCardsInView
-                  ? { scale: 1, rotate: isMobile ? 0 : -8 }
+                  ? { scale: 1, rotate: isTablet || isMobile ? 0 : -8 }
                   : { scale: 0 }
                 : { scale: 1 }
             }
             transition={{ delay: 0.3, duration: 0.5 }}
           >
             <h3 className="font-bold text-lg text-center mb-2 tracking-[0.1px] min-h-[45%] flex items-center">
-              {card.title}
+              {card?.topText}
             </h3>
             <motion.figure
               className="h-1 bg-orange self-center"
@@ -134,31 +98,25 @@ const ExperiencingSection: React.FC = () => {
               animate={areCardsInView ? { width: '25%' } : { width: 0 }}
               transition={{ delay: index * 0.2 + 0.3, duration: 0.5 }}
             />
-            <div className="text-md tracking-[0.1px] text-center">{card.description}</div>
+            <div className="text-md tracking-[0.1px] text-center">{card?.bottomText}</div>
           </motion.div>
         ))}
       </motion.div>
-      <motion.h4
-        className="text-center text-black mb-10 font-montserrat text-lg md:max-w-[60vw] tracking-[0.2px]"
-        initial={{ y: 30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.7, duration: 0.3 }}
-      >
-        <b>
-          La mayoría dice saber lanzar una startup, pero en realidad solo conocen la
-          superficie....
-        </b>{' '}
-        . Porque una cosa es que te enseñen a contruir un lindo producto y que te motives
-        con el feedback de tus conocidos, y otra muy diferente es empezar a hacer dinerito
-        en cuenta.
-      </motion.h4>
+      {data?.bottomText ? (
+        <RichText
+          className="text-center font-montserrat text-lg md:max-w-[60vw] tracking-[0.2px]"
+          value={data?.bottomText}
+          animate
+          delayStart={0.7}
+        />
+      ) : null}
       <Button className="bg-dark-blue text-white font-montserrat font-bold px-8 py-4 rounded-[20px] h-13 mb-10 w-full md:w-auto">
         <a
           href="https://calendly.com/take-a-leap/30min"
           target="_blank"
           rel="noopener noreferrer"
         >
-          ME UNO A TAKE A LEAP PROGRAM
+          {data?.ctaButton}
         </a>
       </Button>
       <Image

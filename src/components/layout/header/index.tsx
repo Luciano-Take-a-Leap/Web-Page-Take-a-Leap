@@ -9,46 +9,27 @@ import Image from 'next/image';
 import MobileNav from '../mobile-nav';
 import { useEffect, useState } from 'react';
 import CountdownBanner from './countdown-banner';
+import { Header as THeader } from '@studio/sanity.types';
 
-export const HEADER_LINKS = [
-  {
-    key: 'quien-soy',
-    href: '/#quien-soy',
-    label: 'Quien soy',
-  },
-  {
-    key: 'programa',
-    href: '/#programa',
-    label: 'Programa',
-  },
-  {
-    key: 'reserva',
-    href: '/#reserva',
-    label: 'Reserva',
-  },
-  {
-    key: 'casos-de-exito',
-    href: '/#casos-de-exito',
-    label: 'Casos de éxito',
-  },
-  {
-    key: 'agenda-un-llamado',
-    href: '/#agenda-un-llamado',
-    label: 'Agenda un llamado',
-    isButton: true,
-  },
-];
+interface HeaderProps {
+  data: THeader | null;
+}
 
-export const LIMIT_TIME = new Date('2025-09-10T00:00:00');
-
-const Header = () => {
+const Header = ({ data }: HeaderProps) => {
   const [timeLeft, setTimeLeft] = useState<string | null>(null);
   const [isCountdownExpanded, setIsCountdownExpanded] = useState(true);
 
   useEffect(() => {
+    const limitTime = data?.countdownBanner?.limitDate
+      ? new Date(data.countdownBanner.limitDate)
+      : null;
+    if (!limitTime) {
+      setTimeLeft(null);
+      return;
+    }
     const interval = setInterval(() => {
       const now = new Date();
-      const difference = LIMIT_TIME.getTime() - now.getTime();
+      const difference = limitTime.getTime() - now.getTime();
 
       if (difference <= 0) {
         setTimeLeft('00:00:00:00');
@@ -74,7 +55,7 @@ const Header = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [data?.countdownBanner?.limitDate]);
 
   return (
     <motion.header
@@ -91,7 +72,7 @@ const Header = () => {
         duration: 0.3,
       }}
     >
-      <MobileNav />
+      <MobileNav links={data?.navigation || []} />
       <Link
         href="/"
         className="items-center justify-center gap-1 hidden md:flex"
@@ -105,9 +86,10 @@ const Header = () => {
         />
       </Link>
 
-      <Navbar />
+      <Navbar links={data?.navigation || []} />
       {timeLeft && timeLeft !== '00:00:00:00' ? (
         <CountdownBanner
+          data={data?.countdownBanner}
           timeLeft={timeLeft}
           expanded={isCountdownExpanded}
           setExpanded={setIsCountdownExpanded}

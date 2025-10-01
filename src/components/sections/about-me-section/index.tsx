@@ -4,8 +4,15 @@ import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
 
 import Image from 'next/image';
+import { AboutMeSection as TAboutMeSection } from '@studio/sanity.types';
+import RichText from '@/components/layout/rich-text-renderer';
+import { generateSanityImageUrl } from '@/utils/generate-sanity-image-url';
 
-const ReasonAboutMeSection: React.FC = () => {
+interface AboutMeSectionProps {
+  data?: TAboutMeSection;
+}
+
+const AboutMeSection: React.FC<AboutMeSectionProps> = ({ data }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
@@ -42,102 +49,23 @@ const ReasonAboutMeSection: React.FC = () => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.7 }}
             >
-              Mi nombre es Luciano Biancardi
+              {data?.title}
             </motion.h2>
-            <motion.p
-              className="mb-6 font-bold text-md md:text-lg"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.7 }}
-            >
-              Soy emprendedor y asesor de startups early stage
-            </motion.p>
-            <motion.p
-              className="mb-6 text-md md:text-lg"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.7 }}
-            >
-              He trabajado con grandes startups como Ualá, fui COO de Sinapsis y también
-              ayudé a más de 30 emprendedores a construir sus productos digitales. Pero
-              siempre me quedaba con un sabor amargo: La mayoría terminaba cerrando, a
-              pesar de haber invertido miles de dólares en productos increíbles “que la
-              gente usaría”.
-            </motion.p>
-            <motion.p
-              className="mb-6"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.7 }}
-            >
-              ¿Te suena familiar?
-            </motion.p>
-            <motion.p
-              className="mb-6"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.6, duration: 0.7 }}
-            >
-              Las posibilidades de éxito en Latam con métodos tradicionales de
-              construcción, nunca fueron tan bajas.
-            </motion.p>
-            <div className="w-full bg-white text-black font-bold p-4 mb-6 rounded-xl">
-              xxxxx xxx xxxxx xxxxx xxxx xxxxx xxxxx xxxx xxxxx xxxxxx xxxxx xxxxxxxx xxxx
-              xx xxxxxx xxx xxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
-              xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx xxxxxxx
-            </div>
-            <motion.p
-              className="mb-6"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.7, duration: 0.7 }}
-            >
-              Me di cuenta que los principales problemas son:
-            </motion.p>
-            <motion.p
-              className="mb-6"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.7 }}
-            >
-              - Apostar 100% al producto desde el inicio como nuestra única carta ganadora
-              y seguir estrategias de empresas que están en otra etapa.
-              <br />- Considerar al Market Fit cómo algo binario de “lo tienes o no lo
-              tienes”, y no como un continuo en constante cambio: un error fatal incluso
-              para startups con clientes dado el contexto super dinámico.
-            </motion.p>
-            <motion.p
-              className="mb-6"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.9, duration: 0.7 }}
-            >
-              Es por eso que terminamos creando este nuevo enfoque de la Evidencia
-              Progresiva del Market Fit para GANAR EN LATAM:
-            </motion.p>
-            <motion.p
-              className="mb-6"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1, duration: 0.7 }}
-            >
-              Decidé que tenía que priorizar lo que realmente funcionaba: Menos ruido, más
-              resultado, más rápido e cuidando tus ahorros.
-            </motion.p>
+            <RichText value={data?.content} />
           </motion.div>
         )}
         <motion.div className="relative w-[40%] hidden aspect-[4/3] lg:flex">
           <Image
-            src="/assets/images/luciano.png"
-            alt="Luciano"
+            src={generateSanityImageUrl(data?.image)}
+            alt={data?.image?.alt || 'About Me Image'}
             fill
             className="object-contain"
           />
         </motion.div>
         <motion.div className="relative w-full aspect-[4/3] lg:hidden">
           <Image
-            src="/assets/images/luciano-mobile.png"
-            alt="Luciano"
+            src={generateSanityImageUrl(data?.mobileImage)}
+            alt={data?.mobileImage?.alt || 'About Me Image'}
             fill
             className="object-cover rounded-[20px]"
           />
@@ -147,4 +75,4 @@ const ReasonAboutMeSection: React.FC = () => {
   );
 };
 
-export default ReasonAboutMeSection;
+export default AboutMeSection;

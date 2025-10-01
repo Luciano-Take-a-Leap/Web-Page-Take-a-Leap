@@ -1,4 +1,6 @@
+import RichText from '@/components/layout/rich-text-renderer';
 import { Button } from '@/components/ui/button';
+import { Hero as THero } from '@studio/sanity.types';
 import { motion, useScroll, useTransform } from 'motion/react';
 import Image from 'next/image';
 import { useRef } from 'react';
@@ -6,9 +8,10 @@ import { twMerge } from 'tailwind-merge';
 
 interface HeroProps {
   className?: string;
+  data?: THero;
 }
 
-const Hero: React.FC<HeroProps> = ({ className }) => {
+const Hero: React.FC<HeroProps> = ({ className, data }) => {
   const ref = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -141,7 +144,7 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
       />
       <motion.div
         className={twMerge(
-          'flex flex-col items-center gap-8 w-full max-w-[940px] 2xl:max-w-[70vw] z-30 mt-26 md:mt-0'
+          'flex flex-col items-center gap-8 w-full max-w-[940px] 2xl:max-w-[70vw] z-30 mt-26 lg:mt-0'
         )}
       >
         <motion.div
@@ -154,7 +157,7 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
             className="text-[26px] md:text-[32px] font-archivo text-center text-white font-bold"
             transition={{ duration: 1 }}
           >
-            ⚡ Take a Leap Program ⚡
+            {data?.title}
           </motion.h2>
         </motion.div>
         <motion.h4
@@ -163,24 +166,9 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
-          <span className="text-white">
-            La mayoría de emprendedores se funde antes de cumplir un año.
-          </span>
+          <span className="text-white">{data?.subtitle}</span>
         </motion.h4>
-        <motion.p
-          className="text-xl text-center text-white px-4 tracking-[0.2px] font-montserrat"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-        >
-          Te dijeron que para tener éxito, hay que construir un producto espectacular. Y
-          aquí estás, pensando; ¿Cómo rayos empiezo si no tengo ni 10K usd y aún no le
-          vendí ni a mi primo?
-          <br />
-          <br />
-          Calma. No necesitas seguir pensando y codeando ideas, levantar inversión, ni
-          quemar tus ahorros.
-        </motion.p>
+        {data?.mainContent ? <RichText className="text-white px-4 text-center" value={data.mainContent} animate delayStart={0.2} /> : null}
         <motion.div
           className="flex items-center justify-center bg-[#F65A1799] w-full md:w-max md:max-w-[60vw] rounded-[40px] px-6 py-3"
           initial={{ opacity: 0, y: 20 }}
@@ -188,15 +176,14 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
           transition={{ delay: 0.5, duration: 0.5 }}
         >
           <p className="text-white font-montserrat font-bold text-center text-xl leading-6">
-            Descubre cómo lanzar tu startup y conseguir tus primeras ventas en 60 días,
-            ahorrando esfuerzos, gracias a la Evidencia Progresiva del Market Fit.
+            {data?.coloredSectionText}
           </p>
         </motion.div>
         <Button
           size="lg"
           className="bg-yellow text-dark-blue font-bold hover:bg-yellow/90"
         >
-          Me uno a Take a Leap
+          {data?.ctaButton}
         </Button>
       </motion.div>
       <Image

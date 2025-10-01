@@ -5,11 +5,18 @@ import { ArrowUp } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 
 interface CountdownBannerProps {
+  data?: {
+    enabled?: boolean;
+    limitDate?: string;
+    mainText?: string;
+    ctaButtonText?: string;
+  };
   timeLeft: string;
   expanded: boolean;
   setExpanded: (expanded: boolean) => void;
 }
 const CountdownBanner: React.FC<CountdownBannerProps> = ({
+  data,
   timeLeft,
   expanded,
   setExpanded,
@@ -28,8 +35,7 @@ const CountdownBanner: React.FC<CountdownBannerProps> = ({
     >
       <div className="w-screen flex flex-col md:flex-row items-center justify-center md:justify-evenly text-white gap-2 md:gap-8">
         <h3 className="text-white font-bold text-center md:text-start pt-2 md:w-full md:max-w-2xl font-montserrat text-xs md:text-md">
-          Construye tu oferta de alto valor, sube tus precios y consigue tu primer cliente
-          en solo 45 dias, con un descuento de 1.600 USD sobre el precio oficial.
+          {data?.mainText}
         </h3>
         <Countdown value={timeLeft} />
         <Button
@@ -40,11 +46,11 @@ const CountdownBanner: React.FC<CountdownBannerProps> = ({
             window.location.href = '/#agenda-un-llamado';
           }}
         >
-          Me uno a Take a Leap{' '}
+          {data?.ctaButtonText}
         </Button>
       </div>
       <div
-        className="absolute -bottom-6 px-8 left-[calc(50%-48px)] bg-blue pt-4 pb-1 cursor-pointer rounded-xl z-0 "
+        className="absolute -bottom-6 px-8 left-[calc(50%-48px)] bg-blue pt-4 pb-1 cursor-pointer rounded-xl z-0"
         onClick={() => setExpanded(!expanded)}
       >
         <ArrowUp

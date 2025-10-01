@@ -1,5 +1,6 @@
 'use client';
 
+import RichText from '@/components/layout/rich-text-renderer';
 import { Button } from '@/components/ui/button';
 import {
   Carousel,
@@ -8,41 +9,19 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import { WarrantySection as TWarrantySection } from '@studio/sanity.types';
 import { motion, useInView } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef } from 'react';
 
-const WarrantySection: React.FC = () => {
+interface WarrantySectionProps {
+  data?: TWarrantySection;
+}
+
+const WarrantySection: React.FC<WarrantySectionProps> = ({ data }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
-
-  const CARDS = [
-    {
-      title: 'Nombre y apellido',
-      description: 'Creative Strategist & Group Facilitator',
-    },
-    {
-      title: 'Nombre y apellido',
-      description: 'Accountability Coach & Solopreneur',
-    },
-    {
-      title: 'Nombre y apellido',
-      description: 'Mindset Coach & Community Builder',
-    },
-    {
-      title: 'Nombre y apellido',
-      description: 'Business Consultant & Growth Strategist',
-    },
-    {
-      title: 'Nombre y apellido',
-      description: 'Digital Marketing Specialist & Content Creator',
-    },
-    {
-      title: 'Nombre y apellido',
-      description: 'Leadership Coach & Team Development Expert',
-    },
-  ];
 
   const variants = {
     initial: {
@@ -53,6 +32,18 @@ const WarrantySection: React.FC = () => {
       y: 0,
       opacity: 1,
     },
+  };
+
+  const formatButtonText = (text: string | undefined) => {
+    if (!text) return '';
+
+    const words = text.split(' ');
+    const midPoint = Math.ceil(words.length / 2);
+    return (
+      words.slice(0, midPoint).join(' ') +
+      ' <br class="sm:hidden" /> ' +
+      words.slice(midPoint).join(' ')
+    );
   };
 
   return (
@@ -80,24 +71,17 @@ const WarrantySection: React.FC = () => {
           duration: 0.3,
         }}
       >
-        ¿Quieres una garantía?
+        {data?.title}
       </motion.h2>
-
-      <motion.h4
-        className="text-center font-semibold mb-10 font-montserrat text-lg md:max-w-[60vw]"
-        initial={{ y: 30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.7, duration: 0.3 }}
-      >
-        Ahí va una: Si sigues haciendo lo mismo que hasta ahora, vas a perder un año de tu
-        tiempo. <br />O peor aún: Verás como otros emprendedores empiezan a monetizar
-        mientras tu sigues rompiéndote la cabeza con tu idea. <br /> Mi garantía es esta:
-        Si aplicas lo que te enseño, te aseguro que te ahorrarás muchos meses y vas a
-        empezar a vender de una vez
-      </motion.h4>
+      <RichText
+        value={data?.subtitle}
+        className="text-center mb-10 md:max-w-[60vw]"
+        animate
+        delayIncrement={0.01}
+      />
 
       <motion.h3 className="text-center text-xl md:text-2xl font-bold my-3 font-montserrat px-6 md:max-w-[80%]">
-        Si dudas, habla con ellos:
+        {data?.Carousel?.title}
       </motion.h3>
       <Carousel
         className="md:w-[70vw] py-10 w-full relative"
@@ -106,22 +90,24 @@ const WarrantySection: React.FC = () => {
         }}
       >
         <CarouselContent>
-          {CARDS.map((card, index) => (
+          {data?.Carousel?.people?.map((card, index) => (
             <CarouselItem
               key={index}
               className="flex flex-col items-center justify-center p-6 basis-full md:basis-1/3 text-white font-montserrat"
             >
               <div className="flex flex-col items-start justify-center gap-6 w-[75%] ml-4 md:ml-0">
-                <h3 className="text-xl font-bold mb-2">{card.title}</h3>
-                <p className="text-md uppercase">{card.description}</p>
-                <Link href="#" target="_blank" className="cursor-pointer">
-                  <Image
-                    src="/assets/images/icons/linkedin.svg"
-                    alt="LinkedIn"
-                    width={22}
-                    height={23}
-                  />
-                </Link>
+                <h3 className="text-xl font-bold mb-2">{card.name}</h3>
+                <p className="text-md uppercase">{card.role}</p>
+                {card.linkedIn ? (
+                  <Link href={card.linkedIn} target="_blank" className="cursor-pointer">
+                    <Image
+                      src="/assets/images/icons/linkedin.svg"
+                      alt="LinkedIn"
+                      width={22}
+                      height={23}
+                    />
+                  </Link>
+                ) : null}
               </div>
             </CarouselItem>
           ))}
@@ -136,9 +122,10 @@ const WarrantySection: React.FC = () => {
         />
       </Carousel>
 
-      <Button className="bg-white hover:bg-white text-orange h-auto md:h-13 w-full md:w-auto md:px-10 py-4 rounded-[20px] tracking-[0.2px] font-bold text-xs md:text-sm font-montserrat uppercase">
-        Basta de Experimentos. <br className="sm:hidden" /> Voy con Luciano
-      </Button>
+      <Button
+        className="bg-white hover:bg-white text-orange h-auto md:h-13 w-full md:w-auto md:px-10 py-4 rounded-[20px] tracking-[0.2px] font-bold text-xs md:text-sm font-montserrat uppercase"
+        dangerouslySetInnerHTML={{ __html: formatButtonText(data?.ctaButton) }}
+      ></Button>
       <motion.figure
         className="w-18 h-18 rounded-2xl bg-yellow absolute top-0 right-0 hidden md:block transform -translate-x-20 translate-y-12"
         initial={{
