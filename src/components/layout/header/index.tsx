@@ -9,7 +9,7 @@ import Image from 'next/image';
 import MobileNav from '../mobile-nav';
 import { useEffect, useState } from 'react';
 import CountdownBanner from './countdown-banner';
-import { Header as THeader } from '@studio/sanity.types';
+import { Header as THeader } from '@/types/sanity.types';
 
 interface HeaderProps {
   data: THeader | null;
