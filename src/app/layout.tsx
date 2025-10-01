@@ -13,6 +13,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 import Header from '@/components/layout/header';
 import { getHeaderData } from '@/lib/sanity/fetching-functions/header';
+import { SanityLive } from '@/lib/sanity/live-preview';
 // import Footer from '@/components/layout/footer';
 
 const montserrat = Montserrat({
@@ -106,6 +107,7 @@ export default async function Layout({
           enableSystem
           disableTransitionOnChange
         >
+          <SanityLive />
           <Header data={headerData} />
           {children}
           {/* <Footer /> */}

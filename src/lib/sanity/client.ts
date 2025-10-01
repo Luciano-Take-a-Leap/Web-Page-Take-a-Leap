@@ -9,10 +9,10 @@ export const sanityClient = createClient({
   dataset,
   apiVersion,
   perspective: 'published',
-  useCdn: true,
+  useCdn: false,
   token: process.env.SANITY_API_TOKEN,
   stega: {
     enabled: true,
-    studioUrl: process.env.NEXT_PUBLIC_STUDIO_URL || 'http://localhost:3333',
+    studioUrl: process.env.NEXT_PUBLIC_STUDIO_URL || 'http://localhost:3333' ,
   },
 });
