@@ -1,4 +1,4 @@
-import { ReasonSection } from "@studio/sanity.types";
+import { ReasonSection } from "@/types/sanity.types";
 import { sanityClient } from "../client";
 import { reasonSectionQuery } from "../sanity-queries";
 

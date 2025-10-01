@@ -1,4 +1,4 @@
-import { CurrentEditionPeopleSection } from "@studio/sanity.types";
+import { CurrentEditionPeopleSection } from "@/types/sanity.types";
 import { sanityClient } from "../client";
 import { currentEditionPeopleSectionQuery } from "../sanity-queries";
 

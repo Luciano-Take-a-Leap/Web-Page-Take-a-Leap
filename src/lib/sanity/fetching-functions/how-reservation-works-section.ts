@@ -1,4 +1,4 @@
-import { HowReservationWorksSection } from '@studio/sanity.types';
+import { HowReservationWorksSection } from '@/types/sanity.types';
 import { howReservationWorksSectionQuery } from '../sanity-queries';
 import { sanityClient } from '../client';
 

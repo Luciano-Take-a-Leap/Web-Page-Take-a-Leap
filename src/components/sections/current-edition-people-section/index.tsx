@@ -12,7 +12,7 @@ import { AnimatePresence, motion, useInView } from 'motion/react';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { ChevronDownIcon } from 'lucide-react';
-import { CurrentEditionPeopleSection as TCurrentEditionSection } from '@studio/sanity.types';
+import { CurrentEditionPeopleSection as TCurrentEditionSection } from '@/types/sanity.types';
 import RichText from '@/components/layout/rich-text-renderer';
 import { generateSanityImageUrl } from '@/utils/generate-sanity-image-url';
 

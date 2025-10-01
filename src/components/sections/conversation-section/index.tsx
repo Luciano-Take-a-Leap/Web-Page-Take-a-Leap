@@ -4,7 +4,7 @@ import { motion, useInView } from 'motion/react';
 import { useEffect, useRef } from 'react';
 
 import Image from 'next/image';
-import { ConversationSection as TConversationSection } from '@studio/sanity.types';
+import { ConversationSection as TConversationSection } from '@/types/sanity.types';
 import { generateSanityImageUrl } from '@/utils/generate-sanity-image-url';
 import RichText from '@/components/layout/rich-text-renderer';
 

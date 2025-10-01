@@ -1,4 +1,4 @@
-import { AboutMeSection } from "@studio/sanity.types";
+import { AboutMeSection } from "@/types/sanity.types";
 import { sanityClient } from "../client";
 import { aboutMeSectionQuery } from "../sanity-queries";
 

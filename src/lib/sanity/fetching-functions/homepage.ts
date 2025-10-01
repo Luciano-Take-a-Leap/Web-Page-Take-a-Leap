@@ -1,4 +1,4 @@
-import { HomePage } from '@studio/sanity.types';
+import { HomePage } from '@/types/sanity.types';
 import { sanityClient } from '../client';
 import { homePageQuery, homePageSectionsQuery } from '../sanity-queries';
 

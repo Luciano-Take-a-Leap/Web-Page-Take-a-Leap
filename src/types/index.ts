@@ -11,7 +11,7 @@ import type {
   HowReservationWorksSection,
   WarrantySection,
   FAQSection
-} from '@studio/sanity.types';
+} from '@/types/sanity.types';
 
 type BaseSectionType = {
   _id: string;

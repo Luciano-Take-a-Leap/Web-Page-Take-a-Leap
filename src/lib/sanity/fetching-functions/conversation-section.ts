@@ -1,4 +1,4 @@
-import { ConversationSection } from "@studio/sanity.types";
+import { ConversationSection } from "@/types/sanity.types";
 import { sanityClient } from "../client";
 import { conversationSectionQuery } from "../sanity-queries";
 

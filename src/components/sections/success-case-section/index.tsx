@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 
 import VimeoPlayer from '@/components/layout/vimeo-player';
 import SuccessCase from '@/components/layout/success-case';
-import { SuccessCaseSection as TSuccessCaseSection } from '@studio/sanity.types';
+import { SuccessCaseSection as TSuccessCaseSection } from '@/types/sanity.types';
 import { generateSanityImageUrl } from '@/utils/generate-sanity-image-url';
 
 interface SuccessCaseSectionProps {

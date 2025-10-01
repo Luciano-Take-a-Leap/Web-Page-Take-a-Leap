@@ -1,6 +1,6 @@
 import { sanityClient } from '../client';
 import { HEADER_QUERY } from '../sanity-queries';
-import { Header } from '@studio/sanity.types';
+import { Header } from '@/types/sanity.types';
 
 export async function getHeaderData(): Promise<Header | null> {
   try {

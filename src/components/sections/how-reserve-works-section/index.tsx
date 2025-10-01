@@ -2,7 +2,7 @@
 
 import RichText from '@/components/layout/rich-text-renderer';
 import { Button } from '@/components/ui/button';
-import { HowReservationWorksSection as THowReservationWorksSection } from '@studio/sanity.types';
+import { HowReservationWorksSection as THowReservationWorksSection } from '@/types/sanity.types';
 import { motion, useInView, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
 

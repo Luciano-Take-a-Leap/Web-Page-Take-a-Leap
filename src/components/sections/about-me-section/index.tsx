@@ -4,7 +4,7 @@ import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
 
 import Image from 'next/image';
-import { AboutMeSection as TAboutMeSection } from '@studio/sanity.types';
+import { AboutMeSection as TAboutMeSection } from '@/types/sanity.types';
 import RichText from '@/components/layout/rich-text-renderer';
 import { generateSanityImageUrl } from '@/utils/generate-sanity-image-url';
 

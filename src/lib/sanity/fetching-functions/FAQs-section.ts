@@ -1,4 +1,4 @@
-import { FAQSection } from '@studio/sanity.types';
+import { FAQSection } from '@/types/sanity.types';
 import { faqSectionQuery } from '../sanity-queries';
 import { sanityClient } from '../client';
 

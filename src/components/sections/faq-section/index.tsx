@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import { motion, useInView } from 'motion/react';
 import { ChevronDownIcon } from 'lucide-react';
 import { cn } from '@/utils/twMerge';
-import { FAQSection as TFAQSection } from '@studio/sanity.types';
+import { FAQSection as TFAQSection } from '@/types/sanity.types';
 import RichText from '@/components/layout/rich-text-renderer';
 
 interface FAQSectionProps {

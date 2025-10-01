@@ -3,7 +3,7 @@
 import { motion, useInView } from 'motion/react';
 import { useRef } from 'react';
 import Image from 'next/image';
-import { RichText as TRichText} from '@studio/sanity.types';
+import { RichText as TRichText} from '@/types/sanity.types';
 import RichText from '../rich-text-renderer';
 
 interface SuccessCaseProps {

@@ -1,4 +1,4 @@
-import { WarrantySection } from "@studio/sanity.types";
+import { WarrantySection } from "@/types/sanity.types";
 import { warrantySectionQuery } from "../sanity-queries";
 import { sanityClient } from "../client";
 

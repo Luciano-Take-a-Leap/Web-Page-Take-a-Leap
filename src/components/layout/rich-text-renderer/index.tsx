@@ -1,4 +1,4 @@
-import { RichText as TRichText } from '@studio/sanity.types';
+import { RichText as TRichText } from '@/types/sanity.types';
 import { PortableText, PortableTextReactComponents } from 'next-sanity';
 import { motion } from 'motion/react';
 import Link from 'next/link';

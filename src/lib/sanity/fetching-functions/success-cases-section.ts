@@ -1,4 +1,4 @@
-import { SuccessCaseSection } from '@studio/sanity.types';
+import { SuccessCaseSection } from '@/types/sanity.types';
 import { sanityClient } from '../client';
 import { successCaseSectionQuery } from '../sanity-queries';
 

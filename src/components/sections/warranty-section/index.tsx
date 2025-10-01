@@ -9,7 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { WarrantySection as TWarrantySection } from '@studio/sanity.types';
+import { WarrantySection as TWarrantySection } from '@/types/sanity.types';
 import { motion, useInView } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';

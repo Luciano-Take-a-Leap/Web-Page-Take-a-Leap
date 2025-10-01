@@ -1,6 +1,6 @@
 import RichText from '@/components/layout/rich-text-renderer';
 import { Button } from '@/components/ui/button';
-import { Hero as THero } from '@studio/sanity.types';
+import { Hero as THero } from '@/types/sanity.types';
 import { motion, useScroll, useTransform } from 'motion/react';
 import Image from 'next/image';
 import { useRef } from 'react';

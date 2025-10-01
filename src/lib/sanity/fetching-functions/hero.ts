@@ -1,4 +1,4 @@
-import { Hero } from "@studio/sanity.types";
+import { Hero } from "@/types/sanity.types";
 import { heroQuery } from "../sanity-queries";
 import { sanityClient } from "../client";
 

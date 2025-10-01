@@ -3,7 +3,7 @@
 import RichText from '@/components/layout/rich-text-renderer';
 import { Button } from '@/components/ui/button';
 import useMediaquery from '@/utils/use-get-mediaquery';
-import { ExperiencingSection as TExperiencingSection } from '@studio/sanity.types';
+import { ExperiencingSection as TExperiencingSection } from '@/types/sanity.types';
 import { motion, useInView } from 'motion/react';
 import Image from 'next/image';
 import { useRef } from 'react';
