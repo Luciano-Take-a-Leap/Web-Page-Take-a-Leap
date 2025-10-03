@@ -17,9 +17,10 @@ import { useRef } from 'react';
 
 interface WarrantySectionProps {
   data?: TWarrantySection;
+  redirectionUrl?: string | null;
 }
 
-const WarrantySection: React.FC<WarrantySectionProps> = ({ data }) => {
+const WarrantySection: React.FC<WarrantySectionProps> = ({ data, redirectionUrl }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
@@ -125,6 +126,12 @@ const WarrantySection: React.FC<WarrantySectionProps> = ({ data }) => {
       <Button
         className="bg-white hover:bg-white text-orange h-auto md:h-13 w-full md:w-auto md:px-10 py-4 rounded-[20px] tracking-[0.2px] font-bold text-xs md:text-sm font-montserrat uppercase"
         dangerouslySetInnerHTML={{ __html: formatButtonText(data?.ctaButton) }}
+        onClick={() => {
+          if (redirectionUrl) {
+            window.open(redirectionUrl, '_blank');
+          }
+        }
+        }
       ></Button>
       <motion.figure
         className="w-18 h-18 rounded-2xl bg-yellow absolute top-0 right-0 hidden md:block transform -translate-x-20 translate-y-12"

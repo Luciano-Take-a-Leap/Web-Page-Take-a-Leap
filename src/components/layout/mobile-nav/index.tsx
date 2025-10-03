@@ -10,6 +10,8 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { twMerge } from 'tailwind-merge';
 
 interface MobileNavProps {
   links?: Array<{
@@ -21,6 +23,7 @@ interface MobileNavProps {
 }
 
 const MobileNav = ({ links }: MobileNavProps) => {
+  const router = useRouter();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -35,9 +38,20 @@ const MobileNav = ({ links }: MobileNavProps) => {
       <DropdownMenuContent align="end" sideOffset={20} className="min-w-40">
         {links?.map((link, i) => (
           <DropdownMenuItem key={`${link._key}_${i}`} asChild>
-            <Link href={link.href || '/'} className="flex items-center gap-4">
+            <div onClick={() => {
+              link.href?.startsWith('#') ?
+                window.scrollTo({
+                  top: document.getElementById('agenda-un-llamado')?.offsetTop || 0,
+                  behavior: 'smooth',
+                })
+                : link.href?.startsWith('/') ?
+                  router.push(link.href)
+                  : window.open(link.href, '_blank');
+            }} className={twMerge("flex items-center gap-4", 
+              link.isButton ? "bg-dark-blue text-white" : "",
+             )}>
               {link.label}
-            </Link>
+            </div>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

@@ -14,7 +14,7 @@ import './globals.css';
 import Header from '@/components/layout/header';
 import { getHeaderData } from '@/lib/sanity/fetching-functions/header';
 import { SanityLive } from '@/lib/sanity/live-preview';
-// import Footer from '@/components/layout/footer';
+import { getHomePageSEOData } from '@/lib/sanity/fetching-functions/homepage';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -54,52 +54,57 @@ export default async function Layout({
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
-  // const JSON_LD_SCHEMA = {
-  //   '@context': 'https://schema.org',
-  //   '@type': 'Person',
-  //   name: 'Take a Leap',
-  //   url: 'https://takingleap.com',
-  //   image: 'https://takingleap.com/images/image.png',
-  //   sameAs: [
-  //     //TODO add social media links here,
-  //   ],
-  //   jobTitle: 'Software Engineer',
-  //   worksFor: {
-  //     '@type': 'Organization',
-  //     name: 'Freelance / Employed / Remote Work / Full-time',
-  //   },
-  //   description:
-  //     'Ezequiel Grigolatto is a software engineer with a passion for building modern web applications and creating engaging digital experiences.',
-  //   knowsAbout: ['JavaScript', 'TypeScript', 'React', 'Next.js', 'Frontend Development'],
-  //   mainEntityOfPage: {
-  //     '@type': 'WebPage',
-  //     '@id': 'https://takingleap.com',
-  //   },
-  // };
-
   const headerData = await getHeaderData();
+  const SEOData = await getHomePageSEOData();
+
+  const JSON_LD_SCHEMA = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SEOData?.title || 'Take a Leap',
+    url: SEOData?.canonical || 'https://takingleap.com',
+    description: SEOData?.description || '',
+    image: SEOData?.openGraph?.image?.asset?.url,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${SEOData?.canonical || 'https://takingleap.com'}/search?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SEOData?.title || 'Take a Leap',
+      logo: {
+        '@type': 'ImageObject',
+        url: SEOData?.openGraph?.image?.asset?.url,
+      },
+    },
+    keywords: SEOData?.keywords?.join(', '),
+  };
 
   return (
     <html lang={'es'} suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/assets/favicon.jpeg" />
         <meta name="theme-color" content="#ffffff" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="canonical" href={`https://takingleap.com`} />
+        <link rel="canonical" href={SEOData?.canonical || 'https://takingleap.com'} />
         <link rel="alternate" hrefLang="x-default" href="https://takingleap.com" />
-        <link rel="alternate" hrefLang="en" href="https://takingleap.com/en" />
-        <meta name="author" content="Ezequiel Grigolatto" />
-        <meta name="robots" content="index, follow" />
-        {/* <script
+        <meta name="author" content="Luciano Biancardi" />
+        {SEOData?.noIndex && <meta name="robots" content="noindex" />}
+        {SEOData?.noFollow && <meta name="robots" content="nofollow" />}
+        {!SEOData?.noIndex && !SEOData?.noFollow && (
+          <meta name="robots" content="index, follow" />
+        )}
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD_SCHEMA) }}
-        /> */}
+        />
       </head>
       <body
-        className={`${montserrat.variable} antialiased ${workSans.variable} ${archivoBlack.variable} ${montaguSlab.variable} ${LoraFont.variable} ${archivo.variable}
-       suppressHydrationWarning 
-        }`}
+        className={`${montserrat.variable} antialiased ${workSans.variable} ${archivoBlack.variable} ${montaguSlab.variable} ${LoraFont.variable} ${archivo.variable} suppressHydrationWarning`}
       >
         <ThemeProvider
           attribute="class"
@@ -110,7 +115,6 @@ export default async function Layout({
           <SanityLive />
           <Header data={headerData} />
           {children}
-          {/* <Footer /> */}
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
@@ -120,47 +124,49 @@ export default async function Layout({
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const keywords = '';
+  const SEOData = await getHomePageSEOData();
+
+  const ogImageUrl = SEOData?.openGraph?.image?.asset?.url 
+    ? `${SEOData.openGraph.image.asset.url}?w=1200&h=630&fit=crop`
+    : 'https://takingleap.com/images/avatar/avatar.png';
 
   return {
-    title: 'Take a Leap',
-    description: '',
-    keywords: keywords,
+    title: SEOData?.title || 'Take a Leap',
+    description: SEOData?.description || '',
+    keywords: SEOData?.keywords?.join(', ') || '',
     openGraph: {
-      title: 'Take a Leap',
-      description: '',
-      url: `https://takingleap.com`,
-      siteName: 'Next.js i18n Template',
+      title: SEOData?.openGraph?.title || SEOData?.title || 'Take a Leap',
+      description: SEOData?.openGraph?.description || SEOData?.description || '',
+      url: SEOData?.canonical || 'https://takingleap.com',
+      siteName: SEOData?.title || 'Take a Leap',
       images: [
         {
-          url: 'https://takingleap.com/images/avatar/avatar.png',
-          width: 1200,
-          height: 630,
-          alt: 'Take a Leap',
+          url: ogImageUrl,
+          width: SEOData?.openGraph?.image?.asset?.metadata?.dimensions?.width || 1200,
+          height: SEOData?.openGraph?.image?.asset?.metadata?.dimensions?.height || 630,
+          alt: SEOData?.openGraph?.image?.alt || 'Take a Leap',
         },
       ],
       locale: 'es',
-      type: 'website',
+      type: (SEOData?.openGraph?.type as 'website') || 'website',
     },
     twitter: {
-      card: 'summary_large_image',
-      title: 'take a leap',
-      description: '',
-      images: ['https://takingleap.com/images/avatar/avatar.png'],
+      card: (SEOData?.twitter?.cardType as 'summary_large_image') || 'summary_large_image',
+      title: SEOData?.openGraph?.title || SEOData?.title || 'Take a Leap',
+      description: SEOData?.openGraph?.description || SEOData?.description || '',
+      images: [ogImageUrl],
+      creator: SEOData?.twitter?.creator || undefined,
+      site: SEOData?.twitter?.site || undefined,
     },
     alternates: {
-      canonical: `https://takingleap.com`,
-      languages: {
-        en: 'https://takingleap.com/en',
-        es: 'https://takingleap.com/es',
-      },
+      canonical: SEOData?.canonical || 'https://takingleap.com',
     },
     robots: {
-      index: true,
-      follow: true,
+      index: !SEOData?.noIndex,
+      follow: !SEOData?.noFollow,
       googleBot: {
-        index: true,
-        follow: true,
+        index: !SEOData?.noIndex,
+        follow: !SEOData?.noFollow,
         'max-image-preview': 'large',
         'max-snippet': -1,
       },

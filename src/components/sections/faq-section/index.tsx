@@ -64,7 +64,7 @@ export default function FAQSection({ data }: FAQSectionProps) {
             <motion.div key={index} variants={itemVariants}>
               <button
                 onClick={() => toggle(index)}
-                className="flex w-full justify-between items-center my-2 py-4 text-left text-sm font-medium rounded-md transition-all outline-none hover:underline decoration-white bg-blue px-2 cursor-pointer"
+                className="flex w-full justify-between items-center my-2 py-4 text-left text-md font-medium rounded-md transition-all outline-none hover:underline decoration-white bg-blue px-2 cursor-pointer"
               >
                 <p className="text-white">{item.question}</p>
                 <ChevronDownIcon

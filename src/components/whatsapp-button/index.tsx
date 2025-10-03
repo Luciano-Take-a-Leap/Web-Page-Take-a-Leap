@@ -1,7 +1,28 @@
-const WhatsappButton = () => {
+interface WhatsappButtonProps {
+  settings: {
+    phoneNumber: string;
+    initialMessage: string;
+  } | null;
+}
+
+const WhatsappButton = ({ settings }: WhatsappButtonProps) => {
+  const phoneNumber = settings?.phoneNumber?.replaceAll("+", "")?.replaceAll(" ", "");
+  const initialMessage = settings?.initialMessage;
+
+  if (!phoneNumber) {
+    return null;
+  }
+
+  const encodedMessage = initialMessage ? encodeURIComponent(initialMessage) : '';
+
+  const whatsappUrl = `https://wa.me/${phoneNumber}${encodedMessage ? `?text=${encodedMessage}` : ''}`;
+
+  console.log('WhatsApp URL:', whatsappUrl);
+  console.log('WhatsApp Button Settings:', settings);
+
   return (
     <a
-      href="https://wa.me/5491165757415?text=Hola%20Take%20a%20Leap,%20me%20gustaría%20chatear%20con%20ustedes!"
+      href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-1 right-1 md:bottom-4 md:right-4 z-50 bg-green-500 p-3 rounded-full shadow-lg hover:bg-green-600 transition-colors scale-60 md:scale-100"

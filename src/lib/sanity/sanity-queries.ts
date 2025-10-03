@@ -14,7 +14,8 @@ export const HEADER_QUERY = groq`
       enabled,
       limitDate,
       mainText,
-      ctaButtonText
+      ctaButtonText,
+      href
     },
     accessibility {
       logoAlt,
@@ -24,9 +25,8 @@ export const HEADER_QUERY = groq`
   }
 `;
 
-export const homePageQuery = groq`
+export const homePageSEOQuery = groq`
   *[_type == "homePage"][0]{
-    title,
     seo{
       title,
       description,
@@ -56,148 +56,13 @@ export const homePageQuery = groq`
       canonical,
       noIndex,
       noFollow
-    },
-    sections[]->{
-      _type,
-      _id,
-      ...,
-      _type == "hero" => {
-        title,
-        subtitle,
-        mainContent,
-        coloredSectionText,
-        ctaButton
-      },
-      _type == "conversationSection" => {
-        title,
-        image{
-          asset->{url},
-          alt
-        },
-        content
-      },
-      _type == "experiencingSection" => {
-        title,
-        cards[]{
-          topText,
-          bottomText,
-          _key
-        },
-        bottomText,
-        ctaButton
-      },
-      _type == "reasonSection" => {
-        title,
-        image{
-          asset->{url}
-        },
-        content
-      },
-      _type == "currentEditionPeopleSection" => {
-        title,
-        subtitle,
-        cards[]{
-          name,
-          subtitle,
-          content,
-          _key
-        },
-        postCardsText,
-        titleGuidanceCards,
-        processGuidanceCards[]{
-          icon{
-            asset->{url}
-          },
-          title,
-          content,
-          _key
-        },
-        bonusTitle,
-        bonusSubtitle,
-        bonuses[]{
-          title,
-          description,
-          image{
-            asset->{url}
-          },
-          cost,
-          _key
-        },
-        extraBonusesTitle,
-        extraBonusesSubtitle,
-        extraBonuses[]{
-          title,
-          description,
-          image{
-            asset->{url}
-          },
-          cost,
-          _key
-        },
-        warningTitle,
-        warningSubtitle,
-        warningText,
-        testimonials[]{
-          asset->{url},
-          _key
-        }
-      },
-      _type == "successCaseSection" => {
-        cases[]{
-          _type,
-          _key,
-          _type == "case" => {
-            title,
-            content,
-            image{
-              asset->{url}
-            }
-          },
-          _type == "video" => {
-            url
-          }
-        }
-      },
-      _type == "aboutMeSection" => {
-        title,
-        image{
-          asset->{url},
-          alt
-        },
-        content
-      },
-      _type == "howReservationWorksSection" => {
-        title,
-        cards[]{
-          content,
-          _key
-        },
-        bottomText,
-        ctaButton
-      },
-      _type == "warrantySection" => {
-        title,
-        subtitle,
-        Carousel{
-          title,
-          people[]{
-            name,
-            role,
-            linkedIn,
-            _key
-          }
-        },
-        ctaButton
-      },
-      _type == "FAQSection" => {
-        title,
-        faqs[]{
-          question,
-          answer,
-          _key
-        }
-      }
     }
+  }
+`;
+
+export const homePageCTAButtonRedirectionURLQuery = groq`
+  *[_type == "homePage"][0]{
+    redirectionButtonUrl
   }
 `;
 
@@ -537,5 +402,12 @@ export const homePageSectionsQuery = groq`
         }
       }
     }
+  }
+`;
+
+export const whatsappConfigQuery = groq`
+  *[_type == "whatsappConfig"][0]{
+    phoneNumber,
+    initialMessage
   }
 `;

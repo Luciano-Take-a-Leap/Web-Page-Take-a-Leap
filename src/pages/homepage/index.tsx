@@ -10,9 +10,14 @@ import { HomePageSection } from '@/types';
 
 interface HomePageClientProps {
   sections: Array<HomePageSection>;
+  redirectionUrl: string | null;
+  whatsappConfig: {
+    phoneNumber: string;
+    initialMessage: string;
+  } | null;
 }
 
-export default function HomePageComponent({ sections }: HomePageClientProps) {
+export default function HomePageComponent({ sections, redirectionUrl, whatsappConfig }: HomePageClientProps) {
   const [showScrollHint, setShowScrollHint] = React.useState(true);
 
   if (!sections || sections.length === 0) {
@@ -28,6 +33,7 @@ export default function HomePageComponent({ sections }: HomePageClientProps) {
       <main className="flex-1 w-full flex flex-col items-center justify-center">
         <ComponentResolver
           sections={sections}
+          redirectionUrl={redirectionUrl}
           onViewChange={() => setShowScrollHint(false)}
         />
 
@@ -43,7 +49,7 @@ export default function HomePageComponent({ sections }: HomePageClientProps) {
         )}
 
         <PricingSection />
-        <WhatsappButton />
+        <WhatsappButton settings={whatsappConfig} />
       </main>
     </div>
   );

@@ -13,6 +13,16 @@
  */
 
 // Source: schema.json
+export type WhatsappConfig = {
+  _id: string
+  _type: 'whatsappConfig'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  phoneNumber?: string
+  initialMessage?: string
+}
+
 export type RichText = Array<{
   children?: Array<{
     marks?: Array<string>
@@ -338,6 +348,7 @@ export type HomePage = {
   _rev: string
   title?: string
   seo?: Seo
+  redirectionButtonUrl?: string
   sections?: Array<
     | {
         _ref: string
@@ -463,6 +474,7 @@ export type Header = {
     limitDate?: string
     mainText?: string
     ctaButtonText?: string
+    href?: string
   }
 }
 
@@ -585,6 +597,7 @@ export type SanityAssetSourceData = {
 }
 
 export type AllSanitySchemaTypes =
+  | WhatsappConfig
   | RichText
   | FAQSection
   | WarrantySection

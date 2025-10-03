@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { motion } from 'motion/react';
 import { ArrowUp } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
+import { useRouter } from 'next/navigation';
 
 interface CountdownBannerProps {
   data?: {
@@ -10,6 +11,7 @@ interface CountdownBannerProps {
     limitDate?: string;
     mainText?: string;
     ctaButtonText?: string;
+    href?: string;
   };
   timeLeft: string;
   expanded: boolean;
@@ -21,6 +23,7 @@ const CountdownBanner: React.FC<CountdownBannerProps> = ({
   expanded,
   setExpanded,
 }) => {
+  const router = useRouter();
   return (
     <motion.div
       className={twMerge(
@@ -42,9 +45,16 @@ const CountdownBanner: React.FC<CountdownBannerProps> = ({
           className={twMerge(
             'rounded-sm px-3 py-2 text-xl transition-colors cursor-pointer font-montserrat bg-white hover:bg-white text-black z-10'
           )}
-          onClick={() => {
-            window.location.href = '/#agenda-un-llamado';
-          }}
+         onClick={() => {
+                  data?.href?.startsWith('#') ?
+                    window.scrollTo({
+                      top: document.getElementById('agenda-un-llamado')?.offsetTop || 0,
+                      behavior: 'smooth',
+                    })
+                    : data?.href?.startsWith('/') ?
+                      router.push(data?.href)
+                      : window.open(data?.href, '_blank');
+                }}
         >
           {data?.ctaButtonText}
         </Button>

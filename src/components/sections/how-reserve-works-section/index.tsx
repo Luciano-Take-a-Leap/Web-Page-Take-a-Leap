@@ -8,8 +8,9 @@ import { useRef } from 'react';
 
 interface HowReserveWorksSectionProps {
   data?: THowReservationWorksSection;
+  redirectionUrl?: string | null;
 }
-const HowReserveWorksSection: React.FC<HowReserveWorksSectionProps> = ({ data }) => {
+const HowReserveWorksSection: React.FC<HowReserveWorksSectionProps> = ({ data, redirectionUrl }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
@@ -65,21 +66,21 @@ const HowReserveWorksSection: React.FC<HowReserveWorksSectionProps> = ({ data })
       <motion.div className="flex flex-col lg:flex-row gap-6 py-10 md:w-[70vw] items-center justify-center">
         {isInView
           ? data?.cards?.map((card, index) => (
-              <motion.div
-                key={index}
-                className="bg-white text-black px-10 py-6 rounded-3xl w-full md:max-w-[460px] md:min-w-[380px] h-max flex justify-center items-center gap-8 md:gap-14 font-montserrat z-10"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: index * 0.2, duration: 0.3 }}
-              >
-                <h3 className="text-[100px] font-[500] text-center md:self-start">
-                  {index + 1}
-                </h3>
-                <div className="text-lg text-black w-[70%]">
-                  <p className="mb-2">{card.content}</p>
-                </div>
-              </motion.div>
-            ))
+            <motion.div
+              key={index}
+              className="bg-white text-black px-10 py-6 rounded-3xl w-full md:max-w-[460px] md:min-w-[380px] h-max flex justify-center items-center gap-8 md:gap-14 font-montserrat z-10"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: index * 0.2, duration: 0.3 }}
+            >
+              <h3 className="text-[100px] font-[500] text-center md:self-start">
+                {index + 1}
+              </h3>
+              <div className="text-lg text-black w-[70%]">
+                <p className="mb-2">{card.content}</p>
+              </div>
+            </motion.div>
+          ))
           : null}
       </motion.div>
       <RichText
@@ -89,7 +90,13 @@ const HowReserveWorksSection: React.FC<HowReserveWorksSectionProps> = ({ data })
         delayStart={0.5}
         delayIncrement={0.05}
       />
-      <Button className="bg-white hover:bg-white text-black h-13 px-10 py-4 rounded-[20px] tracking-[0.2px] font-bold text-sm font-montserrat">
+      <Button className="bg-white hover:bg-white text-black h-13 px-10 py-4 rounded-[20px] tracking-[0.2px] font-bold text-sm font-montserrat"
+        onClick={() => {
+          if (redirectionUrl) {
+            window.open(redirectionUrl, '_blank');
+          }
+        }
+        }>
         {data?.ctaButton}
       </Button>
       <motion.figure

@@ -1,15 +1,5 @@
-import { HomePage } from '@/types/sanity.types';
 import { sanityClient } from '../client';
-import { homePageQuery, homePageSectionsQuery } from '../sanity-queries';
-
-export async function getHomePageData(): Promise<HomePage | null> {
-  try {
-    return await sanityClient.fetch(homePageQuery);
-  } catch (error) {
-    console.error('Error fetching homepage data:', error);
-    return null;
-  }
-}
+import { homePageCTAButtonRedirectionURLQuery, homePageSectionsQuery, homePageSEOQuery } from '../sanity-queries';
 
 export async function getHomePageSections() {
   try {
@@ -20,24 +10,22 @@ export async function getHomePageSections() {
   }
 }
 
-export async function getHomePageDataCached(): Promise<HomePage | null> {
-  try {
-    return await sanityClient.fetch(
-      homePageQuery,
-      {},
-      { cache: 'force-cache', next: { revalidate: 3600 } }
-    );
+
+export async function getHomePageSEOData() {
+   try {
+    return await sanityClient.fetch(homePageSEOQuery);
   } catch (error) {
-    console.error('Error fetching homepage data:', error);
+    console.error('Error fetching homepage SEO Data:', error);
     return null;
   }
 }
 
-export async function getHomePageSectionsCached() {
-  try {
-    return await sanityClient.fetch(homePageSectionsQuery);
+export async function getCTAButtonRedirectionURL() {
+   try {
+    return await sanityClient.fetch(homePageCTAButtonRedirectionURLQuery);
   } catch (error) {
-    console.error('Error fetching homepage sections:', error);
+    console.error('Error fetching CTA button redirection URL', error);
     return null;
   }
 }
+

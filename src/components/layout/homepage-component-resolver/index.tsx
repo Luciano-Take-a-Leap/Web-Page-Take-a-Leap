@@ -29,11 +29,13 @@ import { HomePageSection } from '@/types';
 
 type ComponentResolverProps = {
   sections: HomePageSection[];
+  redirectionUrl: string | null;
   onViewChange?: () => void;
 };
 
 export default function ComponentResolver({
   sections,
+  redirectionUrl,
   onViewChange,
 }: ComponentResolverProps) {
   if (!sections || sections.length === 0) {
@@ -48,7 +50,7 @@ export default function ComponentResolver({
         if (isHeroSection(section)) {
           return (
             <section key={sectionKey} className="w-full md:mt-20">
-              <Hero data={section} />
+              <Hero data={section} redirectionUrl={redirectionUrl} />
             </section>
           );
         }
@@ -64,7 +66,7 @@ export default function ComponentResolver({
         }
 
         if (isExperiencingSection(section)) {
-          return <ExperiencingSection key={sectionKey} data={section} />;
+          return <ExperiencingSection key={sectionKey} data={section} redirectionUrl={redirectionUrl} />;
         }
 
         if (isReasonSection(section)) {
@@ -84,11 +86,11 @@ export default function ComponentResolver({
         }
 
         if (isHowReservationWorksSection(section)) {
-          return <HowReserveWorksSection key={sectionKey} data={section} />;
+          return <HowReserveWorksSection key={sectionKey} data={section} redirectionUrl={redirectionUrl} />;
         }
 
         if (isWarrantySection(section)) {
-          return <WarrantySection key={sectionKey} data={section} />;
+          return <WarrantySection key={sectionKey} data={section} redirectionUrl={redirectionUrl} />;
         }
 
         if (isFAQSection(section)) {

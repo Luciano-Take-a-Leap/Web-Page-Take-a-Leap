@@ -11,9 +11,10 @@ import { twMerge } from 'tailwind-merge';
 
 interface ExperiencingSectionProps {
   data?: TExperiencingSection;
+  redirectionUrl?: string | null;
 }
 
-const ExperiencingSection: React.FC<ExperiencingSectionProps> = ({ data }) => {
+const ExperiencingSection: React.FC<ExperiencingSectionProps> = ({ data, redirectionUrl }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const firstCardRef = useRef<HTMLDivElement>(null);
   const { isMobile, isTablet } = useMediaquery();
@@ -110,14 +111,14 @@ const ExperiencingSection: React.FC<ExperiencingSectionProps> = ({ data }) => {
           delayStart={0.7}
         />
       ) : null}
-      <Button className="bg-dark-blue text-white font-montserrat font-bold px-8 py-4 rounded-[20px] h-13 mb-10 w-full md:w-auto">
-        <a
-          href="https://calendly.com/take-a-leap/30min"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {data?.ctaButton}
-        </a>
+      <Button className="bg-dark-blue text-white font-montserrat font-bold px-8 py-4 rounded-[20px] h-13 mb-10 w-full md:w-auto"
+        onClick={() => {
+          if (redirectionUrl) {
+            window.open(redirectionUrl, '_blank');
+          }
+        }
+        }>
+        {data?.ctaButton}
       </Button>
       <Image
         src="/assets/images/UI-elements/arrow-2.png"

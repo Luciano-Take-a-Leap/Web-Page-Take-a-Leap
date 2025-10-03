@@ -3,16 +3,19 @@ import { Button } from '@/components/ui/button';
 import { Hero as THero } from '@/types/sanity.types';
 import { motion, useScroll, useTransform } from 'motion/react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 interface HeroProps {
   className?: string;
+  redirectionUrl?: string | null;
   data?: THero;
 }
 
-const Hero: React.FC<HeroProps> = ({ className, data }) => {
+const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
   const ref = useRef(null);
+  const router = useRouter();
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -182,6 +185,11 @@ const Hero: React.FC<HeroProps> = ({ className, data }) => {
         <Button
           size="lg"
           className="bg-yellow text-dark-blue font-bold hover:bg-yellow/90"
+          onClick={() => {
+            if (redirectionUrl) {
+              window.open(redirectionUrl, '_blank');
+            }}
+          }
         >
           {data?.ctaButton}
         </Button>
