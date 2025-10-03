@@ -9,7 +9,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { twMerge } from 'tailwind-merge';
 
@@ -24,6 +23,20 @@ interface MobileNavProps {
 
 const MobileNav = ({ links }: MobileNavProps) => {
   const router = useRouter();
+
+  const handleLinkClick = (href?: string) => {
+    if (href?.startsWith('#')) {
+      window.scrollTo({
+        top: document.getElementById('agenda-un-llamado')?.offsetTop || 0,
+        behavior: 'smooth',
+      });
+    } else if (href?.startsWith('/')) {
+      router.push(href);
+    } else if (href) {
+      window.open(href, '_blank');
+    }
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -38,18 +51,13 @@ const MobileNav = ({ links }: MobileNavProps) => {
       <DropdownMenuContent align="end" sideOffset={20} className="min-w-40">
         {links?.map((link, i) => (
           <DropdownMenuItem key={`${link._key}_${i}`} asChild>
-            <div onClick={() => {
-              link.href?.startsWith('#') ?
-                window.scrollTo({
-                  top: document.getElementById('agenda-un-llamado')?.offsetTop || 0,
-                  behavior: 'smooth',
-                })
-                : link.href?.startsWith('/') ?
-                  router.push(link.href)
-                  : window.open(link.href, '_blank');
-            }} className={twMerge("flex items-center gap-4", 
-              link.isButton ? "bg-dark-blue text-white" : "",
-             )}>
+            <div
+              onClick={() => handleLinkClick(link.href)}
+              className={twMerge(
+                'flex items-center gap-4 cursor-pointer',
+                link.isButton ? 'bg-dark-blue text-white' : ''
+              )}
+            >
               {link.label}
             </div>
           </DropdownMenuItem>

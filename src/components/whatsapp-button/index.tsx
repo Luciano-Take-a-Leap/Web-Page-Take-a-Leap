@@ -17,9 +17,6 @@ const WhatsappButton = ({ settings }: WhatsappButtonProps) => {
 
   const whatsappUrl = `https://wa.me/${phoneNumber}${encodedMessage ? `?text=${encodedMessage}` : ''}`;
 
-  console.log('WhatsApp URL:', whatsappUrl);
-  console.log('WhatsApp Button Settings:', settings);
-
   return (
     <a
       href={whatsappUrl}

@@ -17,6 +17,7 @@ interface CountdownBannerProps {
   expanded: boolean;
   setExpanded: (expanded: boolean) => void;
 }
+
 const CountdownBanner: React.FC<CountdownBannerProps> = ({
   data,
   timeLeft,
@@ -24,6 +25,20 @@ const CountdownBanner: React.FC<CountdownBannerProps> = ({
   setExpanded,
 }) => {
   const router = useRouter();
+
+  const handleLinkClick = (href?: string) => {
+    if (href?.startsWith('#')) {
+      window.scrollTo({
+        top: document.getElementById('agenda-un-llamado')?.offsetTop || 0,
+        behavior: 'smooth',
+      });
+    } else if (href?.startsWith('/')) {
+      router.push(href);
+    } else if (href) {
+      window.open(href, '_blank');
+    }
+  };
+
   return (
     <motion.div
       className={twMerge(
@@ -45,16 +60,7 @@ const CountdownBanner: React.FC<CountdownBannerProps> = ({
           className={twMerge(
             'rounded-sm px-3 py-2 text-xl transition-colors cursor-pointer font-montserrat bg-white hover:bg-white text-black z-10'
           )}
-         onClick={() => {
-                  data?.href?.startsWith('#') ?
-                    window.scrollTo({
-                      top: document.getElementById('agenda-un-llamado')?.offsetTop || 0,
-                      behavior: 'smooth',
-                    })
-                    : data?.href?.startsWith('/') ?
-                      router.push(data?.href)
-                      : window.open(data?.href, '_blank');
-                }}
+          onClick={() => handleLinkClick(data?.href)}
         >
           {data?.ctaButtonText}
         </Button>

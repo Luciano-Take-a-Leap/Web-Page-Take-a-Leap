@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { cn } from '@/utils/twMerge';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
@@ -16,6 +15,20 @@ interface NavbarProps {
 
 const Navbar = ({ links }: NavbarProps) => {
   const router = useRouter();
+  
+  const handleLinkClick = (href?: string) => {
+    if (href?.startsWith('#')) {
+      window.scrollTo({
+        top: document.getElementById('agenda-un-llamado')?.offsetTop || 0,
+        behavior: 'smooth',
+      });
+    } else if (href?.startsWith('/')) {
+      router.push(href);
+    } else if (href) {
+      window.open(href, '_blank');
+    }
+  };
+
   return (
     <nav className="hidden md:block">
       <ul className="flex gap-6 lg:gap-12 items-center">
@@ -29,16 +42,7 @@ const Navbar = ({ links }: NavbarProps) => {
                 className={cn(
                   'rounded-xl px-3 py-2 lg:px-4 lg:py-3 text-base lg:text-xl transition-colors font-work-sans whitespace-nowrap'
                 )}
-                onClick={() => {
-                  link.href?.startsWith('#') ?
-                    window.scrollTo({
-                      top: document.getElementById('agenda-un-llamado')?.offsetTop || 0,
-                      behavior: 'smooth',
-                    })
-                    : link.href?.startsWith('/') ?
-                      router.push(link.href)
-                      : window.open(link.href, '_blank');
-                }}
+                onClick={() => handleLinkClick(link.href)}
               >
                 {link.label}
               </Button>
@@ -52,16 +56,7 @@ const Navbar = ({ links }: NavbarProps) => {
                 className={cn(
                   'rounded-sm px-2 py-1 lg:px-3 lg:py-2 text-base lg:text-xl transition-colors font-work-sans whitespace-nowrap hover:bg-gray-100'
                 )}
-                  onClick={() => {
-                    link.href?.startsWith('#') ?
-                      window.scrollTo({
-                        top: document.getElementById('agenda-un-llamado')?.offsetTop || 0,
-                        behavior: 'smooth',
-                      })
-                      : link.href?.startsWith('/') ?
-                        router.push(link.href)
-                        : window.open(link.href, '_blank');
-                  }}
+                onClick={() => handleLinkClick(link.href)}
               >
                 {link.label}
               </div>

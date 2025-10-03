@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button';
 import { Hero as THero } from '@/types/sanity.types';
 import { motion, useScroll, useTransform } from 'motion/react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
@@ -15,7 +14,6 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
   const ref = useRef(null);
-  const router = useRouter();
 
   const { scrollYProgress } = useScroll({
     target: ref,
