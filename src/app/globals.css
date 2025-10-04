@@ -98,10 +98,16 @@
   border-width: 0;
 }
 
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -111,6 +117,7 @@
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(calc(-100% - var(--gap)));
   }
@@ -121,13 +128,17 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
 ::-webkit-scrollbar-thumb {
   background: transparent;
 }
+
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
+
 /* hide scrollbar */

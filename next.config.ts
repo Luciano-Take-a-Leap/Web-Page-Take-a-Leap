@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
   images: {
     domains: ['cdn.sanity.io'],
   },
+  compress: true,
 };
 
 export default nextConfig;

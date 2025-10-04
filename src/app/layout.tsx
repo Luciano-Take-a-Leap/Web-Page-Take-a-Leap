@@ -19,33 +19,39 @@ import { getHomePageSEOData } from '@/lib/sanity/fetching-functions/homepage';
 const montserrat = Montserrat({
   variable: '--font-montserrat',
   subsets: ['latin'],
+  display: 'swap',
 });
 
 const workSans = Work_Sans({
   variable: '--font-work-sans',
   subsets: ['latin'],
+  display: 'swap',
 });
 
 const archivo = Archivo({
   variable: '--font-archivo',
   subsets: ['latin'],
+  display: 'swap',
 });
 
 const archivoBlack = Archivo_Black({
   variable: '--font-archivo-black-400',
   subsets: ['latin'],
   weight: '400',
+  display: 'swap',
 });
 
 const montaguSlab = Montagu_Slab({
   variable: '--font-montagu-slab',
   subsets: ['latin'],
+  display: 'swap',
 });
 
 const LoraFont = Lora({
   variable: '--font-lora',
   subsets: ['latin'],
   weight: '400',
+  display: 'swap',
 });
 
 export default async function Layout({
@@ -104,7 +110,14 @@ export default async function Layout({
         />
       </head>
       <body
-        className={`${montserrat.variable} antialiased ${workSans.variable} ${archivoBlack.variable} ${montaguSlab.variable} ${LoraFont.variable} ${archivo.variable} suppressHydrationWarning`}
+        className={`
+          ${montserrat.variable} 
+          ${workSans.variable} 
+          ${archivo.variable} 
+          ${archivoBlack.variable} 
+          ${montaguSlab.variable} 
+          ${LoraFont.variable} 
+        `}
       >
         <div className="sr-only">
           <h1>{SEOData?.seo?.title || 'Take a Leap'}</h1>
