@@ -155,21 +155,21 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
-          <motion.h1
+          <motion.h2
             className="text-[26px] md:text-[32px] font-archivo text-center text-white font-bold"
             transition={{ duration: 1 }}
           >
             {data?.title}
-          </motion.h1>
+          </motion.h2>
         </motion.div>
-        <motion.h2
+        <motion.h3
           className="text-center text-[34px] md:text-[42px] text-white tracking-[0.2px] font-lora leading-[40px] font-[900] relative"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
           <span className="text-white">{data?.subtitle}</span>
-        </motion.h2>
+        </motion.h3>
         {data?.mainContent ? <RichText className="text-white px-4 text-center" value={data.mainContent} animate delayStart={0.2} /> : null}
         <motion.div
           className="flex items-center justify-center bg-[#F65A1799] w-full md:w-max md:max-w-[60vw] rounded-[40px] px-6 py-3"
