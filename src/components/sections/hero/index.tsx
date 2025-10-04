@@ -48,6 +48,7 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
+      aria-label="Hero section"
       className={`w-full md:h-[calc(100vh-80px)] flex items-center justify-center relative ${className} px-5 md:px-0 py-26 md:py-0 bg-dark-blue overflow-hidden`}
     >
       <motion.figure
@@ -154,21 +155,21 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
-          <motion.h2
+          <motion.h1
             className="text-[26px] md:text-[32px] font-archivo text-center text-white font-bold"
             transition={{ duration: 1 }}
           >
             {data?.title}
-          </motion.h2>
+          </motion.h1>
         </motion.div>
-        <motion.h4
+        <motion.h2
           className="text-center text-[34px] md:text-[42px] text-white tracking-[0.2px] font-lora leading-[40px] font-[900] relative"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
           <span className="text-white">{data?.subtitle}</span>
-        </motion.h4>
+        </motion.h2>
         {data?.mainContent ? <RichText className="text-white px-4 text-center" value={data.mainContent} animate delayStart={0.2} /> : null}
         <motion.div
           className="flex items-center justify-center bg-[#F65A1799] w-full md:w-max md:max-w-[60vw] rounded-[40px] px-6 py-3"
@@ -194,28 +195,28 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
       </motion.div>
       <Image
         src="/assets/images/UI-elements/curl-1.png"
-        alt="Curl"
+        alt=""
         width={450}
         height={180}
         className="absolute top-0 left-0 transform -translate-x-[15%] -translate-y-[75%] hidden md:block grayscale -rotate-20"
       />
       <Image
         src="/assets/images/UI-elements/curl-1.png"
-        alt="Curl"
+        alt=""
         width={450}
         height={195}
         className="absolute bottom-0 right-0 transform translate-x-[20%] translate-y-[10%] hidden md:block -rotate-20 grayscale z-10"
       />
       <Image
         src="/assets/images/UI-elements/arrow-3.png"
-        alt="Arrow"
+        alt=""
         width={450}
         height={450}
         className="absolute top-0 left-0 transform -translate-x-[35%] translate-y-[250%] hidden md:block"
       />
       <Image
         src="/assets/images/UI-elements/arrow-3.png"
-        alt="Arrow"
+        alt=""
         width={180}
         height={180}
         className="absolute top-0 left-0 transform -translate-x-[35%] translate-y-[200%] block md:hidden"
