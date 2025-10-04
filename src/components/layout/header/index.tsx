@@ -75,6 +75,7 @@ const Header = ({ data }: HeaderProps) => {
       <MobileNav links={data?.navigation || []} />
       <Link
         href="/"
+        title='Home'
         className="items-center justify-center gap-1 hidden md:flex"
         aria-label={'Home'}
       >

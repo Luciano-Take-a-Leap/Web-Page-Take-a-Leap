@@ -28,6 +28,7 @@ export default function NotFound() {
 
               <div className="flex items-center justify-center">
                 <Link
+                  title='Volver al inicio'
                   href="/"
                   className={cn(
                     buttonVariants({

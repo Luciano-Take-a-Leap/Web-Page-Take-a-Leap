@@ -27,7 +27,7 @@ export default function Error({
       </h1>
       <div className="flex flex-col gap-4 sm:flex-row mt-8">
         <Button variant="outline" asChild>
-          <Link href="/">Volver al inicio</Link>
+          <Link title='Volver al inicio' href="/">Volver al inicio</Link>
         </Button>
       </div>
     </div>

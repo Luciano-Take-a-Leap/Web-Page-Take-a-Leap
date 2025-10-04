@@ -100,7 +100,7 @@ const WarrantySection: React.FC<WarrantySectionProps> = ({ data, redirectionUrl 
                 <h3 className="text-xl font-bold mb-2">{card.name}</h3>
                 <p className="text-md uppercase">{card.role}</p>
                 {card.linkedIn ? (
-                  <Link href={card.linkedIn} target="_blank" className="cursor-pointer">
+                  <Link href={card.linkedIn} target="_blank" className="cursor-pointer" title='LinkedIn'>
                     <Image
                       src="/assets/images/icons/linkedin.svg"
                       alt="LinkedIn"
