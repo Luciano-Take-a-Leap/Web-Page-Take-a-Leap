@@ -60,27 +60,27 @@ export default async function Layout({
   const JSON_LD_SCHEMA = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: SEOData?.title || 'Take a Leap',
-    url: SEOData?.canonical || 'https://takingleap.com',
-    description: SEOData?.description || '',
-    image: SEOData?.openGraph?.image?.asset?.url,
+    name: SEOData?.seo?.title || 'Take a Leap',
+    url: SEOData?.seo?.canonical || 'https://takingleap.com',
+    description: SEOData?.seo?.description || '',
+    image: SEOData?.seo?.openGraph?.image?.asset?.url,
     potentialAction: {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: `${SEOData?.canonical || 'https://takingleap.com'}/search?q={search_term_string}`,
+        urlTemplate: `${SEOData?.seo?.canonical || 'https://takingleap.com'}/search?q={search_term_string}`,
       },
       'query-input': 'required name=search_term_string',
     },
     publisher: {
       '@type': 'Organization',
-      name: SEOData?.title || 'Take a Leap',
+      name: SEOData?.seo?.title || 'Take a Leap',
       logo: {
         '@type': 'ImageObject',
-        url: SEOData?.openGraph?.image?.asset?.url,
+        url: SEOData?.seo?.openGraph?.image?.asset?.url,
       },
     },
-    keywords: SEOData?.keywords?.join(', '),
+    keywords: SEOData?.seo?.keywords?.join(', '),
   };
 
   return (
@@ -90,12 +90,12 @@ export default async function Layout({
         <meta name="theme-color" content="#ffffff" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="canonical" href={SEOData?.canonical || 'https://takingleap.com'} />
+        <link rel="canonical" href={SEOData?.seo?.canonical || 'https://takingleap.com'} />
         <link rel="alternate" hrefLang="x-default" href="https://takingleap.com" />
         <meta name="author" content="Luciano Biancardi" />
-        {SEOData?.noIndex && <meta name="robots" content="noindex" />}
-        {SEOData?.noFollow && <meta name="robots" content="nofollow" />}
-        {!SEOData?.noIndex && !SEOData?.noFollow && (
+        {SEOData?.seo?.noIndex && <meta name="robots" content="noindex" />}
+        {SEOData?.seo?.noFollow && <meta name="robots" content="nofollow" />}
+        {!SEOData?.seo?.noIndex && !SEOData?.seo?.noFollow && (
           <meta name="robots" content="index, follow" />
         )}
         <script
@@ -107,8 +107,8 @@ export default async function Layout({
         className={`${montserrat.variable} antialiased ${workSans.variable} ${archivoBlack.variable} ${montaguSlab.variable} ${LoraFont.variable} ${archivo.variable} suppressHydrationWarning`}
       >
         <div className="sr-only">
-          <h1>{SEOData?.title || 'Take a Leap'}</h1>
-          <p>{SEOData?.description}</p>
+          <h1>{SEOData?.seo?.title || 'Take a Leap'}</h1>
+          <p>{SEOData?.seo?.description}</p>
         </div>
         <ThemeProvider
           attribute="class"
@@ -130,47 +130,47 @@ export default async function Layout({
 export async function generateMetadata(): Promise<Metadata> {
   const SEOData = await getHomePageSEOData();
 
-  const ogImageUrl = SEOData?.openGraph?.image?.asset?.url
-    ? `${SEOData.openGraph.image.asset.url}?w=1200&h=630&fit=crop`
+  const ogImageUrl = SEOData?.seo?.openGraph?.image?.asset?.url
+    ? `${SEOData?.seo.openGraph.image.asset.url}?w=1200&h=630&fit=crop`
     : 'https://takingleap.com/images/avatar/avatar.png';
 
   return {
-    title: SEOData?.title || 'Take a Leap',
-    description: SEOData?.description || '',
-    keywords: SEOData?.keywords?.join(', ') || '',
+    title: SEOData?.seo?.title || 'Take a Leap',
+    description: SEOData?.seo?.description || '',
+    keywords: SEOData?.seo?.keywords?.join(', ') || '',
     openGraph: {
-      title: SEOData?.openGraph?.title || SEOData?.title || 'Take a Leap',
-      description: SEOData?.openGraph?.description || SEOData?.description || '',
-      url: SEOData?.canonical || 'https://takingleap.com',
-      siteName: SEOData?.title || 'Take a Leap',
+      title: SEOData?.seo?.openGraph?.title || SEOData?.seo?.title || 'Take a Leap',
+      description: SEOData?.seo?.openGraph?.description || SEOData?.seo?.description || '',
+      url: SEOData?.seo?.canonical || 'https://takingleap.com',
+      siteName: SEOData?.seo?.title || 'Take a Leap',
       images: [
         {
           url: ogImageUrl,
-          width: SEOData?.openGraph?.image?.asset?.metadata?.dimensions?.width || 1200,
-          height: SEOData?.openGraph?.image?.asset?.metadata?.dimensions?.height || 630,
-          alt: SEOData?.openGraph?.image?.alt || 'Take a Leap',
+          width: SEOData?.seo?.openGraph?.image?.asset?.metadata?.dimensions?.width || 1200,
+          height: SEOData?.seo?.openGraph?.image?.asset?.metadata?.dimensions?.height || 630,
+          alt: SEOData?.seo?.openGraph?.image?.alt || 'Take a Leap',
         },
       ],
       locale: 'es',
-      type: (SEOData?.openGraph?.type as 'website') || 'website',
+      type: (SEOData?.seo?.openGraph?.type as 'website') || 'website',
     },
     twitter: {
-      card: (SEOData?.twitter?.cardType as 'summary_large_image') || 'summary_large_image',
-      title: SEOData?.openGraph?.title || SEOData?.title || 'Take a Leap',
-      description: SEOData?.openGraph?.description || SEOData?.description || '',
+      card: (SEOData?.seo?.twitter?.cardType as 'summary_large_image') || 'summary_large_image',
+      title: SEOData?.seo?.openGraph?.title || SEOData?.seo?.title || 'Take a Leap',
+      description: SEOData?.seo?.openGraph?.description || SEOData?.seo?.description || '',
       images: [ogImageUrl],
-      creator: SEOData?.twitter?.creator || undefined,
-      site: SEOData?.twitter?.site || undefined,
+      creator: SEOData?.seo?.twitter?.creator || undefined,
+      site: SEOData?.seo?.twitter?.site || undefined,
     },
     alternates: {
-      canonical: SEOData?.canonical || 'https://takingleap.com',
+      canonical: SEOData?.seo?.canonical || 'https://takingleap.com',
     },
     robots: {
-      index: !SEOData?.noIndex,
-      follow: !SEOData?.noFollow,
+      index: !SEOData?.seo?.noIndex,
+      follow: !SEOData?.seo?.noFollow,
       googleBot: {
-        index: !SEOData?.noIndex,
-        follow: !SEOData?.noFollow,
+        index: !SEOData?.seo?.noIndex,
+        follow: !SEOData?.seo?.noFollow,
         'max-image-preview': 'large',
         'max-snippet': -1,
       },
