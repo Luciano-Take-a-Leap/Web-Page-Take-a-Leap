@@ -21,6 +21,7 @@ const WhatsappButton = ({ settings }: WhatsappButtonProps) => {
     <a
       href={whatsappUrl}
       target="_blank"
+      title="Chateemos en WhatsApp"
       rel="noopener noreferrer"
       className="fixed bottom-1 right-1 md:bottom-4 md:right-4 z-50 bg-green-500 p-3 rounded-full shadow-lg hover:bg-green-600 transition-colors scale-60 md:scale-100"
       aria-label="Chateemos en WhatsApp"
