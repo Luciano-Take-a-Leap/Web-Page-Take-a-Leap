@@ -106,6 +106,10 @@ export default async function Layout({
       <body
         className={`${montserrat.variable} antialiased ${workSans.variable} ${archivoBlack.variable} ${montaguSlab.variable} ${LoraFont.variable} ${archivo.variable} suppressHydrationWarning`}
       >
+        <div className="sr-only">
+          <h1>{SEOData?.title || 'Take a Leap'}</h1>
+          <p>{SEOData?.description}</p>
+        </div>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
@@ -126,7 +130,7 @@ export default async function Layout({
 export async function generateMetadata(): Promise<Metadata> {
   const SEOData = await getHomePageSEOData();
 
-  const ogImageUrl = SEOData?.openGraph?.image?.asset?.url 
+  const ogImageUrl = SEOData?.openGraph?.image?.asset?.url
     ? `${SEOData.openGraph.image.asset.url}?w=1200&h=630&fit=crop`
     : 'https://takingleap.com/images/avatar/avatar.png';
 
