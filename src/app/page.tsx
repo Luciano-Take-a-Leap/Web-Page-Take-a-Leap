@@ -1,4 +1,4 @@
-import { getCTAButtonRedirectionURL, getHomePageSections, getHomePageSEOData } from '@/lib/sanity/fetching-functions/homepage';
+import { getCTAButtonRedirectionURL, getHomePageSections } from '@/lib/sanity/fetching-functions/homepage';
 import { fetchWhatsAppConfig } from '@/lib/sanity/fetching-functions/whatsapp-config';
 import HomePageComponent from '@/pages/homepage';
 
