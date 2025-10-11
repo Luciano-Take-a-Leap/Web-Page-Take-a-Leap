@@ -36,6 +36,7 @@ const ExperiencingSection: React.FC<ExperiencingSectionProps> = ({ data, redirec
   return (
     <motion.section
       initial="initial"
+      id="experiencing-section"
       animate={isInView ? 'animate' : 'initial'}
       variants={variants}
       ref={sectionRef}

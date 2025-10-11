@@ -42,7 +42,7 @@ const CountdownBanner: React.FC<CountdownBannerProps> = ({
   return (
     <motion.div
       className={twMerge(
-        'absolute top-0 w-screen bg-blue md:h-26 flex flex-row items-start md:items-center md:justify-between text-sm md:text-base px-4 md:px-8 py-2 md:py-0',
+        'absolute top-0 w-screen bg-blue lg:h-26 flex flex-row items-start lg:items-center lg:justify-between text-sm lg:text-base px-4 lg:px-8 py-2 lg:py-0',
         expanded ? 'translate-y-0' : 'translate-y-[-96%]',
         'transition-all duration-500 ease-in-out'
       )}
@@ -51,8 +51,8 @@ const CountdownBanner: React.FC<CountdownBannerProps> = ({
       transition={{ duration: 0.5, delay: 0.5 }}
       exit={{ y: -380, opacity: 0 }}
     >
-      <div className="w-screen flex flex-col md:flex-row items-center justify-center md:justify-evenly text-white gap-2 md:gap-8">
-        <h3 className="text-white font-bold text-center md:text-start pt-2 md:w-full md:max-w-2xl font-montserrat text-xs md:text-md">
+      <div className="w-screen flex flex-col lg:flex-row items-center justify-center lg:justify-evenly text-white gap-2 lg:gap-8  lg:max-w-full">
+        <h3 className="text-white font-bold text-center lg:text-start pt-2 lg:w-full lg:max-w-[500px] font-montserrat text-xs lg:text-md">
           {data?.mainText}
         </h3>
         <Countdown value={timeLeft} />

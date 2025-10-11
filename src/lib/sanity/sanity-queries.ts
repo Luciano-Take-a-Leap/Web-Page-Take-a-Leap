@@ -25,6 +25,22 @@ export const HEADER_QUERY = groq`
   }
 `;
 
+export const FOOTER_QUERY = groq`
+  *[_type == "footer"][0] {
+    _id,
+    copyrightText,
+    navigation[] {
+      key,
+      label,
+      href
+    },
+    socialLinks[] {
+      platform,
+      href,
+      }
+    }
+`;
+
 export const homePageSEOQuery = groq`
   *[_type == "homePage"][0]{
     seo{
@@ -400,6 +416,16 @@ export const homePageSectionsQuery = groq`
           answer,
           _key
         }
+      },
+      _type == "priceSection" => {
+        topText,
+        ctaButtonText,
+        regularPriceTitle,
+        regularPrice,
+        launchPriceTitle,
+        launchPrice,
+        boxItems,
+        boxCtaText
       }
     }
   }

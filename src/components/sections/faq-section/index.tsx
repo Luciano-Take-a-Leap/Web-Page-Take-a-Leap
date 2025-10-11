@@ -42,6 +42,7 @@ export default function FAQSection({ data }: FAQSectionProps) {
       animate={isInView ? 'visible' : 'hidden'}
       variants={containerVariants}
       className="w-full relative flex flex-col items-center justify-center py-10 md:pb-20 bg-white text-black px-6"
+      id="faq"
     >
       <motion.h2
         className="text-center text-[30px] md:text-[40px] mt-10 mb-6 font-montserrat font-bold px-6 md:max-w-[80%]"

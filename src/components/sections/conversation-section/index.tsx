@@ -43,6 +43,7 @@ const ConversationSection: React.FC<ConversationSectionProps> = ({
       initial="initial"
       animate={isInView ? 'animate' : 'initial'}
       variants={variants}
+      id="conversation-section"
       transition={{ duration: 0.5 }}
       className="pt-12 pb-40 px-5 md:px-10 w-full relative z-30 bg-background"
     >

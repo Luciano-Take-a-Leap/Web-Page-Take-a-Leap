@@ -32,6 +32,7 @@ const AboutMeSection: React.FC<AboutMeSectionProps> = ({ data }) => {
       initial="initial"
       animate={isInView ? 'animate' : 'initial'}
       variants={variants}
+      id="about-me"
       transition={{ duration: 0.5 }}
       className="py-12 w-full relative bg-gradient-to-b from-orange to-orange-gradient"
     >

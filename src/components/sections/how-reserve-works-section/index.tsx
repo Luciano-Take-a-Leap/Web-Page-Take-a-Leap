@@ -44,6 +44,7 @@ const HowReserveWorksSection: React.FC<HowReserveWorksSectionProps> = ({ data, r
       transition={{
         duration: 0.5,
       }}
+      id="how-it-works"
       className="w-full relative flex flex-col items-center justify-center py-10 md:pb-20 bg-dark-blue text-white px-6"
     >
       <motion.h2

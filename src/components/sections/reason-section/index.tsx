@@ -33,6 +33,7 @@ const ReasonSection: React.FC<ReasonSectionProps> = ({ data }) => {
       initial="initial"
       animate={isInView ? 'animate' : 'initial'}
       variants={variants}
+      id="reasons"
       transition={{ duration: 0.5 }}
       className="py-12 mb-20 lg:mb-12 relative bg-white flex flex-col items-center justify-center w-full mx-auto px-6 md:px-0 overflow-x-hidden"
       style={{

@@ -24,10 +24,25 @@ interface MobileNavProps {
 const MobileNav = ({ links }: MobileNavProps) => {
   const router = useRouter();
 
-  const handleLinkClick = (href?: string) => {
+  const handleLinkClick = async (href?: string) => {
     if (href?.startsWith('#')) {
       window.scrollTo({
-        top: document.getElementById('agenda-un-llamado')?.offsetTop || 0,
+        top: document.getElementById(href.replace("#", ""))?.offsetTop || 0,
+        behavior: 'smooth',
+      });
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      window.scrollTo({
+        top: document.getElementById(href.replace("#", ""))?.offsetTop || 0,
+        behavior: 'smooth',
+      });
+      await new Promise((resolve) => setTimeout(resolve, 400));
+      window.scrollTo({
+        top: document.getElementById(href.replace("#", ""))?.offsetTop || 0,
+        behavior: 'smooth',
+      });
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      window.scrollTo({
+        top: document.getElementById(href.replace("#", ""))?.offsetTop || 0,
         behavior: 'smooth',
       });
     } else if (href?.startsWith('/')) {

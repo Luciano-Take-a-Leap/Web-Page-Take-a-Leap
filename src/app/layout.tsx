@@ -15,6 +15,8 @@ import Header from '@/components/layout/header';
 import { getHeaderData } from '@/lib/sanity/fetching-functions/header';
 import { SanityLive } from '@/lib/sanity/live-preview';
 import { getHomePageSEOData } from '@/lib/sanity/fetching-functions/homepage';
+import { getFooterData } from '@/lib/sanity/fetching-functions/footer';
+import Footer from '@/components/layout/footer';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',
@@ -62,6 +64,7 @@ export default async function Layout({
 }) {
   const headerData = await getHeaderData();
   const SEOData = await getHomePageSEOData();
+  const footerData = await getFooterData();
 
   const JSON_LD_SCHEMA = {
     '@context': 'https://schema.org',
@@ -132,6 +135,7 @@ export default async function Layout({
           <SanityLive />
           <Header data={headerData} />
           {children}
+          <Footer data={footerData} />
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

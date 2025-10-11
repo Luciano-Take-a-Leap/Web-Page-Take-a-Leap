@@ -1,8 +1,47 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
+import { Footer as TFooter } from '@/types/sanity.types';
+import getSocialMediaLogo from '@/utils/get-social-media-logo';
 import { AnimatePresence, motion } from 'motion/react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
-const Footer = () => {
+interface FooterProps {
+  data?: TFooter | null;
+}
+
+const Footer = ({ data }: FooterProps) => {
+  const router = useRouter();
+
+  const handleLinkClick = async (href?: string) => {
+    if (href?.startsWith('#')) {
+      window.scrollTo({
+        top: document.getElementById(href.replace("#", ""))?.offsetTop || 0,
+        behavior: 'smooth',
+      });
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      window.scrollTo({
+        top: document.getElementById(href.replace("#", ""))?.offsetTop || 0,
+        behavior: 'smooth',
+      });
+      await new Promise((resolve) => setTimeout(resolve, 400));
+      window.scrollTo({
+        top: document.getElementById(href.replace("#", ""))?.offsetTop || 0,
+        behavior: 'smooth',
+      });
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      window.scrollTo({
+        top: document.getElementById(href.replace("#", ""))?.offsetTop || 0,
+        behavior: 'smooth',
+      });
+    } else if (href?.startsWith('/')) {
+      router.push(href);
+    } else if (href) {
+      window.open(href, '_blank');
+    }
+  };
+
   return (
     <AnimatePresence>
       <motion.footer
@@ -10,42 +49,50 @@ const Footer = () => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.5 }}
-        className="w-full bg-[#343434] text-white px-6 md:px-20 py-8 mt-24 lg:mt-48"
+        className="w-full bg-black text-white px-6 md:px-20 lg:px-40 py-8 mt-24 lg:mt-48"
       >
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          {/* <div className="flex flex-col items-center md:items-start space-y-2">
-            <p className="text-sm font-light">
-              {t('Footer.text1')} <span className="text-red-400">❤</span>
-            </p>
-            <p className="text-xs font-extralight tracking-wide uppercase">
-              {t('Footer.copyright')} {new Date().getFullYear()} - {t('Footer.rights')}
-            </p>
-          </div> */}
-
-          {/* <div className="flex flex-col items-center md:items-end space-y-2">
-            <p className="text-sm whitespace-nowrap font-medium">{t('Footer.text2')}</p>
-            <div className="flex space-x-4">
-              <Link
-                href="https://github.com/Ezegrigolatto"
-                aria-label="GitHub"
+        <div className="flex justify-between w-full items-center">
+          <Image
+            src={'/assets/images/logo-header.png'}
+            alt="logo"
+            width={120}
+            height={40}
+          />
+          <div className="flex space-x-4">
+            {data?.socialLinks?.filter(media => Boolean(media.platform)).map((social, index) => (
+              <Button
+                key={`social-link-` + index}
                 className="transform hover:scale-110 transition"
-                target="_blank"
-                rel="noopener noreferrer"
+                variant={"ghost"}
+                onClick={
+                  () => handleLinkClick(social.href)
+                }
+                aria-label={social.platform}
               >
-                <SiGithub size={24} />
-              </Link>
+                {getSocialMediaLogo(social.platform!)}
+              </Button>
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-col-reverse md:flex-row justify-between w-full items-center mt-10 md:mt-24">
+          {data?.copyrightText && (
+            <p className="text-center text-sm md:text-base font-medium mt-4 md:mt-0">
+              {data?.copyrightText}
+            </p>
+          )}
+          <div className="flex space-x-6">
+            {data?.navigation?.map((navItem, index) => (
+              <Button
+                key={`nav-item-` + index}
+                className="text-sm md:text-base font-medium hover:underline"
+                variant={"ghost"}
+                onClick={() => handleLinkClick(navItem.href)}
+              >
+                {navItem.label}
+              </Button>
+            ))}
+          </div>
 
-              <Link
-                href="https://www.linkedin.com/in/ezequiel-grigolatto/"
-                aria-label="LinkedIn"
-                className="transform hover:scale-110 transition"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaLinkedin size={24} />
-              </Link>
-            </div>
-          </div> */}
         </div>
       </motion.footer>
     </AnimatePresence>

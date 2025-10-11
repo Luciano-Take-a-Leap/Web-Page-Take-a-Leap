@@ -56,6 +56,7 @@ const WarrantySection: React.FC<WarrantySectionProps> = ({ data, redirectionUrl 
       transition={{
         duration: 0.5,
       }}
+      id="warranty"
       className="w-full relative flex flex-col items-center justify-center py-10 bg-gradient-to-b from-orange to-orange-gradient text-black px-6"
     >
       <motion.h2

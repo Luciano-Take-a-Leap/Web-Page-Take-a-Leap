@@ -96,6 +96,19 @@ const Header = ({ data }: HeaderProps) => {
           setExpanded={setIsCountdownExpanded}
         />
       ) : null}
+      <Link
+        href="/"
+        title='Home'
+        className="items-center justify-center flex md:hidden mr-2"
+        aria-label={'Home'}
+      >
+        <Image
+          src={'/assets/images/logo-header.png'}
+          alt="logo"
+          width={60}
+          height={16}
+        />
+      </Link>
     </motion.header>
   );
 };

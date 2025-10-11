@@ -13,6 +13,27 @@
  */
 
 // Source: schema.json
+export type Footer = {
+  _id: string
+  _type: 'footer'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  copyrightText?: string
+  socialLinks?: Array<{
+    platform?: 'facebook' | 'twitter' | 'instagram' | 'linkedin' | 'youtube' | 'github' | 'other'
+    href?: string
+    _type: 'socialLink'
+    _key: string
+  }>
+  navigation?: Array<{
+    label?: string
+    href?: string
+    _type: 'navigationLink'
+    _key: string
+  }>
+}
+
 export type WhatsappConfig = {
   _id: string
   _type: 'whatsappConfig'
@@ -21,6 +42,50 @@ export type WhatsappConfig = {
   _rev: string
   phoneNumber?: string
   initialMessage?: string
+}
+
+export type PriceSection = {
+  _id: string
+  _type: 'priceSection'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  topText?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote' | 'code'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<
+      | {
+          href?: string
+          blank?: boolean
+          _type: 'link'
+          _key: string
+        }
+      | {
+          lineHeight?: 'normal' | 'relaxed' | 'tight'
+          highlightBox?: 'none' | 'white' | 'black' | 'orange' | 'blue' | 'dark-blue'
+          textColor?: 'black' | 'white' | 'orange' | 'blue' | 'dark-blue'
+          fontFamily?: 'montserrat' | 'archivo-black-400' | 'lora' | 'montagu' | 'work-sans'
+          _type: 'textSettings'
+          _key: string
+        }
+    >
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  ctaButtonText?: string
+  regularPriceTitle?: string
+  regularPrice?: string
+  launchPriceTitle?: string
+  launchPrice?: string
+  boxItems?: Array<string>
+  boxCtaText?: string
 }
 
 export type RichText = Array<{
@@ -420,6 +485,13 @@ export type HomePage = {
         _key: string
         [internalGroqTypeReferenceTo]?: 'warrantySection'
       }
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        _key: string
+        [internalGroqTypeReferenceTo]?: 'priceSection'
+      }
   >
 }
 
@@ -597,7 +669,9 @@ export type SanityAssetSourceData = {
 }
 
 export type AllSanitySchemaTypes =
+  | Footer
   | WhatsappConfig
+  | PriceSection
   | RichText
   | FAQSection
   | WarrantySection

@@ -1,5 +1,3 @@
-// types/homepage.ts
-
 import type {
   Hero,
   ConversationSection,
@@ -10,7 +8,8 @@ import type {
   AboutMeSection,
   HowReservationWorksSection,
   WarrantySection,
-  FAQSection
+  FAQSection,
+  PriceSection
 } from '@/types/sanity.types';
 
 type BaseSectionType = {
@@ -31,7 +30,8 @@ export type HomePageSection =
   | (AboutMeSection & BaseSectionType & { _type: 'aboutMeSection' })
   | (HowReservationWorksSection & BaseSectionType & { _type: 'howReservationWorksSection' })
   | (WarrantySection & BaseSectionType & { _type: 'warrantySection' })
-  | (FAQSection & BaseSectionType & { _type: 'FAQSection' });
+  | (FAQSection & BaseSectionType & { _type: 'FAQSection' })
+  | (PriceSection & BaseSectionType & { _type: 'priceSection' });
 
 export type HomePageData = {
   sections: HomePageSection[];
@@ -93,4 +93,8 @@ export function isWarrantySection(section: HomePageSection): section is Warranty
 
 export function isFAQSection(section: HomePageSection): section is FAQSection & BaseSectionType & { _type: 'FAQSection' } {
   return section._type === 'FAQSection';
+}
+
+export function isPriceSection(section: HomePageSection): section is PriceSection & BaseSectionType & { _type: 'priceSection' } {
+  return section._type === 'priceSection';
 }

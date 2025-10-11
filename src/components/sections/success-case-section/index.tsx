@@ -13,7 +13,7 @@ interface SuccessCaseSectionProps {
 
 const SuccessCaseSection: React.FC<SuccessCaseSectionProps> = ({ data }) => {
   return (
-    <motion.section className="py-12 px-5 md:px-10 w-full lg:w-[80vw] relative flex flex-col justify-center items-center">
+    <motion.section className="py-12 px-5 md:px-10 w-full lg:w-[80vw] relative flex flex-col justify-center items-center" id="success-cases">
       {(() => {
         let testimonialIndex = 0;
         return data?.cases?.map((item, index) => {

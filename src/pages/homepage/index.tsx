@@ -4,7 +4,6 @@ import { motion } from 'motion/react';
 import React from 'react';
 import WhatsappButton from '@/components/whatsapp-button';
 import ScrollHint from '@/components/layout/scroll-hint';
-import PricingSection from '@/components/sections/pricing-section';
 import ComponentResolver from '@/components/layout/homepage-component-resolver';
 import { HomePageSection } from '@/types';
 
@@ -15,9 +14,10 @@ interface HomePageClientProps {
     phoneNumber: string;
     initialMessage: string;
   } | null;
+  countdownLimitDate?: string;
 }
 
-export default function HomePageComponent({ sections, redirectionUrl, whatsappConfig }: HomePageClientProps) {
+export default function HomePageComponent({ sections, redirectionUrl, whatsappConfig, countdownLimitDate }: HomePageClientProps) {
   const [showScrollHint, setShowScrollHint] = React.useState(true);
 
   if (!sections || sections.length === 0) {
@@ -35,6 +35,7 @@ export default function HomePageComponent({ sections, redirectionUrl, whatsappCo
           sections={sections}
           redirectionUrl={redirectionUrl}
           onViewChange={() => setShowScrollHint(false)}
+          countdownLimitDate={countdownLimitDate}
         />
 
         {showScrollHint && (
@@ -47,8 +48,6 @@ export default function HomePageComponent({ sections, redirectionUrl, whatsappCo
             <ScrollHint />
           </motion.div>
         )}
-
-        <PricingSection />
         <WhatsappButton settings={whatsappConfig} />
       </main>
     </div>

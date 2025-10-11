@@ -46,6 +46,7 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
       layout
       ref={ref}
       initial={{ opacity: 0 }}
+      id="hero"
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       aria-label="Hero section"

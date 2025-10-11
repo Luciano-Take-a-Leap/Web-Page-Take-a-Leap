@@ -24,11 +24,14 @@ import {
   isHowReservationWorksSection,
   isWarrantySection,
   isFAQSection,
+  isPriceSection,
 } from '@/types';
 import { HomePageSection } from '@/types';
+import PricingSection from '@/components/sections/pricing-section';
 
 type ComponentResolverProps = {
   sections: HomePageSection[];
+  countdownLimitDate?: string;
   redirectionUrl: string | null;
   onViewChange?: () => void;
 };
@@ -36,6 +39,7 @@ type ComponentResolverProps = {
 export default function ComponentResolver({
   sections,
   redirectionUrl,
+  countdownLimitDate,
   onViewChange,
 }: ComponentResolverProps) {
   if (!sections || sections.length === 0) {
@@ -95,6 +99,10 @@ export default function ComponentResolver({
 
         if (isFAQSection(section)) {
           return <FAQSection key={sectionKey} data={section} />;
+        }
+
+        if (isPriceSection(section)) {
+          return <PricingSection key={sectionKey} data={section} countownLimitDate={countdownLimitDate} />;
         }
 
         return (
