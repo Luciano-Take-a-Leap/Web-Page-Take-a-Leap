@@ -102,7 +102,7 @@ export default function ComponentResolver({
         }
 
         if (isPriceSection(section)) {
-          return <PricingSection key={sectionKey} data={section} countownLimitDate={countdownLimitDate} />;
+          return <PricingSection key={sectionKey} data={section} countownLimitDate={countdownLimitDate} redirectionUrl={redirectionUrl} />;
         }
 
         return (

@@ -10,8 +10,9 @@ import Countdown from '@/components/countdown';
 interface PricingSectionProps {
   data?: TPriceSection;
   countownLimitDate?: string;
+  redirectionUrl?: string | null;
 }
-const PricingSection: React.FC<PricingSectionProps> = ({ data, countownLimitDate }) => {
+const PricingSection: React.FC<PricingSectionProps> = ({ data, countownLimitDate, redirectionUrl }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
@@ -83,8 +84,14 @@ const PricingSection: React.FC<PricingSectionProps> = ({ data, countownLimitDate
           <RichText value={data?.topText} className='md:max-w-[80%] text-center' />
           {data?.ctaButtonText ?
             <Button
-            variant={'default'}
-            className="mt-8 bg-yellow hover:bg-yellow text-black px-10 rounded-xl font-bold h-10 md:self-center"
+              variant={'default'}
+              className="mt-8 bg-yellow hover:bg-yellow text-black px-10 rounded-xl font-bold h-10 md:self-center"
+              onClick={() => {
+                if (redirectionUrl) {
+                  window.open(redirectionUrl, '_blank');
+                }
+              }
+              }
             >
               {data.ctaButtonText.toUpperCase()}
             </Button> : null
@@ -96,7 +103,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ data, countownLimitDate
           officialPriceText={data.regularPrice}
           officialPriceTitle={data?.regularPriceTitle}
           launchPriceTitle={data?.launchPriceTitle}
-          /> : null}
+        /> : null}
         <motion.div
           className="flex flex-col items-center justify-center mt-8 bg-white text-black rounded-3xl py-16 gap-4 text-center md:w-full"
           initial={{ opacity: 0, y: 20 }}
@@ -115,6 +122,12 @@ const PricingSection: React.FC<PricingSectionProps> = ({ data, countownLimitDate
           {data?.boxCtaText ? <Button
             variant={'default'}
             className="mt-8 bg-orange hover:bg-orange text-black px-10 rounded-xl font-bold h-10 md:self-center"
+            onClick={() => {
+              if (redirectionUrl) {
+                window.open(redirectionUrl, '_blank');
+              }
+            }
+            }
           >
             {data.boxCtaText.toUpperCase()}
           </Button>
