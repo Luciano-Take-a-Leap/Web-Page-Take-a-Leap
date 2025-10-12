@@ -75,6 +75,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ data, countownLimitDate
         initial="initial"
         animate={isInView ? 'animate' : 'initial'}
         variants={variants}
+        id= "pricing-section"
         ref={sectionRef}
         transition={{ duration: 0.5 }}
         className="bg-dark-blue text-white w-screen md:w-[80vw] rounded-3xl md:rounded-[80px] py-10 my-10 px-8 md:px-24 flex flex-col items-center md:items-start justify-center"
