@@ -72,14 +72,14 @@ const PricingSection: React.FC<PricingSectionProps> = ({ data, countownLimitDate
     <section className="w-screen bg-white flex justify-center items-center z-20">
 
       <motion.div
-        initial="initial"
-        animate={isInView ? 'animate' : 'initial'}
-        variants={variants}
-        id= "pricing-section"
-        ref={sectionRef}
-        transition={{ duration: 0.5 }}
-        className="bg-dark-blue text-white w-screen md:w-[80vw] rounded-3xl md:rounded-[80px] py-10 my-10 px-8 md:px-24 flex flex-col items-center md:items-start justify-center"
-      >
+  initial="initial"
+  animate={isInView ? 'animate' : 'initial'}
+  variants={variants}
+  id="pricing-section"
+  ref={sectionRef}
+  transition={{ duration: 0.5 }}
+  className="bg-dark-blue text-white w-screen md:w-[80vw] md:rounded-[80px] py-10 px-8 md:px-24 flex flex-col items-center md:items-start justify-center"
+>
         <Image src={'/assets/images/logo-header.png'} alt="logo" width={120} height={40} />
         <motion.div className="flex items-center justify-center items-center flex-col gap-4">
           <RichText value={data?.topText} className='md:max-w-[80%] text-center' />

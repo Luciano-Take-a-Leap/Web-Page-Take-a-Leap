@@ -10,6 +10,6 @@ export default async function HomePage() {
   const whatsappConfig = await fetchWhatsAppConfig();
 
   return <>
-    <HomePageComponent sections={pageData?.sections || []} redirectionUrl={CTARedirectionButton.redirectionButtonUrl} whatsappConfig={whatsappConfig} countdownLimitDate={headerData?.countdownBanner?.limitDate} />;
+    <HomePageComponent sections={pageData?.sections || []} redirectionUrl={CTARedirectionButton.redirectionButtonUrl} whatsappConfig={whatsappConfig} countdownLimitDate={headerData?.countdownBanner?.limitDate} />
   </>
 }
