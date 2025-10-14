@@ -58,7 +58,7 @@ const CountdownBanner: React.FC<CountdownBannerProps> = ({
         <Countdown value={timeLeft} />
         <Button
           className={twMerge(
-            'rounded-sm px-3 py-2 text-xl transition-colors cursor-pointer font-montserrat bg-white hover:bg-white text-black z-10'
+            'bg-yellow hover:bg-yellow text-black px-10 rounded-xl font-bold h-10 md:self-center z-10'
           )}
           onClick={() => handleLinkClick(data?.href)}
         >

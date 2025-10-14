@@ -84,6 +84,7 @@ export type PriceSection = {
   regularPrice?: string
   launchPriceTitle?: string
   launchPrice?: string
+  boxItemsTitle?: string
   boxItems?: Array<string>
   boxCtaText?: string
 }

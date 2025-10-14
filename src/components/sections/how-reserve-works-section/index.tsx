@@ -91,7 +91,7 @@ const HowReserveWorksSection: React.FC<HowReserveWorksSectionProps> = ({ data, r
         delayStart={0.5}
         delayIncrement={0.05}
       />
-      <Button className="bg-white hover:bg-white text-black h-13 px-10 py-4 rounded-[20px] tracking-[0.2px] font-bold text-sm font-montserrat"
+      <Button className="bg-yellow hover:bg-yellow text-black h-13 px-10 py-4 rounded-[20px] tracking-[0.2px] font-bold text-sm font-montserrat"
         onClick={() => {
           if (redirectionUrl) {
             window.open(redirectionUrl, '_blank');

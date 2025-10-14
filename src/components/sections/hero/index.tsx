@@ -52,7 +52,7 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
       aria-label="Hero section"
       className={`w-full md:h-[calc(100vh-80px)] flex items-center justify-center relative ${className} px-5 md:px-0 py-26 md:py-0 bg-dark-blue overflow-hidden`}
     >
-      <motion.figure
+      {/* <motion.figure
         className="w-26 h-26 rounded-2xl bg-yellow absolute top-0 left-0 hidden md:block transform translate-x-16 translate-y-14"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -62,7 +62,7 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
           rotate: rotateAnimation1,
           scale: scaleAnimation1,
         }}
-      />
+      /> */}
       <motion.figure
         className="w-26 h-26 rounded-2xl bg-orange absolute top-0 right-0 hidden md:block transform -translate-x-16 translate-y-14 z-20"
         initial={{ opacity: 0 }}
@@ -74,7 +74,7 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
           scale: scaleAnimation2,
         }}
       />
-      <motion.figure
+      {/* <motion.figure
         className="w-16 h-16 rounded-xl bg-yellow absolute top-0 right-0 hidden md:block transform -translate-x-16 translate-y-72"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -84,7 +84,7 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
           rotate: rotateAnimation1,
           scale: scaleAnimation3,
         }}
-      />
+      /> */}
       <motion.figure
         className="w-40 h-40 rounded-2xl bg-orange absolute bottom-0 left-0 hidden md:block transform -translate-x-8 translate-y-8"
         initial={{ opacity: 0 }}
@@ -96,7 +96,7 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
           scale: scaleAnimation3,
         }}
       />
-      <motion.figure
+      {/* <motion.figure
         className="w-16 h-16 rounded-2xl bg-yellow absolute bottom-0 right-0 hidden md:block transform -translate-x-48 -translate-y-80"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -106,7 +106,7 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
           rotate: rotateAnimation4,
           scale: scaleAnimation3,
         }}
-      />
+      /> */}
       <motion.figure
         className="w-20 h-20 rounded-2xl bg-orange absolute bottom-0 left-0 md:hidden transform -translate-x-4 -translate-y-100"
         initial={{ opacity: 0 }}
@@ -128,7 +128,7 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
           rotate: rotateAnimation6,
         }}
       />
-      <motion.figure
+      {/* <motion.figure
         className="w-24 h-24 rounded-2xl bg-yellow absolute bottom-0 right-0 md:hidden transform translate-x-22 -translate-y-40"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -137,14 +137,14 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
           y: mobileFallAnimation2,
           rotate: rotateAnimation3,
         }}
-      />
-      <motion.figure
+      /> */}
+      {/* <motion.figure
         className="w-10 h-10 rounded-lg bg-yellow absolute bottom-0 right-0 md:hidden transform -translate-x-8 translate-y-2"
         style={{
           rotate: rotateAnimation5,
           scale: scaleAnimation2,
         }}
-      />
+      /> */}
       <motion.div
         className={twMerge(
           'flex flex-col items-center gap-8 w-full max-w-[940px] 2xl:max-w-[70vw] z-30 mt-26 lg:mt-0'
@@ -164,7 +164,7 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
           </motion.h2>
         </motion.div>
         <motion.h3
-          className="text-center text-[34px] md:text-[42px] text-white tracking-[0.2px] font-lora leading-[40px] font-[900] relative"
+          className="text-center text-[30px] md:text-[45px] leading-[34px] md:leading-[50px] text-white font-bold relative font-montserrat"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
@@ -184,7 +184,7 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
         </motion.div>
         <Button
           size="lg"
-          className="bg-yellow text-dark-blue font-bold hover:bg-yellow/90"
+          className="bg-yellow hover:bg-yellow text-black h-13 px-10 py-4 rounded-[20px] tracking-[0.2px] font-bold text-sm font-montserrat"
           onClick={() => {
             if (redirectionUrl) {
               window.open(redirectionUrl, '_blank');

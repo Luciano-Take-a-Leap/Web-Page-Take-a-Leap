@@ -49,7 +49,7 @@ const Footer = ({ data }: FooterProps) => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.5 }}
-        className="w-full bg-black text-white px-6 md:px-20 lg:px-40 py-8 mt-24 lg:mt-48"
+        className="w-full bg-dark-blue text-white px-6 md:px-20 lg:px-40 py-8 mt-24 lg:mt-48"
       >
         <div className="flex justify-between w-full items-center">
           <Image

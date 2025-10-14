@@ -424,6 +424,7 @@ export const homePageSectionsQuery = groq`
         regularPrice,
         launchPriceTitle,
         launchPrice,
+        boxItemsTitle,
         boxItems,
         boxCtaText
       }
