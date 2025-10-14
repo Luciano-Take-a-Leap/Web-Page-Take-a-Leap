@@ -21,23 +21,23 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
   });
 
   //motion animation hooks for the floating elements
-  const desktopFallAnimation1 = useTransform(scrollYProgress, [0.5, 1], [0, 1000]);
+  // const desktopFallAnimation1 = useTransform(scrollYProgress, [0.5, 1], [0, 1000]);
   const desktopFallAnimation2 = useTransform(scrollYProgress, [0.5, 1], [0, 1500]);
-  const desktopFallAnimation3 = useTransform(scrollYProgress, [0.5, 1], [0, 500]);
+  // const desktopFallAnimation3 = useTransform(scrollYProgress, [0.5, 1], [0, 500]);
   const desktopFallAnimation4 = useTransform(scrollYProgress, [0.5, 1], [0, 150]);
-  const desktopFallAnimation5 = useTransform(scrollYProgress, [0.5, 1], [0, 800]);
+  // const desktopFallAnimation5 = useTransform(scrollYProgress, [0.5, 1], [0, 800]);
   const mobileFallAnimation1 = useTransform(scrollYProgress, [0.4, 1], [0, 500]);
-  const mobileFallAnimation2 = useTransform(scrollYProgress, [0.4, 1], [0, 100]);
+  // const mobileFallAnimation2 = useTransform(scrollYProgress, [0.4, 1], [0, 100]);
   const mobileFallAnimation3 = useTransform(scrollYProgress, [0.4, 1], [0, 900]);
 
   const rotateAnimation1 = useTransform(scrollYProgress, [0.5, 1], [-66, -20]);
   const rotateAnimation2 = useTransform(scrollYProgress, [0.5, 1], [-66, -120]);
   const rotateAnimation3 = useTransform(scrollYProgress, [0.5, 1], [-66, -60]);
-  const rotateAnimation4 = useTransform(scrollYProgress, [0.5, 1], [66, -30]);
-  const rotateAnimation5 = useTransform(scrollYProgress, [0.5, 1], [75, 66]);
+  // const rotateAnimation4 = useTransform(scrollYProgress, [0.5, 1], [66, -30]);
+  // const rotateAnimation5 = useTransform(scrollYProgress, [0.5, 1], [75, 66]);
   const rotateAnimation6 = useTransform(scrollYProgress, [0.5, 1], [35, 40]);
 
-  const scaleAnimation1 = useTransform(scrollYProgress, [0.5, 1], [1, 0.6]);
+  // const scaleAnimation1 = useTransform(scrollYProgress, [0.5, 1], [1, 0.6]);
   const scaleAnimation2 = useTransform(scrollYProgress, [0.5, 1], [1, 2.6]);
   const scaleAnimation3 = useTransform(scrollYProgress, [0.5, 1], [1, 0.7]);
 
