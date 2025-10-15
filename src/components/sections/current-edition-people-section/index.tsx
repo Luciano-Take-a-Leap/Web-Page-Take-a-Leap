@@ -18,14 +18,22 @@ import { generateSanityImageUrl } from '@/utils/generate-sanity-image-url';
 
 interface CurrentEditionPeopleSectionProps {
   data?: TCurrentEditionSection;
+  onViewChange?: () => void;
 }
 
 const CurrentEditionPeopleSection: React.FC<CurrentEditionPeopleSectionProps> = ({
   data,
+  onViewChange,
 }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
   const cardsRef = useRef<HTMLDivElement[]>([]);
+
+    useEffect(() => {
+    if (isInView && onViewChange) {
+      onViewChange();
+    }
+  }, [isInView, onViewChange]);
 
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);

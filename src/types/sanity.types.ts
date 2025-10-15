@@ -34,6 +34,20 @@ export type Footer = {
   }>
 }
 
+export type BeforeAfterSection = {
+  _id: string
+  _type: 'beforeAfterSection'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  leftTitle?: string
+  leftContent?: Array<string>
+  rightTitle?: string
+  rightContent?: Array<string>
+  ctaText?: string
+}
+
 export type WhatsappConfig = {
   _id: string
   _type: 'whatsappConfig'
@@ -493,6 +507,13 @@ export type HomePage = {
         _key: string
         [internalGroqTypeReferenceTo]?: 'priceSection'
       }
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        _key: string
+        [internalGroqTypeReferenceTo]?: 'beforeAfterSection'
+      }
   >
 }
 
@@ -671,6 +692,7 @@ export type SanityAssetSourceData = {
 
 export type AllSanitySchemaTypes =
   | Footer
+  | BeforeAfterSection
   | WhatsappConfig
   | PriceSection
   | RichText

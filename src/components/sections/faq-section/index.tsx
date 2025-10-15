@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'motion/react';
 import { ChevronDownIcon } from 'lucide-react';
 import { cn } from '@/utils/twMerge';
@@ -9,13 +9,20 @@ import RichText from '@/components/layout/rich-text-renderer';
 
 interface FAQSectionProps {
   data?: TFAQSection;
+  onViewChange?: () => void;
 }
 
-export default function FAQSection({ data }: FAQSectionProps) {
+export default function FAQSection({ data, onViewChange }: FAQSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    useEffect(() => {
+      if (isInView && onViewChange) {
+        onViewChange();
+      }
+    }, [isInView, onViewChange]);
 
   const toggle = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));

@@ -4,15 +4,22 @@ import RichText from '@/components/layout/rich-text-renderer';
 import { Button } from '@/components/ui/button';
 import { HowReservationWorksSection as THowReservationWorksSection } from '@/types/sanity.types';
 import { motion, useInView, useScroll, useTransform } from 'motion/react';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface HowReserveWorksSectionProps {
   data?: THowReservationWorksSection;
   redirectionUrl?: string | null;
+  onViewChange?: () => void;
 }
-const HowReserveWorksSection: React.FC<HowReserveWorksSectionProps> = ({ data, redirectionUrl }) => {
+const HowReserveWorksSection: React.FC<HowReserveWorksSectionProps> = ({ data, redirectionUrl, onViewChange }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+
+    useEffect(() => {
+      if (isInView && onViewChange) {
+        onViewChange();
+      }
+    }, [isInView, onViewChange]);
 
   const variants = {
     initial: {

@@ -1,26 +1,40 @@
-'use client';
+"use client";
 
-import RichText from '@/components/layout/rich-text-renderer';
-import { Button } from '@/components/ui/button';
-import useMediaquery from '@/utils/use-get-mediaquery';
-import { ExperiencingSection as TExperiencingSection } from '@/types/sanity.types';
-import { motion, useInView } from 'motion/react';
-import Image from 'next/image';
-import { useRef } from 'react';
-import { twMerge } from 'tailwind-merge';
+import RichText from "@/components/layout/rich-text-renderer";
+import { Button } from "@/components/ui/button";
+import useMediaquery from "@/utils/use-get-mediaquery";
+import { ExperiencingSection as TExperiencingSection } from "@/types/sanity.types";
+import { motion, useInView } from "motion/react";
+import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface ExperiencingSectionProps {
   data?: TExperiencingSection;
   redirectionUrl?: string | null;
+  onViewChange?: () => void;
 }
 
-const ExperiencingSection: React.FC<ExperiencingSectionProps> = ({ data, redirectionUrl }) => {
+const ExperiencingSection: React.FC<ExperiencingSectionProps> = ({
+  data,
+  redirectionUrl,
+  onViewChange,
+}) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const firstCardRef = useRef<HTMLDivElement>(null);
   const { isMobile, isTablet } = useMediaquery();
 
-  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
-  const areCardsInView = useInView(firstCardRef, { once: true, margin: '-75px' });
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const areCardsInView = useInView(firstCardRef, {
+    once: true,
+    margin: "-75px",
+  });
+
+  useEffect(() => {
+    if (isInView && onViewChange) {
+      onViewChange();
+    }
+  }, [isInView, onViewChange]);
 
   const variants = {
     initial: {
@@ -37,7 +51,7 @@ const ExperiencingSection: React.FC<ExperiencingSectionProps> = ({ data, redirec
     <motion.section
       initial="initial"
       id="experiencing-section"
-      animate={isInView ? 'animate' : 'initial'}
+      animate={isInView ? "animate" : "initial"}
       variants={variants}
       ref={sectionRef}
       transition={{
@@ -76,9 +90,9 @@ const ExperiencingSection: React.FC<ExperiencingSectionProps> = ({ data, redirec
           <motion.div
             key={index}
             className={twMerge(
-              'bg-white text-text mx-2 px-10 py-9 rounded-[20px] md:rounded-[40px] shadow-lg w-[330px] h-[390px] flex flex-col justify-start items-start gap-4 font-montserrat col-span-2',
-              index === 0 ? 'lg:col-start-2' : '',
-              index === 2 ? 'bg-dark-blue text-white' : ''
+              "bg-white text-text mx-2 px-10 py-9 rounded-[20px] md:rounded-[40px] shadow-lg w-[330px] h-[390px] flex flex-col justify-start items-start gap-4 font-montserrat col-span-2",
+              index === 0 ? "lg:col-start-2" : "",
+              index === 2 ? "bg-dark-blue text-white" : ""
             )}
             ref={index === 0 ? firstCardRef : null}
             initial={index === 2 ? { scale: 0, rotate: -80 } : { scale: 1 }}
@@ -97,10 +111,12 @@ const ExperiencingSection: React.FC<ExperiencingSectionProps> = ({ data, redirec
             <motion.figure
               className="h-1 bg-orange self-center"
               initial={{ width: 0 }}
-              animate={areCardsInView ? { width: '25%' } : { width: 0 }}
+              animate={areCardsInView ? { width: "25%" } : { width: 0 }}
               transition={{ delay: index * 0.2 + 0.3, duration: 0.5 }}
             />
-            <div className="text-md tracking-[0.1px] text-center">{card?.bottomText}</div>
+            <div className="text-md tracking-[0.1px] text-center">
+              {card?.bottomText}
+            </div>
           </motion.div>
         ))}
       </motion.div>
@@ -112,13 +128,14 @@ const ExperiencingSection: React.FC<ExperiencingSectionProps> = ({ data, redirec
           delayStart={0.7}
         />
       ) : null}
-      <Button className="bg-dark-blue text-white font-montserrat font-bold px-8 py-4 rounded-[20px] h-13 mb-10 w-full md:w-auto"
+      <Button
+        className="bg-dark-blue text-white font-montserrat font-bold px-8 py-4 rounded-[20px] h-13 mb-10 w-full md:w-auto"
         onClick={() => {
           if (redirectionUrl) {
-            window.open(redirectionUrl, '_blank');
+            window.open(redirectionUrl, "_blank");
           }
-        }
-        }>
+        }}
+      >
         {data?.ctaButton}
       </Button>
       <Image

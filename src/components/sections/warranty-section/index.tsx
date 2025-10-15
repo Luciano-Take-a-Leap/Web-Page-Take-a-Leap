@@ -13,16 +13,23 @@ import { WarrantySection as TWarrantySection } from '@/types/sanity.types';
 import { motion, useInView } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface WarrantySectionProps {
   data?: TWarrantySection;
   redirectionUrl?: string | null;
+  onViewChange?: () => void;
 }
 
-const WarrantySection: React.FC<WarrantySectionProps> = ({ data, redirectionUrl }) => {
+const WarrantySection: React.FC<WarrantySectionProps> = ({ data, redirectionUrl, onViewChange }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+
+    useEffect(() => {
+      if (isInView && onViewChange) {
+        onViewChange();
+      }
+    }, [isInView, onViewChange]);
 
   const variants = {
     initial: {

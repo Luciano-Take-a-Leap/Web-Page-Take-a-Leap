@@ -1,4 +1,4 @@
-import { groq } from 'next-sanity';
+import { groq } from "next-sanity";
 
 export const HEADER_QUERY = groq`
   *[_type == "header"][0] {
@@ -427,6 +427,14 @@ export const homePageSectionsQuery = groq`
         boxItemsTitle,
         boxItems,
         boxCtaText
+      },      
+      _type == "beforeAfterSection" => {
+        title,
+        leftTitle,
+        leftContent,
+        rightTitle,
+        rightContent,
+        ctaText
       }
     }
   }

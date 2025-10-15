@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'motion/react';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import Image from 'next/image';
 import { AboutMeSection as TAboutMeSection } from '@/types/sanity.types';
@@ -10,11 +10,18 @@ import { generateSanityImageUrl } from '@/utils/generate-sanity-image-url';
 
 interface AboutMeSectionProps {
   data?: TAboutMeSection;
+  onViewChange?: () => void;
 }
 
-const AboutMeSection: React.FC<AboutMeSectionProps> = ({ data }) => {
+const AboutMeSection: React.FC<AboutMeSectionProps> = ({ data, onViewChange }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+  
+  useEffect(() => {
+    if (isInView && onViewChange) {
+      onViewChange();
+    }
+  }, [isInView, onViewChange]);
 
   const variants = {
     initial: {
