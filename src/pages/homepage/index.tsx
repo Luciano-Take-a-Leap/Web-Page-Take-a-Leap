@@ -6,7 +6,6 @@ import WhatsappButton from "@/components/whatsapp-button";
 import ScrollHint from "@/components/layout/scroll-hint";
 import ComponentResolver from "@/components/layout/homepage-component-resolver";
 import { HomePageSection } from "@/types";
-import PriceComparationSection from "@/components/sections/price-comparation-section";
 
 interface HomePageClientProps {
   sections: Array<HomePageSection>;
