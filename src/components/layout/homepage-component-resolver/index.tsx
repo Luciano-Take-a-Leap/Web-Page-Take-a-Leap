@@ -26,10 +26,12 @@ import {
   isFAQSection,
   isPriceSection,
   isBeforeAfterSection,
+  isPriceComparisonSection,
 } from "@/types";
 import { HomePageSection } from "@/types";
 import PricingSection from "@/components/sections/pricing-section";
 import BeforeAfterSection from "@/components/sections/before-after-section";
+import PriceComparationSection from "@/components/sections/price-comparation-section";
 
 type ComponentResolverProps = {
   sections: HomePageSection[];
@@ -47,7 +49,6 @@ export default function ComponentResolver({
   if (!sections || sections.length === 0) {
     return null;
   }
-
 
   return (
     <>
@@ -178,7 +179,16 @@ export default function ComponentResolver({
           );
         }
 
-
+        if (isPriceComparisonSection(section)) {
+          return (
+            <PriceComparationSection
+              key={sectionKey}
+              data={section}
+              redirectionUrl={redirectionUrl}
+              onViewChange={onViewChange}
+            />
+          );
+        }
 
         return (
           <SectionFallback

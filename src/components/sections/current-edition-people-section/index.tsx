@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Carousel,
@@ -7,29 +7,28 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '@/components/ui/carousel';
-import { AnimatePresence, motion, useInView } from 'motion/react';
-import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
-import { ChevronDownIcon } from 'lucide-react';
-import { CurrentEditionPeopleSection as TCurrentEditionSection } from '@/types/sanity.types';
-import RichText from '@/components/layout/rich-text-renderer';
-import { generateSanityImageUrl } from '@/utils/generate-sanity-image-url';
+} from "@/components/ui/carousel";
+import { AnimatePresence, motion, useInView } from "motion/react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { ChevronDownIcon } from "lucide-react";
+import { CurrentEditionPeopleSection as TCurrentEditionSection } from "@/types/sanity.types";
+import RichText from "@/components/layout/rich-text-renderer";
+import { generateSanityImageUrl } from "@/utils/generate-sanity-image-url";
 
 interface CurrentEditionPeopleSectionProps {
   data?: TCurrentEditionSection;
   onViewChange?: () => void;
 }
 
-const CurrentEditionPeopleSection: React.FC<CurrentEditionPeopleSectionProps> = ({
-  data,
-  onViewChange,
-}) => {
+const CurrentEditionPeopleSection: React.FC<
+  CurrentEditionPeopleSectionProps
+> = ({ data, onViewChange }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
-    useEffect(() => {
+  useEffect(() => {
     if (isInView && onViewChange) {
       onViewChange();
     }
@@ -38,7 +37,9 @@ const CurrentEditionPeopleSection: React.FC<CurrentEditionPeopleSectionProps> = 
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
-  const [cardExpandedIndex, setCardExpandedIndex] = useState<number | null>(null);
+  const [cardExpandedIndex, setCardExpandedIndex] = useState<number | null>(
+    null
+  );
 
   useEffect(() => {
     if (!api) {
@@ -46,7 +47,7 @@ const CurrentEditionPeopleSection: React.FC<CurrentEditionPeopleSectionProps> = 
     }
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
-    api.on('select', () => {
+    api.on("select", () => {
       setCurrent(api.selectedScrollSnap() + 1);
     });
   }, [api]);
@@ -66,7 +67,7 @@ const CurrentEditionPeopleSection: React.FC<CurrentEditionPeopleSectionProps> = 
     <motion.section
       id="current-edition-people"
       initial="initial"
-      animate={isInView ? 'animate' : 'initial'}
+      animate={isInView ? "animate" : "initial"}
       variants={variants}
       ref={sectionRef}
       transition={{
@@ -103,25 +104,11 @@ const CurrentEditionPeopleSection: React.FC<CurrentEditionPeopleSectionProps> = 
         <motion.div className="flex flex-col gap-6 px-4 py-10 w-full max-w-full md:max-w-[70%]">
           {isInView
             ? data?.cards?.map((card, index) => (
-              <motion.div
-                key={index}
-                ref={(el) => {
-                  if (el) cardsRef.current[index] = el;
-                }}
-                onClick={() => {
-                  if (cardExpandedIndex === index) {
-                    setCardExpandedIndex(null);
-                  } else {
-                    setCardExpandedIndex(index);
-                  }
-                }}
-                className="bg-yellow rounded-3xl text-black font-montserrat flex flex-col items-center justify-center text-center py-8 md:py-12 px-8 md:px-16 relative z-0 w-full"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: index * 0.2, duration: 0.3 }}
-              >
-                <motion.button
-                  className="absolute top-4 right-4 text-black cursor-pointer"
+                <motion.div
+                  key={index}
+                  ref={(el) => {
+                    if (el) cardsRef.current[index] = el;
+                  }}
                   onClick={() => {
                     if (cardExpandedIndex === index) {
                       setCardExpandedIndex(null);
@@ -129,41 +116,55 @@ const CurrentEditionPeopleSection: React.FC<CurrentEditionPeopleSectionProps> = 
                       setCardExpandedIndex(index);
                     }
                   }}
-                  whileHover={{ scale: 1.15 }}
-                  whileTap={{ scale: 0.95 }}
-                  animate={{ rotate: cardExpandedIndex === index ? 180 : 0 }}
+                  className="bg-yellow rounded-3xl text-black font-montserrat flex flex-col items-center justify-center text-center py-8 md:py-12 px-8 md:px-16 relative z-0 w-full"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: index * 0.2, duration: 0.3 }}
                 >
-                  <ChevronDownIcon className="mx-auto" size={30} />
-                </motion.button>
-                <p className="absolute font-bold text-sm md:text-md top-2">
-                  {card.name}
-                </p>
-                <h3 className="font-[900] italic text-[40px] w-full text-center md:self-start mb-8">
-                  {`Fase ${(index + 1).toString().padStart(2, '0')}`}
-                </h3>
-                <div className="text-lg text-black flex flex-col w-full tracking-[0.001px] leading-6">
-                  <h4 className="font-bold font-lora text-2xl md:text-[30px] leading-tight">
-                    {card.subtitle}
-                  </h4>
+                  <motion.button
+                    className="absolute top-4 right-4 text-black cursor-pointer"
+                    onClick={() => {
+                      if (cardExpandedIndex === index) {
+                        setCardExpandedIndex(null);
+                      } else {
+                        setCardExpandedIndex(index);
+                      }
+                    }}
+                    whileHover={{ scale: 1.15 }}
+                    whileTap={{ scale: 0.95 }}
+                    animate={{ rotate: cardExpandedIndex === index ? 180 : 0 }}
+                  >
+                    <ChevronDownIcon className="mx-auto" size={30} />
+                  </motion.button>
+                  <p className="absolute font-bold text-sm md:text-md top-2">
+                    {card.name}
+                  </p>
+                  <h3 className="font-[900] italic text-[40px] w-full text-center md:self-start mb-8">
+                    {`Fase ${(index + 1).toString().padStart(2, "0")}`}
+                  </h3>
+                  <div className="text-lg text-black flex flex-col w-full tracking-[0.001px] leading-6">
+                    <h4 className="font-bold font-lora text-2xl md:text-[30px] leading-tight">
+                      {card.subtitle}
+                    </h4>
 
-                  <AnimatePresence>
-                    {cardExpandedIndex === index && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: 'easeInOut' }}
-                        className="overflow-hidden"
-                      >
-                        <div className="flex flex-col gap-4 pt-4">
-                          <RichText value={card.content} smallFont />
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </motion.div>
-            ))
+                    <AnimatePresence>
+                      {cardExpandedIndex === index && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.4, ease: "easeInOut" }}
+                          className="overflow-hidden"
+                        >
+                          <div className="flex flex-col gap-4 pt-4">
+                            <RichText value={card.content} smallFont />
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </motion.div>
+              ))
             : null}
           <motion.h5
             className="w-full text-center font-bold mb-10 md:px-0 font-montserrat text-md md:text-xl tracking-[0.2px]"
@@ -231,32 +232,37 @@ const CurrentEditionPeopleSection: React.FC<CurrentEditionPeopleSectionProps> = 
         <>
           {data?.bonuses
             ? data.bonuses?.map((bonus) => {
-              return (
-                <motion.div
-                  key={bonus._key}
-                  className="my-10 w-full max-w-[1200px] flex flex-col items-center justify-center mx-auto shadow-2xl rounded-4xl py-4 px-2 gap-6"
-                >
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center items-start w-full">
-                    <div className="flex flex-col justify-start items-start p-6 w-full">
-                      <h6 className="font-extrabold font-lora text-4xl mb-6">
-                        {bonus.title}
-                      </h6>
-                      <RichText value={bonus.description} className="font-[500]" />
+                return (
+                  <motion.div
+                    key={bonus._key}
+                    className="my-10 w-full max-w-[1200px] flex flex-col items-center justify-center mx-auto shadow-2xl rounded-4xl py-4 px-2 gap-6"
+                  >
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center items-start w-full">
+                      <div className="flex flex-col justify-start items-start p-6 w-full">
+                        <h6 className="font-extrabold font-lora text-4xl mb-6">
+                          {bonus.title}
+                        </h6>
+                        <RichText
+                          value={bonus.description}
+                          className="font-[500]"
+                        />
+                      </div>
+                      <div className="flex flex-col justify-start items-center p-6 w-full relative h-64 md:h-full">
+                        <Image
+                          src={generateSanityImageUrl(bonus.image)}
+                          alt={bonus.title || ""}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
                     </div>
-                    <div className="flex flex-col justify-start items-center p-6 w-full relative h-64 md:h-full">
-                      <Image
-                        src={generateSanityImageUrl(bonus.image)}
-                        alt={bonus.title || ''}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </div>
-                  <figure className="h-[2px] w-[85%] bg-orange block" />
-                  <p className="font-archivo-black-400 text-2xl">{bonus.cost}</p>
-                </motion.div>
-              );
-            })
+                    <figure className="h-[2px] w-[85%] bg-orange block" />
+                    <p className="font-archivo-black-400 text-2xl">
+                      {bonus.cost}
+                    </p>
+                  </motion.div>
+                );
+              })
             : null}
         </>
 
@@ -283,13 +289,15 @@ const CurrentEditionPeopleSection: React.FC<CurrentEditionPeopleSectionProps> = 
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center items-start w-full">
               <div className="flex flex-col justify-start items-start p-6 w-full">
-                <h6 className="font-extrabold font-lora text-4xl mb-6">{bonus.title}</h6>
+                <h6 className="font-extrabold font-lora text-4xl mb-6">
+                  {bonus.title}
+                </h6>
                 <RichText value={bonus.description} className="font-[500]" />
               </div>
               <div className="flex flex-col justify-start items-center p-6 w-full relative h-64 md:h-full">
                 <Image
                   src={generateSanityImageUrl(bonus.image)}
-                  alt={bonus.title || ''}
+                  alt={bonus.title || ""}
                   fill
                   className="object-contain"
                 />
@@ -356,8 +364,9 @@ const CurrentEditionPeopleSection: React.FC<CurrentEditionPeopleSectionProps> = 
             {Array.from({ length: count }).map((_, idx) => (
               <span
                 key={idx}
-                className={`w-3 h-3 rounded-full transition-all duration-200 ${current === idx + 1 ? 'bg-white scale-125' : 'bg-white/40'
-                  }`}
+                className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                  current === idx + 1 ? "bg-white scale-125" : "bg-white/40"
+                }`}
               />
             ))}
           </div>

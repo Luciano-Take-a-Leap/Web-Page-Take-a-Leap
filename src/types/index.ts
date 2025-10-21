@@ -11,6 +11,7 @@ import type {
   FAQSection,
   PriceSection,
   BeforeAfterSection,
+  PriceComparisonSection,
 } from "@/types/sanity.types";
 
 type BaseSectionType = {
@@ -78,7 +79,12 @@ export type ComponentPropsMap = {
     data: PriceSection & BaseSectionType & { _type: "priceSection" };
   };
   beforeAfterSection: {
-    data: BaseSectionType & { _type: "beforeAfterSection" };
+    data: BeforeAfterSection &
+      BaseSectionType & { _type: "beforeAfterSection" };
+  };
+  priceComparisonSection: {
+    data: PriceComparisonSection &
+      BaseSectionType & { _type: "priceComparisonSection" };
   };
 };
 
@@ -158,6 +164,14 @@ export function isPriceSection(
 
 export function isBeforeAfterSection(
   section: HomePageSection
-): section is BeforeAfterSection & BaseSectionType & { _type: "beforeAfterSection" } {
+): section is BeforeAfterSection &
+  BaseSectionType & { _type: "beforeAfterSection" } {
   return section._type === "beforeAfterSection";
+}
+
+export function isPriceComparisonSection(
+  section: PriceComparisonSection
+): section is PriceComparisonSection &
+  BaseSectionType & { _type: "priceComparisonSection" } {
+  return section._type === "priceComparisonSection";
 }

@@ -1,11 +1,12 @@
-'use client';
+"use client";
 
-import { motion } from 'motion/react';
-import React from 'react';
-import WhatsappButton from '@/components/whatsapp-button';
-import ScrollHint from '@/components/layout/scroll-hint';
-import ComponentResolver from '@/components/layout/homepage-component-resolver';
-import { HomePageSection } from '@/types';
+import { motion } from "motion/react";
+import React from "react";
+import WhatsappButton from "@/components/whatsapp-button";
+import ScrollHint from "@/components/layout/scroll-hint";
+import ComponentResolver from "@/components/layout/homepage-component-resolver";
+import { HomePageSection } from "@/types";
+import PriceComparationSection from "@/components/sections/price-comparation-section";
 
 interface HomePageClientProps {
   sections: Array<HomePageSection>;
@@ -17,7 +18,12 @@ interface HomePageClientProps {
   countdownLimitDate?: string;
 }
 
-export default function HomePageComponent({ sections, redirectionUrl, whatsappConfig, countdownLimitDate }: HomePageClientProps) {
+export default function HomePageComponent({
+  sections,
+  redirectionUrl,
+  whatsappConfig,
+  countdownLimitDate,
+}: HomePageClientProps) {
   const [showScrollHint, setShowScrollHint] = React.useState(true);
 
   if (!sections || sections.length === 0) {

@@ -435,6 +435,18 @@ export const homePageSectionsQuery = groq`
         rightTitle,
         rightContent,
         ctaText
+      },
+      _type == "priceComparisonSection" => {
+        title,
+        subtitle,
+        tableTitle,
+        tableDescription,
+        comparisonItems,
+        regularPrice,
+        price,
+        ctaButton,
+        firstColTitle,
+        secondColTitle
       }
     }
   }

@@ -34,6 +34,91 @@ export type Footer = {
   }>
 }
 
+export type PriceComparisonSection = {
+  _id: string
+  _type: 'priceComparisonSection'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  subtitle?: string
+  tableTitle?: string
+  tableDescription?: Array<{
+    children?: Array<{
+      marks?: Array<string>
+      text?: string
+      _type: 'span'
+      _key: string
+    }>
+    style?: 'normal'
+    listItem?: 'bullet' | 'number'
+    markDefs?: Array<{
+      href?: string
+      _type: 'link'
+      _key: string
+    }>
+    level?: number
+    _type: 'block'
+    _key: string
+  }>
+  firstColTitle?: {
+    text?: string
+    image?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+  }
+  secondColTitle?: {
+    text?: string
+    image?: {
+      asset?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+      }
+      media?: unknown
+      hotspot?: SanityImageHotspot
+      crop?: SanityImageCrop
+      _type: 'image'
+    }
+  }
+  comparisonItems?: Array<{
+    title?: Array<{
+      children?: Array<{
+        marks?: Array<string>
+        text?: string
+        _type: 'span'
+        _key: string
+      }>
+      style?: 'normal'
+      listItem?: 'bullet' | 'number'
+      markDefs?: Array<{
+        href?: string
+        _type: 'link'
+        _key: string
+      }>
+      level?: number
+      _type: 'block'
+      _key: string
+    }>
+    withoutTakeALeap?: string
+    withTakeALeap?: string
+    _key: string
+  }>
+  regularPrice?: string
+  price?: string
+  ctaButton?: string
+}
+
 export type BeforeAfterSection = {
   _id: string
   _type: 'beforeAfterSection'
@@ -514,6 +599,13 @@ export type HomePage = {
         _key: string
         [internalGroqTypeReferenceTo]?: 'beforeAfterSection'
       }
+    | {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        _key: string
+        [internalGroqTypeReferenceTo]?: 'priceComparisonSection'
+      }
   >
 }
 
@@ -692,6 +784,7 @@ export type SanityAssetSourceData = {
 
 export type AllSanitySchemaTypes =
   | Footer
+  | PriceComparisonSection
   | BeforeAfterSection
   | WhatsappConfig
   | PriceSection
