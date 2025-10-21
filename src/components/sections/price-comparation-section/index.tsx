@@ -2,7 +2,6 @@ import RichText from "@/components/layout/rich-text-renderer";
 import { Button } from "@/components/ui/button";
 import { PriceComparisonSection as TPriceComparisonSection } from "@/types/sanity.types";
 import { generateSanityImageUrl } from "@/utils/generate-sanity-image-url";
-import { cn } from "@/utils/twMerge";
 import { motion, useInView } from "motion/react";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
