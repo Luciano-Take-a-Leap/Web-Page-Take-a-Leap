@@ -73,7 +73,7 @@ const CurrentEditionPeopleSection: React.FC<
       transition={{
         duration: 0.5,
       }}
-      className="w-full relative flex flex-col items-center justify-center overflow-x-hidden"
+      className="w-full relative flex flex-col items-center justify-center overflow-x-hidden bg-[#FAF5E8]"
     >
       <div className="bg-[#222] w-full flex flex-col items-center justify-center text-white mb-16">
         <motion.h2
@@ -177,7 +177,7 @@ const CurrentEditionPeopleSection: React.FC<
         </motion.div>
       </div>
       <motion.h4
-        className="text-center font-bold mb-10 px-4 md:px-0 font-montserrat text-xl md:text-4xl w-full max-w-full md:max-w-[70%] tracking-[0.2px]"
+        className="text-center font-bold mb-10 px-4 md:px-0 font-montserrat text-2xl md:text-4xl w-full max-w-full md:max-w-[70%] tracking-[0.2px]"
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.7, duration: 0.3 }}
@@ -188,7 +188,7 @@ const CurrentEditionPeopleSection: React.FC<
         {data?.processGuidanceCards?.map((action, index) => (
           <motion.div
             key={index}
-            className="basis-1/3 max-w-[300px] w-full font-work-sans text-sm flex flex-col justify-start items-center gap-4 shadow-2xl rounded-4xl p-6"
+            className="basis-1/3 max-w-[300px] w-full h-full font-work-sans text-sm flex flex-col justify-start items-center gap-4 shadow-2xl rounded-4xl p-6 bg-white"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.8 + index * 0.2, duration: 0.5 }}
@@ -212,9 +212,9 @@ const CurrentEditionPeopleSection: React.FC<
           </motion.div>
         ))}
       </motion.div>
-      <motion.div className="flex flex-col gap-6 px-4 py-10 w-full max-w-full lg:max-w-[70%]">
+      <motion.div className="flex flex-col gap-6 px-4 py-10 w-full max-w-full lg:max-w-[70%] mt-16 lg:mt-24">
         <motion.h4
-          className="text-center font-bold mb-4 px-4 md:px-0 font-montserrat text-xl md:text-4xl w-full max-w-full tracking-[0.2px]"
+          className="text-center font-bold mb-4 px-4 md:px-0 font-montserrat text-2xl md:text-4xl w-full max-w-full tracking-[0.2px]"
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.3 }}
@@ -235,7 +235,7 @@ const CurrentEditionPeopleSection: React.FC<
                 return (
                   <motion.div
                     key={bonus._key}
-                    className="my-10 w-full max-w-[1200px] flex flex-col items-center justify-center mx-auto shadow-2xl rounded-4xl py-4 px-2 gap-6"
+                    className="my-10 w-full max-w-[1200px] flex flex-col items-center justify-center mx-auto shadow-2xl rounded-4xl py-4 px-2 gap-6 bg-white"
                   >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center items-start w-full">
                       <div className="flex flex-col justify-start items-start p-6 w-full">
@@ -267,7 +267,7 @@ const CurrentEditionPeopleSection: React.FC<
         </>
 
         <motion.h4
-          className="text-center font-bold mb-4 px-4 md:px-0 font-montserrat text-xl md:text-4xl w-full max-w-full tracking-[0.2px]"
+          className="text-center font-bold mb-4 px-4 md:px-0 font-montserrat text-2xl md:text-4xl w-full max-w-full tracking-[0.2px] mt-16 lg:mt-24"
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.3 }}
@@ -285,7 +285,7 @@ const CurrentEditionPeopleSection: React.FC<
         {data?.extraBonuses?.map((bonus, index) => (
           <motion.div
             key={index}
-            className="my-10 w-full max-w-[1200px] flex flex-col items-center justify-center mx-auto shadow-2xl rounded-4xl py-4 px-2 gap-6"
+            className="my-10 w-full max-w-[1200px] flex flex-col items-center justify-center mx-auto shadow-2xl rounded-4xl py-4 px-2 gap-6 bg-white"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center items-start w-full">
               <div className="flex flex-col justify-start items-start p-6 w-full">
@@ -309,7 +309,7 @@ const CurrentEditionPeopleSection: React.FC<
         ))}
       </motion.div>
       <motion.div
-        className="relative bg-blue text-white px-4 md:px-10 py-10 md:py-6 w-full flex flex-col justify-start items-center gap-14 font-montserrat overflow-hidden"
+        className="relative bg-blue text-white px-4 md:px-10 py-10 md:py-24 w-full flex flex-col justify-start items-center gap-14 font-montserrat overflow-hidden"
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.3 }}
@@ -322,7 +322,7 @@ const CurrentEditionPeopleSection: React.FC<
             </h3>
             <span className="text-3xl md:text-4xl">👇</span>
           </div>
-          <div className="text-sm tracking-[0.1px] flex flex-col justify-between gap-8 mt-2 w-full max-w-full md:max-w-[40%]">
+          <div className="text-sm tracking-[0.1px] flex flex-col justify-between gap-8 mt-2 w-full max-w-full md:max-w-[60%]">
             <b className="text-2xl md:text-3xl">{data?.warningSubtitle}</b>
             <RichText value={data?.warningText} />
           </div>

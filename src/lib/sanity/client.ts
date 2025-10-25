@@ -8,11 +8,11 @@ export const sanityClient = createClient({
   projectId,
   dataset,
   apiVersion,
-  perspective: "drafts",
+  perspective: "published",
   useCdn: false,
   token: process.env.SANITY_API_TOKEN,
   stega: {
-    enabled: false,
+    enabled: true,
     studioUrl: process.env.NEXT_PUBLIC_STUDIO_URL || 'http://localhost:3333' ,
   },
 });

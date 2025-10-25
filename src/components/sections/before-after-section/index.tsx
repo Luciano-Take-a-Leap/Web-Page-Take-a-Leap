@@ -51,7 +51,7 @@ const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({
       variants={variants}
       id="conversation-section"
       transition={{ duration: 0.5 }}
-      className="pt-12 md:pt-6 md:mt-6 pb-20 md relative z-30 bg-[#EBE5D5]"
+      className="pt-12 md:pt-6 md:mt-6 pb-20 md relative z-30 bg-[#FAF5E8]"
     >
       <motion.div className="w-full md:w-[80%]px-5 md:px-10">
         <motion.div

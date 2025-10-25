@@ -16,7 +16,7 @@ const PriceComparation: React.FC<PriceComparationProps> = ({ officialPriceText, 
                     {officialPriceText}
                 </p>
             </span>
-            <span className="text-md lg:text-2xl font-bold px-6 bg-[#EBE5D5] rounded-b-xl lg:rounded-l-none lg:rounded-r-xl py-4 flex flex-col justify-center">
+            <span className="text-md lg:text-2xl font-bold px-6 bg-[#FAF5E8] rounded-b-xl lg:rounded-l-none lg:rounded-r-xl py-4 flex flex-col justify-center">
                 <p>
                     {launchPriceTitle ? launchPriceTitle : 'Precio de Lanzamiento:'}
                 </p>

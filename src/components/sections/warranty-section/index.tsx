@@ -141,7 +141,7 @@ const WarrantySection: React.FC<WarrantySectionProps> = ({ data, redirectionUrl,
         }
         }
       ></Button>
-      <motion.figure
+      {/* <motion.figure
         className="w-18 h-18 rounded-2xl bg-yellow absolute top-0 right-0 hidden md:block transform -translate-x-20 translate-y-12"
         initial={{
           y: 0,
@@ -160,7 +160,7 @@ const WarrantySection: React.FC<WarrantySectionProps> = ({ data, redirectionUrl,
           repeatType: 'loop',
           ease: 'linear',
         }}
-      />
+      /> */}
     </motion.section>
   );
 };

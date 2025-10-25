@@ -80,7 +80,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ data, countownLimitDate
         className="bg-dark-blue text-white w-screen md:w-[80vw] md:rounded-[80px] py-10 px-8 md:px-24 flex flex-col items-center justify-center"
       >
         <Image src={'/assets/images/logo-header.png'} alt="logo" width={120} height={40} />
-        <motion.div className="flex items-center justify-center items-center flex-col gap-4 mt-8">
+        <motion.div className="flex items-center justify-center flex-col gap-4 mt-8">
           <RichText value={data?.topText} className='md:max-w-[80%] text-center' />
           {data?.ctaButtonText ?
             <Button
@@ -104,18 +104,18 @@ const PricingSection: React.FC<PricingSectionProps> = ({ data, countownLimitDate
           officialPriceTitle={data?.regularPriceTitle}
           launchPriceTitle={data?.launchPriceTitle}
         /> : null}
+          {data?.boxItemsTitle ? <h3 className="text-3xl md:text-4xl font-bold px-10 mb-8 mt-26 lg:max-w-[60%] text-center">{data.boxItemsTitle}</h3> : null}
         <motion.div
-          className="flex flex-col items-center justify-center mt-8 bg-white text-black rounded-3xl py-16 gap-4 text-center md:w-[80%]"
+          className="flex flex-col items-center justify-center mt-8 bg-[#FAF5E8] text-black rounded-3xl py-16 gap-4 text-center md:w-[80%] lg:mt-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
         >
-          {data?.boxItemsTitle ? <h3 className="text-3xl md:text-4xl font-bold px-10 mb-8">{data.boxItemsTitle}</h3> : null}
           {data?.boxItems && data.boxItems.length > 0 ? (
             <div className="flex flex-col gap-4 px-4d md:px-6">
               {data.boxItems.map((item, index) => (
                 <div key={index} className="flex flex-col items-center md:max-w-3xl lg:max-w-5xl">
-                  <p className="text-black text-xl font-montserrat font-semibold">{item}</p>
+                  <p className="text-black text-xl font-montserrat">{item}</p>
                 </div>
               ))}
             </div>

@@ -147,7 +147,7 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
       /> */}
       <motion.div
         className={twMerge(
-          'flex flex-col items-center gap-8 w-full max-w-[940px] 2xl:max-w-[70vw] z-30 mt-26 lg:mt-0'
+          'flex flex-col items-center gap-8 lg:gap-12 w-full max-w-[940px] 2xl:max-w-[70vw] z-30 mt-26 lg:mt-0'
         )}
       >
         <motion.div
