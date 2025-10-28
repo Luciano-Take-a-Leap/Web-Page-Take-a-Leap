@@ -37,7 +37,7 @@ const SuccessCaseSection: React.FC<SuccessCaseSectionProps> = ({
         let testimonialIndex = 0;
         return data?.cases?.map((item, index) => {
           if (item._type === "video") {
-            return <VimeoPlayer url="https://vimeo.com/76979871" key={index} />;
+            return item.url ? <VimeoPlayer url={item.url} key={index} /> : null;
           } else {
             const imagePosition = testimonialIndex % 2 === 0 ? "left" : "right";
             testimonialIndex++;
