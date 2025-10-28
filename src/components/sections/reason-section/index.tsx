@@ -60,9 +60,9 @@ const ReasonSection: React.FC<ReasonSectionProps> = ({
         contain: "layout",
       }}
     >
-      <div className="w-full md:w-[80%] z-10 relative">
+      <div className="w-full md:w-[80%] z-10 relative overflow-hidden">
         <motion.h2
-          className="text-2xl md:text-[40px] mb-4 font-lora font-bold tracking-[0.2px] w-full lg:w-[85%]"
+          className="text-2xl md:text-[40px] pb-10 lg:mb-4 font-lora font-bold tracking-[0.2px] w-full lg:w-[85%]"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.7 }}
@@ -152,32 +152,6 @@ const ReasonSection: React.FC<ReasonSectionProps> = ({
           loading="lazy"
         /> */}
       </div>
-      <Image
-        src="/assets/images/UI-elements/curl-1.png"
-        alt=""
-        width={390}
-        height={180}
-        className="absolute top-0 right-0 transform translate-x-[10%] xl:translate-x-[15%] translate-y-[35%] hidden lg:block"
-        style={{
-          filter:
-            "brightness(0) saturate(100%) invert(47%) sepia(98%) saturate(2618%) hue-rotate(222deg) brightness(91%) contrast(97%)",
-        }}
-        priority={false}
-        loading="lazy"
-      />
-      <Image
-        src="/assets/images/UI-elements/arrow-2.png"
-        alt=""
-        width={390}
-        height={180}
-        className="absolute bottom-0 left-0 transform translate-x-[5%] translate-y-[10%] hidden lg:block scale-75 rotate-60"
-        style={{
-          filter:
-            "brightness(0) saturate(100%) invert(47%) sepia(98%) saturate(2618%) hue-rotate(222deg) brightness(91%) contrast(97%)",
-        }}
-        priority={false}
-        loading="lazy"
-      />
     </motion.section>
   );
 };
