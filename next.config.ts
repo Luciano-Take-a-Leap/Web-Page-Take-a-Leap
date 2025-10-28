@@ -2,12 +2,12 @@ import { NextConfig } from 'next';
 
 const cspHeader = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://player.vimeo.com https://f.vimeocdn.com https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com;
-  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-  img-src 'self' blob: data: https://cdn.sanity.io https://i.vimeocdn.com https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com;
-  font-src 'self' https://fonts.gstatic.com;
-  connect-src 'self' https://studio.takingleap.com https://*.sanity.io https://*.sanity.network https://player.vimeo.com https://fresnel.vimeocdn.com https://www.google-analytics.com https://ssl.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://www.googletagmanager.com;
-  frame-src 'self' https://player.vimeo.com;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' https://player.vimeo.com https://f.vimeocdn.com https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://tagmanager.google.com https://*.googletagmanager.com;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://tagmanager.google.com;
+  img-src 'self' blob: data: https://cdn.sanity.io https://i.vimeocdn.com https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com;
+  font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com;
+  connect-src 'self' https://studio.takingleap.com https://*.sanity.io https://*.sanity.network https://player.vimeo.com https://fresnel.vimeocdn.com https://www.google-analytics.com https://ssl.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://www.googletagmanager.com https://*.google-analytics.com https://region1.google-analytics.com https://region1.analytics.google.com;
+  frame-src 'self' https://player.vimeo.com https://td.doubleclick.net;
   media-src 'self' https://vod-progressive.akamaized.net https://player.vimeo.com blob:;
   object-src 'none';
   base-uri 'self';
