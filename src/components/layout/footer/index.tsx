@@ -74,7 +74,7 @@ const Footer = ({ data }: FooterProps) => {
             ))}
           </div>
         </div>
-        <div className="flex flex-col-reverse md:flex-row justify-between w-full items-center mt-10 md:mt-24">
+        <div className="flex flex-col-reverse md:flex-row justify-between w-full items-center mt-10">
           {data?.copyrightText && (
             <p className="text-center text-sm md:text-base font-medium mt-4 md:mt-0">
               {data?.copyrightText}
