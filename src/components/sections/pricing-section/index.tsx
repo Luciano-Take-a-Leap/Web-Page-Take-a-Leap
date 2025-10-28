@@ -77,7 +77,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ data, countownLimitDate
         id="pricing-section"
         ref={sectionRef}
         transition={{ duration: 0.5 }}
-        className="bg-dark-blue text-white w-screen md:w-[80vw] md:rounded-[80px] py-10 px-8 md:px-24 flex flex-col items-center justify-center"
+        className="bg-dark-blue text-white w-screen py-10 lg:py-40 px-8 md:px-24 flex flex-col items-center justify-center"
       >
         <Image src={'/assets/images/logo-header.png'} alt="logo" width={120} height={40} />
         <motion.div className="flex items-center justify-center flex-col gap-4 mt-8">

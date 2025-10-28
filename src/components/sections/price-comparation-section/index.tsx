@@ -82,9 +82,9 @@ const PriceComparationSection: React.FC<PriceComparationSectionProps> = ({
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-white flex justify-center items-center z-20 overflow-hidden relative"
+      className="w-full bg-[#FAF5E8] flex justify-center items-center z-20 overflow-hidden relative py-16"
     >
-       <Image
+       {/* <Image
         src="/assets/images/UI-elements/arrow-1.png"
         alt=""
         style={{
@@ -94,8 +94,8 @@ const PriceComparationSection: React.FC<PriceComparationSectionProps> = ({
         width={250}
         height={450}
         className="absolute top-0 left-0 transform translate-x-[10%] translate-y-[450%] hidden lg:block z-0"
-      />
-       <Image
+      /> */}
+       {/* <Image
         src="/assets/images/UI-elements/curl-1.png"
         alt=""
         style={{
@@ -104,8 +104,8 @@ const PriceComparationSection: React.FC<PriceComparationSectionProps> = ({
           }}
         width={450}
         height={450}
-        className="absolute top-0 right-0 transform -translate-x-[10%] translate-y-[100%] hidden lg:block z-0"
-      />
+        className="absolute top-0 right-0 transform translate-x-[20%] -translate-y-[15%] hidden lg:block z-0"
+      /> */}
       <motion.div
         className="flex flex-col gap-4 md:gap-6 px-4 py-6 md:py-10 w-full max-w-full lg:max-w-[70%]"
         initial="hidden"
@@ -113,14 +113,14 @@ const PriceComparationSection: React.FC<PriceComparationSectionProps> = ({
         variants={containerVariants}
       >
         <motion.h4
-          className="text-center font-bold mb-2 md:mb-4 px-2 md:px-4 font-montserrat text-lg sm:text-xl md:text-3xl lg:text-4xl w-full max-w-full tracking-[0.2px]"
+          className="text-center font-bold mb-2 md:mb-4 px-2 md:px-4 font-montserrat text-3xl lg:text-[40px] w-full max-w-full tracking-[0.2px]"
           variants={itemVariants}
         >
           {data?.title}
         </motion.h4>
 
         <motion.h5
-          className="text-center font-bold px-2 md:px-4 font-montserrat text-sm sm:text-base md:text-xl lg:text-2xl tracking-[0.2px]"
+          className="text-center font-bold px-2 md:px-4 font-montserrat text-xl lg:text-2xl tracking-[0.2px]"
           variants={itemVariants}
         >
           {data?.subtitle}
@@ -321,37 +321,37 @@ const PriceComparationSection: React.FC<PriceComparationSectionProps> = ({
                   variants={itemVariants}
                 >
                   <motion.div
-                    className="text-center font-bold font-montserrat text-sm p-3 bg-gray-50 rounded-lg"
+                    className="text-center font-bold font-montserrat text-sm p-3 bg-gray-50 rounded-lg flex justify-center items-center"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     {data?.firstColTitle?.image ? (
                       <Image
                         src={generateSanityImageUrl(data.firstColTitle.image)}
-                        className="mx-auto mb-2"
+                        className="mx-auto"
                         alt="first column image"
-                        width={60}
-                        height={60}
+                        width={100}
+                        height={100}
                       />
                     ) : (
-                      <p className="text-xs">{data?.firstColTitle?.text}</p>
+                      <p className="text-md">{data?.firstColTitle?.text}</p>
                     )}
                   </motion.div>
                   <motion.div
-                    className="text-center font-bold font-montserrat text-sm p-3 bg-gray-50 rounded-lg"
+                    className="text-center font-bold font-montserrat text-sm p-3 bg-gray-50 rounded-lg flex justify-center items-center"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     {data?.secondColTitle?.image ? (
                       <Image
                         src={generateSanityImageUrl(data.secondColTitle.image)}
-                        className="mx-auto mb-2"
+                        className="mx-auto"
                         alt="second column image"
-                        width={60}
-                        height={60}
+                        width={100}
+                        height={100}
                       />
                     ) : (
-                      <p className="text-xs">{data?.secondColTitle?.text}</p>
+                      <p className="text-md">{data?.secondColTitle?.text}</p>
                     )}
                   </motion.div>
                 </motion.div>

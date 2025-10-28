@@ -62,7 +62,7 @@ const ReasonSection: React.FC<ReasonSectionProps> = ({
     >
       <div className="w-full md:w-[80%] z-10 relative overflow-hidden">
         <motion.h2
-          className="text-2xl md:text-[40px] pb-10 lg:mb-4 font-lora font-bold tracking-[0.2px] w-full lg:w-[85%]"
+          className="text-2xl md:text-[40px] pb-10 lg:pb-4 lg:mb-4 font-lora font-bold tracking-[0.2px] w-full lg:w-[85%]"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.7 }}

@@ -107,7 +107,7 @@ const HowReserveWorksSection: React.FC<HowReserveWorksSectionProps> = ({ data, r
         }>
         {data?.ctaButton}
       </Button>
-      <motion.figure
+      {/* <motion.figure
         className="w-26 h-26 rounded-2xl bg-orange absolute bottom-0 right-0 hidden md:block transform -translate-x-20 -translate-y-80"
         style={{
           y: desktopFallAnimation1,
@@ -121,7 +121,7 @@ const HowReserveWorksSection: React.FC<HowReserveWorksSectionProps> = ({ data, r
           y: desktopFallAnimation2,
           rotate: rotateAnimation2,
         }}
-      />
+      /> */}
     </motion.section>
   );
 };

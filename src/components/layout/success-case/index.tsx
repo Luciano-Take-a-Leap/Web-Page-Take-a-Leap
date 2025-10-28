@@ -42,7 +42,7 @@ const SuccessCase: React.FC<SuccessCaseProps> = ({
         alt={imageAlt}
         width={300}
         height={200}
-        className="object-contain"
+        className="object-contain rounded-4xl"
       />
     </motion.div>
   );

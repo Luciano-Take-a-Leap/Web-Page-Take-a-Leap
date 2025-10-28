@@ -15,7 +15,7 @@ interface FAQSectionProps {
 export default function FAQSection({ data, onViewChange }: FAQSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>();
   const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     useEffect(() => {
