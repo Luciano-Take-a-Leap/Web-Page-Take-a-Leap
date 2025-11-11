@@ -52,7 +52,7 @@ const AboutMeSection: React.FC<AboutMeSectionProps> = ({ data, onViewChange }) =
         {isInView && (
           <motion.div className="lg:w-[60%] px-10 md:px-14 flex flex-col justify-center font-work-sans text-sm text-white">
             <motion.h2
-              className="text-xl md:text-[50px] mb-4 font-archivo-black-400 tracking-[0.2px]"
+              className="text-[26px] md:text-[50px] mb-4 font-archivo-black-400 tracking-[0.2px]"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.7 }}

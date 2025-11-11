@@ -329,7 +329,7 @@ const CurrentEditionPeopleSection: React.FC<
         </div>
         <Carousel
           setApi={setApi}
-          className="w-full max-w-[1200px] md:py-2 relative min-h-108"
+          className="w-full max-w-[1200px] md:py-2 relative min-h-156"
           opts={{
             loop: true,
           }}
@@ -354,11 +354,11 @@ const CurrentEditionPeopleSection: React.FC<
           </CarouselContent>
           <CarouselPrevious
             variant="link"
-            className="absolute left-2 md:-left-12 hidden md:block md:top-1/2 transform -translate-y-1/2 scale-150 cursor-pointer text-white z-10"
+            className="absolute left-2 md:-left-14 hidden md:block md:top-1/2 transform -translate-y-1/2 scale-250 cursor-pointer text-white z-10"
           />
           <CarouselNext
             variant="link"
-            className="absolute right-2 md:-right-12 hidden md:block md:top-1/2 transform -translate-y-1/2 scale-150 cursor-pointer text-white z-10"
+            className="absolute right-2 md:-right-14 hidden md:block md:top-1/2 transform -translate-y-1/2 scale-250 cursor-pointer text-white z-10"
           />
           <div className="flex justify-center items-center gap-2 mt-6">
             {Array.from({ length: count }).map((_, idx) => (

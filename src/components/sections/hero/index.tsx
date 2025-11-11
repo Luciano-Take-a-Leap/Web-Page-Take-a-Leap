@@ -147,7 +147,7 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
       /> */}
       <motion.div
         className={twMerge(
-          'flex flex-col items-center gap-8 lg:gap-12 w-full max-w-[940px] 2xl:max-w-[70vw] z-30 mt-26 lg:mt-0'
+          'flex flex-col items-center gap-4 lg:gap-12 w-full max-w-[940px] 2xl:max-w-[70vw] z-30 mt-26 lg:mt-0'
         )}
       >
         <motion.div
@@ -171,7 +171,7 @@ const Hero: React.FC<HeroProps> = ({ className, redirectionUrl, data }) => {
         >
           <span className="text-white">{data?.subtitle}</span>
         </motion.h3>
-        {data?.mainContent ? <RichText className="text-white px-4 text-center" value={data.mainContent} animate delayStart={0.2} /> : null}
+        {data?.mainContent ? <RichText className="text-white px-2 text-center" value={data.mainContent} animate delayStart={0.2} /> : null}
         <motion.div
           className="flex items-center justify-center bg-[#F65A1799] w-full md:w-max md:max-w-[60vw] rounded-[40px] px-6 py-3"
           initial={{ opacity: 0, y: 20 }}
