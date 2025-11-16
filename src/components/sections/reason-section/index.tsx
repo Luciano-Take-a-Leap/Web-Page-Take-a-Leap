@@ -39,7 +39,7 @@ const ReasonSection: React.FC<ReasonSectionProps> = ({
     },
   };
 
-  const cleanText = vercelStegaSplit(data?.title || "").cleaned;
+  const cleanText = vercelStegaSplit(data?.extraTitle || "").cleaned;
 
   const { mainText, lastWords } = useMemo(
     () => splitLastWords(cleanText, 2),
@@ -67,7 +67,8 @@ const ReasonSection: React.FC<ReasonSectionProps> = ({
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.7 }}
         >
-          {mainText && <>{mainText} </>}
+          {data?.title && <>{data.title} </>}
+          {mainText && <p className="mt-4">{mainText} </p>}
           <span className="relative inline-block">
             {lastWords}
             <Image

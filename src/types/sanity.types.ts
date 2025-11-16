@@ -436,6 +436,7 @@ export type ReasonSection = {
   _updatedAt: string
   _rev: string
   title?: string
+  extraTitle?: string
   image?: {
     asset?: {
       _ref: string

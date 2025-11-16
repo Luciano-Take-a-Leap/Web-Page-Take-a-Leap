@@ -304,6 +304,7 @@ export const homePageSectionsQuery = groq`
       },
       _type == "reasonSection" => {
         title,
+        extraTitle,
         image{
           asset->{url}
         },
