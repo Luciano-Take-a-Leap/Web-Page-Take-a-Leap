@@ -46,7 +46,7 @@ const HowReserveWorksSection: React.FC<HowReserveWorksSectionProps> = ({
         duration: 0.5,
       }}
       id="how-it-works"
-      className="w-full relative flex flex-col items-center justify-center py-10 md:pb-20 bg-dark-blue text-white px-6"
+      className="w-full relative flex flex-col items-center justify-center py-10 md:pb-20 bg-dark-blue text-white px-6 overflow-hidden"
     >
       <motion.h2
         className="text-center text-[30px] md:text-[40px] mt-10 mb-6 font-montserrat font-bold px-6 md:max-w-[80%]"
@@ -65,20 +65,20 @@ const HowReserveWorksSection: React.FC<HowReserveWorksSectionProps> = ({
         {data?.title}
       </motion.h2>
 
-      <motion.div className="flex flex-col lg:flex-row gap-6 py-10 md:w-[70vw] items-center justify-center">
+      <motion.div className="grid grid-cols-1 lg:grid-cols-3 gap-6 py-10 w-full max-w-7xl px-4">
         {isInView
           ? data?.cards?.map((card, index) => (
               <motion.div
                 key={index}
-                className="bg-white text-black px-10 py-6 rounded-3xl w-full md:max-w-[460px] md:min-w-[380px] h-max flex justify-center items-center gap-8 md:gap-14 font-montserrat z-10"
+                className="bg-white text-black px-10 py-6 rounded-3xl w-full flex justify-center items-center gap-8 md:gap-14 font-montserrat z-10"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: index * 0.2, duration: 0.3 }}
               >
-                <h3 className="text-[100px] font-[500] text-center md:self-start">
+                <h3 className="text-[100px] font-[500] text-center md:self-start shrink-0">
                   {index + 1}
                 </h3>
-                <div className="text-lg text-black w-[70%]">
+                <div className="text-lg text-black flex-1">
                   <p className="mb-2">{card.content}</p>
                 </div>
               </motion.div>
@@ -102,21 +102,6 @@ const HowReserveWorksSection: React.FC<HowReserveWorksSectionProps> = ({
       >
         {data?.ctaButton}
       </Button>
-      {/* <motion.figure
-        className="w-26 h-26 rounded-2xl bg-orange absolute bottom-0 right-0 hidden md:block transform -translate-x-20 -translate-y-80"
-        style={{
-          y: desktopFallAnimation1,
-          rotate: rotateAnimation1,
-          scale: scaleAnimation1,
-        }}
-      />
-      <motion.figure
-        className="w-32 h-32 rounded-2xl bg-yellow absolute top-0 left-0 hidden md:block transform translate-x-20 translate-y-4"
-        style={{
-          y: desktopFallAnimation2,
-          rotate: rotateAnimation2,
-        }}
-      /> */}
     </motion.section>
   );
 };

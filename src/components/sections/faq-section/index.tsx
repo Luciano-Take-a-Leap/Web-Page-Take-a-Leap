@@ -1,11 +1,12 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'motion/react';
-import { ChevronDownIcon } from 'lucide-react';
-import { cn } from '@/utils/twMerge';
-import { FAQSection as TFAQSection } from '@/types/sanity.types';
-import RichText from '@/components/layout/rich-text-renderer';
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "motion/react";
+import { ChevronDownIcon } from "lucide-react";
+import { cn } from "@/utils/twMerge";
+import { FAQSection as TFAQSection } from "@/types/sanity.types";
+import RichText from "@/components/layout/rich-text-renderer";
+import Image from "next/image";
 
 interface FAQSectionProps {
   data?: TFAQSection;
@@ -14,15 +15,15 @@ interface FAQSectionProps {
 
 export default function FAQSection({ data, onViewChange }: FAQSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const [openIndex, setOpenIndex] = useState<number | null>();
   const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-    useEffect(() => {
-      if (isInView && onViewChange) {
-        onViewChange();
-      }
-    }, [isInView, onViewChange]);
+  useEffect(() => {
+    if (isInView && onViewChange) {
+      onViewChange();
+    }
+  }, [isInView, onViewChange]);
 
   const toggle = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
@@ -46,7 +47,7 @@ export default function FAQSection({ data, onViewChange }: FAQSectionProps) {
     <motion.section
       ref={sectionRef}
       initial="hidden"
-      animate={isInView ? 'visible' : 'hidden'}
+      animate={isInView ? "visible" : "hidden"}
       variants={containerVariants}
       className="w-full relative flex flex-col items-center justify-center py-10 md:pb-20 bg-white text-black px-6"
       id="faq"
@@ -61,10 +62,10 @@ export default function FAQSection({ data, onViewChange }: FAQSectionProps) {
       </motion.h2>
 
       <motion.div
-        className="w-full md:w-[50%]"
+        className="w-full md:w-[50%] z-20"
         variants={containerVariants}
         initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
+        animate={isInView ? "visible" : "hidden"}
       >
         {data?.faqs?.map((item, index) => {
           const isOpen = openIndex === index;
@@ -77,8 +78,8 @@ export default function FAQSection({ data, onViewChange }: FAQSectionProps) {
                 <p className="text-white">{item.question}</p>
                 <ChevronDownIcon
                   className={cn(
-                    'transition-transform duration-300 text-white',
-                    isOpen ? 'rotate-180' : 'rotate-0'
+                    "transition-transform duration-300 text-white",
+                    isOpen ? "rotate-180" : "rotate-0"
                   )}
                 />
               </button>
@@ -91,8 +92,8 @@ export default function FAQSection({ data, onViewChange }: FAQSectionProps) {
                     isOpen && contentRefs.current[index]
                       ? contentRefs.current[index].scrollHeight
                       : 0,
-                  overflow: 'hidden',
-                  transition: 'height 0.3s ease',
+                  overflow: "hidden",
+                  transition: "height 0.3s ease",
                 }}
               >
                 <div className="mt-2 mb-4 px-2 p-1 border">
@@ -103,6 +104,19 @@ export default function FAQSection({ data, onViewChange }: FAQSectionProps) {
           );
         })}
       </motion.div>
+        <Image
+          src="/assets/images/UI-elements/arrow-3.png"
+          alt="UI-element: arrow"
+          className="absolute top-24 right-0 transform -translate-x-16 scale-150 hidden xl:block -rotate-20"
+          style={{
+            filter:
+              "brightness(0) saturate(100%) invert(4%) sepia(95%) saturate(7482%) hue-rotate(234deg) brightness(92%) contrast(113%)",
+              transform:
+              "scaleY(-1) scaleX(-1)"
+          }}
+          width={280}
+          height={230}
+        />
     </motion.section>
   );
 }

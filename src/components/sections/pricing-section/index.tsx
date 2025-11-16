@@ -104,7 +104,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ data, countownLimitDate
           officialPriceTitle={data?.regularPriceTitle}
           launchPriceTitle={data?.launchPriceTitle}
         /> : null}
-          {data?.boxItemsTitle ? <h3 className="text-3xl md:text-4xl font-bold px-10 mt-26 lg:max-w-[60%] text-center">{data.boxItemsTitle}</h3> : null}
+          {data?.boxItemsTitle ? <h3 className="text-3xl md:text-4xl font-bold px-10 mt-26 lg:max-w-[60%] text-center leading-11 lg:leading-14">{data.boxItemsTitle}</h3> : null}
         <motion.div
           className="flex flex-col items-center justify-center mt-8 bg-white text-black rounded-3xl py-16 gap-4 text-center md:w-[80%] lg:mt-16 px-4 md:px-0"
           initial={{ opacity: 0, y: 20 }}
