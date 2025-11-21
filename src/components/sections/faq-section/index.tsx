@@ -6,7 +6,6 @@ import { ChevronDownIcon } from "lucide-react";
 import { cn } from "@/utils/twMerge";
 import { FAQSection as TFAQSection } from "@/types/sanity.types";
 import RichText from "@/components/layout/rich-text-renderer";
-import Image from "next/image";
 
 interface FAQSectionProps {
   data?: TFAQSection;
