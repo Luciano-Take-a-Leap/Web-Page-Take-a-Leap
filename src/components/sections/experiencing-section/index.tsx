@@ -52,8 +52,8 @@ const ExperiencingSection: React.FC<ExperiencingSectionProps> = ({
       initial="initial"
       id="experiencing-section"
       animate={isInView ? "animate" : "initial"}
-      variants={variants}
       ref={sectionRef}
+      variants={variants}
       transition={{
         duration: 0.5,
       }}
