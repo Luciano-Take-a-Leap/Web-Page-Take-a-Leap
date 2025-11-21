@@ -52,13 +52,13 @@ const CountdownBanner: React.FC<CountdownBannerProps> = ({
       exit={{ y: -380, opacity: 0 }}
     >
       <div className="w-screen flex flex-col lg:flex-row items-center justify-center lg:justify-evenly text-white gap-2 lg:gap-8  lg:max-w-full">
-        <h3 className="text-white font-bold text-center lg:text-start pt-2 lg:w-full lg:max-w-[500px] font-montserrat text-xs lg:text-md">
+        <h3 className="text-white font-bold text-center lg:text-start pt-1 lg:w-full lg:max-w-[500px] font-montserrat text-xs lg:text-md">
           {data?.mainText}
         </h3>
         <Countdown value={timeLeft} />
         <Button
           className={twMerge(
-            'bg-yellow hover:bg-yellow text-black px-10 rounded-xl font-bold h-10 md:self-center z-10'
+            'bg-yellow hover:bg-yellow text-black px-10 rounded-xl font-bold h-8 md:self-center z-10'
           )}
           onClick={() => handleLinkClick(data?.href)}
         >

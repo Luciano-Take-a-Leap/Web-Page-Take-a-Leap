@@ -57,7 +57,7 @@ const ExperiencingSection: React.FC<ExperiencingSectionProps> = ({
       transition={{
         duration: 0.5,
       }}
-      className="w-full relative bg-gradient-to-b from-orange to-orange-gradient flex flex-col items-center justify-center px-5 md:py-20"
+      className="w-full relative bg-gradient-to-b from-orange to-orange-gradient flex flex-col items-center justify-center px-5 pb-10 md:pb-0 md:py-20"
     >
       <motion.div
         className="px-6 md:max-w-[80%] mt-10 mb-6"

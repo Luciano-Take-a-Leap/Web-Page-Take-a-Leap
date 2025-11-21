@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "motion/react";
+import { motion, useScroll, useTransform, useInView } from 'motion/react';
 import { ChevronDownIcon } from "lucide-react";
 import { cn } from "@/utils/twMerge";
 import { FAQSection as TFAQSection } from "@/types/sanity.types";
@@ -18,6 +18,47 @@ export default function FAQSection({ data, onViewChange }: FAQSectionProps) {
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const [openIndex, setOpenIndex] = useState<number | null>();
   const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+   const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const desktopFallAnimation2 = useTransform(
+    scrollYProgress,
+    [0.5, 1],
+    [0, 1500]
+  );
+  // const desktopFallAnimation3 = useTransform(scrollYProgress, [0.5, 1], [0, 500]);
+  const desktopFallAnimation4 = useTransform(
+    scrollYProgress,
+    [0.5, 1],
+    [0, 150]
+  );
+  // const desktopFallAnimation5 = useTransform(scrollYProgress, [0.5, 1], [0, 800]);
+  const mobileFallAnimation1 = useTransform(
+    scrollYProgress,
+    [0.4, 1],
+    [0, 500]
+  );
+  // const mobileFallAnimation2 = useTransform(scrollYProgress, [0.4, 1], [0, 100]);
+  const mobileFallAnimation3 = useTransform(
+    scrollYProgress,
+    [0.4, 1],
+    [0, 900]
+  );
+
+  const rotateAnimation1 = useTransform(scrollYProgress, [0.5, 1], [-66, -20]);
+  const rotateAnimation2 = useTransform(scrollYProgress, [0.5, 1], [-66, -120]);
+  const rotateAnimation3 = useTransform(scrollYProgress, [0.5, 1], [-66, -60]);
+  // const rotateAnimation4 = useTransform(scrollYProgress, [0.5, 1], [66, -30]);
+  // const rotateAnimation5 = useTransform(scrollYProgress, [0.5, 1], [75, 66]);
+  const rotateAnimation6 = useTransform(scrollYProgress, [0.5, 1], [35, 40]);
+
+  // const scaleAnimation1 = useTransform(scrollYProgress, [0.5, 1], [1, 0.6]);
+  const scaleAnimation2 = useTransform(scrollYProgress, [0.5, 1], [1, 2.6]);
+  const scaleAnimation3 = useTransform(scrollYProgress, [0.5, 1], [1, 0.7]);
+
 
   useEffect(() => {
     if (isInView && onViewChange) {
@@ -49,7 +90,7 @@ export default function FAQSection({ data, onViewChange }: FAQSectionProps) {
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={containerVariants}
-      className="w-full relative flex flex-col items-center justify-center py-10 md:pb-20 bg-white text-black px-6"
+      className="w-full relative flex flex-col items-center justify-center py-10 md:pb-20 bg-white text-black px-6 overflow-hidden"
       id="faq"
     >
       <motion.h2
@@ -104,19 +145,49 @@ export default function FAQSection({ data, onViewChange }: FAQSectionProps) {
           );
         })}
       </motion.div>
-        <Image
-          src="/assets/images/UI-elements/arrow-3.png"
-          alt="UI-element: arrow"
-          className="absolute top-24 right-0 transform -translate-x-16 scale-150 hidden xl:block -rotate-20"
-          style={{
-            filter:
-              "brightness(0) saturate(100%) invert(4%) sepia(95%) saturate(7482%) hue-rotate(234deg) brightness(92%) contrast(113%)",
-              transform:
-              "scaleY(-1) scaleX(-1)"
-          }}
-          width={280}
-          height={230}
-        />
+      <motion.figure
+        className="w-20 h-20 rounded-2xl bg-orange absolute bottom-0 left-0 md:hidden transform -translate-x-4 -translate-y-100"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        style={{
+          y: mobileFallAnimation1,
+          rotate: rotateAnimation1,
+          scale: scaleAnimation3,
+        }}
+      />
+      <motion.figure
+        className="w-24 h-24 rounded-3xl bg-orange absolute top-0 right-0 md:hidden transform translate-x-2 translate-y-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        style={{
+          y: mobileFallAnimation3,
+          rotate: rotateAnimation6,
+        }}
+      />
+      <motion.figure
+        className="w-26 h-26 rounded-2xl bg-orange absolute top-0 right-0 hidden md:block transform -translate-x-16 translate-y-14 z-20"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        style={{
+          y: desktopFallAnimation2,
+          rotate: rotateAnimation2,
+          scale: scaleAnimation2,
+        }}
+      />
+      <motion.figure
+        className="w-40 h-40 rounded-2xl bg-orange absolute bottom-0 left-0 hidden md:block transform -translate-x-8 translate-y-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        style={{
+          y: desktopFallAnimation4,
+          rotate: rotateAnimation3,
+          scale: scaleAnimation3,
+        }}
+      />
     </motion.section>
   );
 }

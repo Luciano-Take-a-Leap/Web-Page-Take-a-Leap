@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import RichText from '@/components/layout/rich-text-renderer';
-import { Button } from '@/components/ui/button';
+import RichText from "@/components/layout/rich-text-renderer";
+import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '@/components/ui/carousel';
-import { WarrantySection as TWarrantySection } from '@/types/sanity.types';
-import { motion, useInView } from 'motion/react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+} from "@/components/ui/carousel";
+import { WarrantySection as TWarrantySection } from "@/types/sanity.types";
+import { motion, useInView } from "motion/react";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 interface WarrantySectionProps {
   data?: TWarrantySection;
@@ -21,15 +21,19 @@ interface WarrantySectionProps {
   onViewChange?: () => void;
 }
 
-const WarrantySection: React.FC<WarrantySectionProps> = ({ data, redirectionUrl, onViewChange }) => {
+const WarrantySection: React.FC<WarrantySectionProps> = ({
+  data,
+  redirectionUrl,
+  onViewChange,
+}) => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-    useEffect(() => {
-      if (isInView && onViewChange) {
-        onViewChange();
-      }
-    }, [isInView, onViewChange]);
+  useEffect(() => {
+    if (isInView && onViewChange) {
+      onViewChange();
+    }
+  }, [isInView, onViewChange]);
 
   const variants = {
     initial: {
@@ -43,21 +47,21 @@ const WarrantySection: React.FC<WarrantySectionProps> = ({ data, redirectionUrl,
   };
 
   const formatButtonText = (text: string | undefined) => {
-    if (!text) return '';
+    if (!text) return "";
 
-    const words = text.split(' ');
+    const words = text.split(" ");
     const midPoint = Math.ceil(words.length / 2);
     return (
-      words.slice(0, midPoint).join(' ') +
+      words.slice(0, midPoint).join(" ") +
       ' <br class="sm:hidden" /> ' +
-      words.slice(midPoint).join(' ')
+      words.slice(midPoint).join(" ")
     );
   };
 
   return (
     <motion.section
       initial="initial"
-      animate={isInView ? 'animate' : 'initial'}
+      animate={isInView ? "animate" : "initial"}
       variants={variants}
       ref={sectionRef}
       transition={{
@@ -108,7 +112,12 @@ const WarrantySection: React.FC<WarrantySectionProps> = ({ data, redirectionUrl,
                 <h3 className="text-xl font-bold mb-2">{card.name}</h3>
                 <p className="text-md uppercase">{card.role}</p>
                 {card.linkedIn ? (
-                  <Link href={card.linkedIn} target="_blank" className="cursor-pointer" title='LinkedIn'>
+                  <Link
+                    href={card.linkedIn}
+                    target="_blank"
+                    className="cursor-pointer"
+                    title="LinkedIn"
+                  >
                     <Image
                       src="/assets/images/icons/linkedin.svg"
                       alt="LinkedIn"
@@ -136,10 +145,9 @@ const WarrantySection: React.FC<WarrantySectionProps> = ({ data, redirectionUrl,
         dangerouslySetInnerHTML={{ __html: formatButtonText(data?.ctaButton) }}
         onClick={() => {
           if (redirectionUrl) {
-            window.open(redirectionUrl, '_blank');
+            window.open(redirectionUrl, "_blank");
           }
-        }
-        }
+        }}
       ></Button>
       {/* <motion.figure
         className="w-18 h-18 rounded-2xl bg-yellow absolute top-0 right-0 hidden md:block transform -translate-x-20 translate-y-12"

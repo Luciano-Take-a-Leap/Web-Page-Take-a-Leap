@@ -36,7 +36,7 @@ const Countdown: React.FC<CountownProps> = ({ className, value }) => {
             <span className="font-archivo-black-400 text-2xl">
               {component.value}
             </span>
-            <span className="font-montserrat text-sm text-white md:text-lg">{component.label}</span>
+            <span className="font-montserrat text-xs text-white md:text-lg">{component.label}</span>
           </span>
         ))}
       </motion.div>
